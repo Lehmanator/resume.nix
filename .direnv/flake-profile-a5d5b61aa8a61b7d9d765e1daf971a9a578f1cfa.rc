@@ -48,7 +48,7 @@ fi
 # https://github.com/numtide/devshell/issues/158
 PATH=${PATH#/path-not-set:}
 
-export DEVENV_PROFILE=/nix/store/r6hilb805rz5nkp75l1y5q91hss297ma-devenv-profile
+export DEVENV_PROFILE=/nix/store/l4bgmxl1gaq849brxl4mki2y0cr8nhaz-devenv-profile
 
 # add installed packages to PATH
 export PATH="$DEVENV_PROFILE/bin:$PATH"
@@ -65,7 +65,7 @@ export XDG_CONFIG_DIRS="$DEVENV_PROFILE/etc/xdg:${XDG_CONFIG_DIRS-}"
 
 export CAROOT='\''/home/sam/Code/forks/jsonresume-nix/.devenv/state/mkcert'\''
 export DEVENV_DOTFILE='\''/home/sam/Code/forks/jsonresume-nix/.devenv'\''
-export DEVENV_PROFILE='\''/nix/store/r6hilb805rz5nkp75l1y5q91hss297ma-devenv-profile'\''
+export DEVENV_PROFILE='\''/nix/store/l4bgmxl1gaq849brxl4mki2y0cr8nhaz-devenv-profile'\''
 export DEVENV_ROOT='\''/home/sam/Code/forks/jsonresume-nix'\''
 export DEVENV_STATE='\''/home/sam/Code/forks/jsonresume-nix/.devenv/state'\''
 export GIT_EXTERNAL_DIFF='\''difft'\''
@@ -101,7 +101,7 @@ fi
 
 mkdir -p .devenv
 rm -f .devenv/profile
-ln -s /nix/store/r6hilb805rz5nkp75l1y5q91hss297ma-devenv-profile .devenv/profile
+ln -s /nix/store/l4bgmxl1gaq849brxl4mki2y0cr8nhaz-devenv-profile .devenv/profile
 
 '
 export shellHook
