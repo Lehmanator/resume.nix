@@ -12,3 +12,8 @@ resume.json
 # Private data
 src/private.json
 src/private.nix
+
+# Disable
+.disable/
+.old/
+.hide/
