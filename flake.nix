@@ -110,14 +110,8 @@
             };
           };
         in {
-          inherit
-            (pkgs)
-            resumed
-            puppeteer-cli
-            wkhtmltopdf
-            pnmp-lock-export
-            corepack_latest
-            ;
+          inherit (pkgs) resumed puppeteer-cli;
+          #wkhtmltopdf pnmp-lock-export corepack_latest ;
           inherit (pkgs.python311Packages) weasyprint;
           inherit (pkgs.nodePackages_latest) pnpm;
 
