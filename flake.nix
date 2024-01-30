@@ -1,132 +1,252 @@
 {
-  description = "jsonresume-nix";
-
-  inputs.flake-utils.url = "flake-utils";
-
+  description = "Personal resume built with jsonresume in Nix";
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    hercules-ci-effects.url = "github:hercules-ci/hercules-ci-effects";
+    devenv.url = "github:cachix/devenv";
+    devshell.url = "github:numtide/devshell";
+    devshell.inputs.nixpkgs.follows = "nixpkgs";
+    pre-commit-hooks-nix.url = "github:cachix/pre-commit-hooks.nix";
+    treefmt-nix.url = "github:numtide/treefmt-nix";
+    treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
+  };
   outputs = {
     self,
-    flake-utils,
     nixpkgs,
+    flake-parts,
     ...
   } @ inputs:
-    {
-      # Flake outputs
-      templates.default = {
-        path = ./template;
-        description = "Template to build jsonresume with nix";
+    flake-parts.lib.mkFlake {inherit inputs;} {
+      imports = [
+        #inputs.devenv.flakeModule
+        #inputs.devshell.flakeModule
+        inputs.flake-parts.flakeModules.easyOverlay
+        inputs.hercules-ci-effects.flakeModule
+        #inputs.pre-commit-hooks-nix.flakeModule
+        inputs.treefmt-nix.flakeModule
+      ];
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+        "x86_64-darwin"
+        "aarch64-darwin"
+        "riscv64-linux"
+      ];
+      debug = true;
+      hercules-ci = {
+        github-pages = {
+          branch = "main";
+          check.enable = true;
+          pushJob = "default";
+        };
+        github-releases.files = {
+          label = "resume";
+          path = self.packages.default + "/resume.json";
+        };
       };
-    }
-    // flake-utils.lib.eachDefaultSystem (system: let
-      pkgs = nixpkgs.legacyPackages.${system};
-    in {
-      # Specify formatter package for "nix fmt ." and "nix fmt . -- --check"
-      formatter = pkgs.alejandra;
+      perSystem = {
+        config,
+        lib,
+        pkgs,
+        ...
+      }: {
+        hercules-ci.github-pages = {
+          settings = {contents = config.packages.default;};
+        };
+        #_modules.args.pkgs =
+        overlayAttrs = {inherit (config.packages) resume-json;};
+        treefmt = {
+          flakeCheck = true;
+          flakeFormatter = true;
+          programs = {
+            alejandra.enable = true;
+            deadnix.enable = false;
+            statix.enable = false;
+            nixfmt.enable = false;
+            nixpkgs-fmt.enable = false;
+            formatjson5.enable = false;
+            yamlfmt.enable = true;
+          };
+        };
+        packages = let
+          version = "0.1.0";
+          builder = theme: let
+            htmlPkgName = "jsonresume-html-${theme}";
+            htmlPkg = config.packages.${htmlPkgName};
+            themePkgName = "jsonresume-theme-${theme}";
+            themePkg = config.packages.${themePkgName};
+          in {
+            html = pkgs.stdenv.mkDerivation rec {
+              inherit version;
+              pname = htmlPkgName; # "resume-${theme}-html";
+              allowSubstitutes = false;
+              nativeBuildInputs = [pkgs.resumed themePkg];
+              propagatedBuildInputs = [config.packages.resume-src themePkg];
+              src = ./src;
+              buildPhase = ''
+                mkdir -p $out
+                cp ${config.packages.resume-src}/resume.json .
+                cp ${src}/*.{jpeg,jpg,webp,gif,png,ico,woff,ttf,otf,js} .
+                cp ${src}/*.{jpeg,jpg,webp,gif,png,ico,woff,ttf,otf,js} $out
+                ${pkgs.resumed}/bin/resumed render \
+                --theme ${themePkg}/lib/node_modules/${themePkgName}/index.js \
+                --output $out/index.html
+                chmod +x $out/*.{html,js}
+              '';
+            };
+            pdf = pkgs.stdenv.mkDerivation {
+              inherit version;
+              pname = "jsonresume-pdf-${theme}";
+              allowSubstitutes = false;
+              nativeBuildInputs = [pkgs.puppeteer-cli htmlPkg];
+              src = htmlPkg;
+              buildPhase = ''
+                mkdir -p $out
+                ${pkgs.puppeteer-cli}/bin/puppeteer print ${htmlPkg}/index.html $out/resume.pdf
+              '';
+            };
+          };
+        in {
+          inherit
+            (pkgs)
+            resumed
+            puppeteer-cli
+            wkhtmltopdf
+            pnmp-lock-export
+            corepack_latest
+            ;
+          inherit (pkgs.python311Packages) weasyprint;
+          inherit (pkgs.nodePackages_latest) pnpm;
 
-      # Set up nix develop shell environment
-      devShells.default = pkgs.mkShell {
-        buildInputs = [
-          pkgs.resumed
-          pkgs.nodejs
-        ];
-      };
+          default = config.packages.resume;
+          resume = pkgs.symlinkJoin {
+            name = "resume";
+            paths = [
+              config.packages.jsonresume-html-fullmoon
+              config.packages.jsonresume-pdf-fullmoon
+            ];
+          };
 
-      # Check output to run checks for all themes
-      checks.themes = let
-        builderAttrs =
-          pkgs.lib.filterAttrs
-          (name: _: pkgs.lib.strings.hasPrefix "resumed-" name)
-          self.packages.${system};
-      in
-        pkgs.stdenv.mkDerivation {
-          name = "themes-checks";
-          src = ./template;
+          resume-src = pkgs.stdenv.mkDerivation rec {
+            inherit version;
+            pname = "resume-json";
+            allowSubstitutes = false;
+            src = ./src;
+            buildPhase = ''
+              cat << "EOF" > resume.json
+              ${builtins.toJSON (import "${src}/resume.nix")}
+              EOF
+            '';
+            installPhase = ''
+              mkdir -p $out
+              cp $src/* $out
+              cp resume.json $out
+            '';
+          };
 
-          buildPhase =
-            ''
-              cp resume.sample.json resume.json
-            ''
-            + (builtins.concatStringsSep "\n\n"
-              (pkgs.lib.attrValues (pkgs.lib.mapAttrs
-                (name: value: ''
-                  # Build using builder ${name}
-                  ${value}
-                  mv resume.html ${name}.html
-                '')
-                builderAttrs)));
+          # TODO: Genericize
+          jsonresume-html-full = (builder "full").html;
+          jsonresume-html-fullmoon = (builder "fullmoon").html;
+          jsonresume-html-elegant = (builder "elegant").html;
+          jsonresume-html-kendall = (builder "kendall").html;
+          jsonresume-html-macchiato = (builder "macchiato").html;
+          jsonresume-html-stackoverflow = (builder "stackoverflow").html;
 
-          installPhase =
-            ''
-              mkdir $out
-            ''
-            + (builtins.concatStringsSep "\n\n"
-              (pkgs.lib.attrValues (
-                pkgs.lib.mapAttrs
-                (name: _: ''
-                  mv ${name}.html $out
-                '')
-                builderAttrs
-              )));
+          jsonresume-pdf-full = (builder "full").pdf;
+          jsonresume-pdf-fullmoon = (builder "fullmoon").pdf;
+          jsonresume-pdf-elegant = (builder "elegant").pdf;
+          jsonresume-pdf-kendall = (builder "kendall").pdf;
+          jsonresume-pdf-macchiato = (builder "macchiato").pdf;
+          jsonresume-pdf-stackoverflow = (builder "stackoverflow").pdf;
+
+          # TODO: Add more themes
+          # TODO: Add attr `passthru.updaterScript` to make updating source revisions/hashes easier?
+          jsonresume-theme-elegant =
+            pkgs.callPackage ./packages/jsonresume-themes/elegant {};
+          jsonresume-theme-full =
+            pkgs.callPackage ./packages/jsonresume-themes/full {};
+          jsonresume-theme-fullmoon =
+            pkgs.callPackage ./packages/jsonresume-themes/fullmoon {};
+          jsonresume-theme-kendall =
+            pkgs.callPackage ./packages/jsonresume-themes/kendall {};
+          jsonresume-theme-macchiato =
+            pkgs.callPackage ./packages/jsonresume-themes/macchiato {};
+          jsonresume-theme-stackoverflow =
+            pkgs.callPackage ./packages/jsonresume-themes/stackoverflow {};
+
+          # TODO: Scoped packages: `jsonresume-themes.<themeName>`
+          #jsonresume-themes = lib.makeScope pkgs.newScope (selfScope: with selfScope; {
+          #  elegant = pkgs.callPackage ./packages/jsonresume-themes/elegant {};
+          #  full = pkgs.callPackage ./packages/jsonresume-themes/full {};
+          #  fullmoon = pkgs.callPackage ./packages/jsonresume-themes/fullmoon {};
+          #});
+
+          #jsonresume-all = pkgs.symlinkJoin {
+          #  name = "jsonresume-themes";
+          #  paths =
+          #    [config.packages.resume-json]
+          #    ++ (lib.lists.forEach [
+          #        "elegant"
+          #        "full"
+          #        "fullmoon"
+          #        "kendall"
+          #        "macchiato"
+          #        "stackoverflow"
+          #      ] (n:
+          #        config.packages.${"jsonresume-theme-${n}"}
+          #        + "/lib/node_modules"));
+          #};
+
+          #resume-cli = pkgs.callPackage ./packages/resume-cli {};
+
+          # TODO: Wrap with webserver?
+
+          #themes-checks = let
+          #  builderAttrs =
+          #    pkgs.lib.filterAttrs
+          #    (name: _: pkgs.lib.strings.hasPrefix "resume-" name)
+          #    self.packages.${pkgs.system};
+          #in
+          #  pkgs.stdenv.mkDerivation {
+          #    name = "themes-checks";
+          #    src = ./template;
+          #    buildPhase =
+          #      ''
+          #        cp resume.sample.json resume.json
+          #      ''
+          #      + (builtins.concatStringsSep "\n\n" (pkgs.lib.attrValues
+          #        (pkgs.lib.mapAttrs (name: value: ''
+          #            # Build using builder ${name}
+          #            ${value}
+          #            mv resume.html ${name}.html
+          #          '')
+          #          builderAttrs)));
+          #    installPhase =
+          #      ''
+          #        mkdir $out
+          #      ''
+          #      + (builtins.concatStringsSep "\n\n" (pkgs.lib.attrValues
+          #        (pkgs.lib.mapAttrs (name: _: "mv ${name}.html $out")
+          #          builderAttrs)));
+          #  };
         };
 
-      # Expose packages for themes and resumed used
-      packages = let
-        fmt-as-json = pkgs.writeShellScript "fmt-as-json" ''
-          set -eou pipefail
-
-          yamlresume="$(${pkgs.lib.getExe pkgs.findutils} . \( -name 'resume.yaml' -o -name 'resume.yml' \) | head -1 || echo)"
-
-          if test -e "./resume.nix"; then
-            echo "Converting ./resume.nix to ./resume.json" 1>&2
-            ${pkgs.nix}/bin/nix-instantiate --eval -E 'builtins.toJSON (import ./resume.nix)' \
-              | ${pkgs.jq}/bin/jq -r \
-              | ${pkgs.jq}/bin/jq > resume.json
-          elif test -e "./resume.toml"; then
-            echo "Converting ./resume.toml to ./resume.json" 1>&2
-            ${pkgs.nix}/bin/nix-instantiate --eval -E 'builtins.toJSON (builtins.fromTOML (builtins.readFile ./resume.toml))' \
-              | ${pkgs.jq}/bin/jq -r \
-              | ${pkgs.jq}/bin/jq > resume.json
-          elif [[ $yamlresume != "" ]]; then
-            echo "Converting $yamlresume to ./resume.json" 1>&2
-            ${pkgs.lib.getExe pkgs.yq-go} -o=json '.' "$yamlresume" > resume.json
-          elif test -e "./resume.json"; then
-            echo "Found ./resume.json, not touching it" 1>&2
-          else
-            echo "No resume of any supported format found, currently looking for" 1>&2
-            echo "any of ./resume.(nix|toml|json|yaml|yml)"                       1>&2
-            exit 2
-          fi
-
-          echo "Running validation of ./resume.json" 1>&2
-          ${pkgs.resumed}/bin/resumed validate
-        '';
-
-        buildThemeBuilder = themeName: let
-          themePkg = pkgs.callPackage ./themes/jsonresume-theme-${themeName} {};
-        in
-          pkgs.writeShellScript "resumed-render-wrapped-${themeName}-${themePkg.version}" ''
-            set -eou pipefail
-
-            # Convert resume.nix to resume.json
-            ${fmt-as-json}
-
-            # Render resume.json
-            ${pkgs.resumed}/bin/resumed render \
-              --theme ${themePkg}/lib/node_modules/jsonresume-theme-${themeName}/index.js
-          '';
-      in {
-        inherit fmt-as-json;
-
-        # Resumed package used
-        inherit (pkgs) resumed;
-
-        # Themes
-        resumed-elegant = buildThemeBuilder "elegant";
-        resumed-full = buildThemeBuilder "full";
-        resumed-fullmoon = buildThemeBuilder "fullmoon";
-        resumed-kendall = buildThemeBuilder "kendall";
-        resumed-macchiato = buildThemeBuilder "macchiato";
-        resumed-stackoverflow = buildThemeBuilder "stackoverflow";
+        #devShells.default = pkgs.mkShell {buildInputs = [pkgs.resumed pkgs.nodejs];};
+        #apps.live = {
+        #  type = "app";
+        #  program =
+        #    builtins.toString (pkgs.writeShellScript "resume-reload" "");
+        #};
       };
-    })
-    // {inherit inputs;};
+      flake = {
+        #  # Flake outputs
+        #  templates.default = {
+        #    path = ./template;
+        #    description = "Template to build jsonresume with nix";
+        #  };
+        #  # Check output to run checks for all themes
+        #  checks.themes = self.packages.themes-checks;
+      };
+    };
 }

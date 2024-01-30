@@ -8,3 +8,7 @@ package-lock.json
 package.json
 resume.html
 resume.json
+
+# Private data
+src/private.json
+src/private.nix

@@ -1,77 +1,93 @@
-# jsonresume-nix
-Build and deploy your résumé using [Nix](https://nixos.org/) and
-[jsonresume](https://jsonresume.org/) in a reproducible way. We
-provide some themes and make it easy to add more themes (pull requests
-are welcome).
+# resume.nix
 
-We have a template to easily deploy it GitHub pages or using their
-hosted service where the JSON schema is hosted as a GitHub gist.
-
-We also supports transforming into the JSON schema from other
-languages so you aren't used to a raw JSON format.
-
-Formats supported:
-
-- Nix (that gets evaluated into the JSON schema)
-- TOML (that gets parsed into the JSON schema)
-- YAML (.yml or .yaml, that gets converted into the JSON schema)
-- JSON (just the original JSON format)
+Reproducible personal résumé built & deployed using [Nix](https://nixos.org/) and
+[jsonresume](https://jsonresume.org/). Supports a broad number of themes.
 
 ## Getting started
 
+- [ ] **TODO: Create template**
+
 Create your own `resume` repository and run
 
-    nix flake init -t github:TaserudConsulting/jsonresume-nix
+    nix flake init -t github:Lehmanator/resume.nix
 
 to clone the template to use this flake.
 
-In there you get a `builder` that determines the theme to use. To
-build it you can just run `nix build .#builder` and execute the result
-like `./result` which will build `resume.nix` into a HTML output. Note
-that it's required that this `flake.nix` is part of a git repository
-and that you at least stage the `flake.nix` file to be able to build.
+Template will come with a `builder` package, and a selection of theme packages that are passed to the builder.
+To build your résumé, first edit the data inside `src/resume.nix`, then select one of the packages to build.
 
-To change the theme used you'd just change the `defaultPackage` used,
-to list available packages you just run:
+Each theme will have one of the following packages:
 
-    nix flake show github:TaserudConsulting/jsonresume-nix
+- Theme Package: `jsonresume-theme-THEMENAME`
+- HTML Builder: `jsonresume-html-THEMENAME`
+- PDF Builder: `jsonresume-pdf-THEMENAME`
 
-Then nix will list available theme wrappers.
+For example, to build a PDF document of your résumé, run:
 
-### Live preview when building your résumé
+    `nix build .#jsonresume-pdf-THEMENAME`
 
-If you want a live preview of how the final result will look while
-filling out your résumé schema file, run the following command:
+Or to build the HTML static site, run:
 
-    nix run .#live
+    `nix build .#jsonresume-html-THEMENAME`
 
-## [TODO] Things to do
+You will then find either `resume.pdf` or `index.html` inside `./result` directory.
 
-- [ ] Wrapper script to package themes
-- [ ] Wrapper script to update themes
-- [ ] Wrapper script to test themes
-- [X] Expose themes as packages in flake
-- [X] Expose resumed as package in flake
-- [X] Add a flake check that tests all themes
-- [ ] Add a flake output to test end users résumés and themes builds
-      as flake checks
-- [ ] Add a flake output to use as flake init for end users résumés
-      repositories
-- [ ] Add CI to update flake and themes
+Provided is a default package using a pre-selected theme. This makes building as simple as running: `nix build` with no extra arguments. To change which theme is used, edit the default package in `flake.nix` to point to some other `config.packages.jsonresume-theme-THEMENAME` package.
 
-## Finding and testing more themes before packaging them
+Included are package definitions for other utils, themes, etc.
+These may not all be complete or functioning for the time-being.
+
+To list all available packages, run:
+
+    nix flake show github:Lehmanator/resume.nix
+
+## More Themes
+
+Check NPM for other themes. Most should be fairly trivial to include,
+and can mostly be copy-and-pasted from other theme package files in
+`packages/jsonresume-themes/THEMENAME`
 
 <https://www.npmjs.com/search?q=jsonresume-theme>
 
-Find the theme name, then run `npm install
-jsonresume-theme-THEMENAME`, this should install the theme in your
-local directory (given that you have `nodejs` available, use
-`nix-shell` for this).
+## To-Do
 
-Then you should be able to use `nix-shell` to make `resumed` available
-as well and test the theme by running:
+List of features I'd like to implement at some point.
+Plz help me. Contributions welcome!
 
-    resumed render --theme $(pwd)/node_modules/jsonresume-theme-THEMENAME/index.js
+- [ ] GitHub/GitLab Pages deployment
+- [ ] GitHub/GitLab Releases deployment
+- [ ] Formatters via `treefmt-nix`
+- [ ] QR code links to your HTML deployments or PDF release artifacts.
+- [ ] Co-existing theme deployments.
+- [ ] Markdown conversion
+- [ ] LaTeX support
+- [ ] flake checks
+- [ ] PDF signing
+- [ ] More themes!
 
-The full path seems to be super important here. If this works you can
-attempt to package it and expose it in the flake.
+### Nix Environments
+
+- [ ] `devShell` for building, hacking on themes, etc.
+- [ ] `hmModules.jsonresume` implementing [home-manager](https://github.com/nix-community/home-manager) options to allow setting your data as a part of your `homeConfigurations`
+- [ ] `nixosModules.jsonresume` implementing [NixOS](https://github.com/NixOS/nixpkgs) options to allow deploying your static site & hosting your assets on your machine's `networking.domain` via a webserver running as a systemd service by declaring what to deploy in your `nixosConfigurations`.
+  - [ ] TLS certificate generation for self-hosting your static site resume.
+  - [ ] DNS configuration to point your domain at GitHub Pages.
+
+### Personal Info
+
+- [ ] Actually make the data accurate.
+
+### Links for later
+
+- <https://github.com/jsonresume/jsonresume-gpt3>
+- <https://github.com/jsonresume/jsonresume.org>
+- <https://github.com/DrakeAxelrod/json-resume-service>
+- <https://github.com/marketplace/actions/jsonresume-export>
+- <https://github.com/jsonresume/resume-cli>
+
+## Thanks
+
+- [TaserudConsulting/jsonresume-nix](https://github.com/TaserudConsulting/jsonresume-nix) - Flake repo I originally forked this one from. Consider using that project if it better fits your needs. My repo has diverged substantially.
+- [rbardini/resumed](https://github.com/rbardini/resumed) - Util that builds the `index.html` artifacts.
+- [JarvusInnovations/puppeteer-cli](https://github.com/JarvusInnovations/puppeteer-cli) - Util that builds the `resume.pdf` artifacts from `index.html`
+- All the `jsonresume` maintainers, theme developers, and community.
