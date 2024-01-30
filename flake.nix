@@ -68,6 +68,8 @@
             formatjson5.enable = false;
             yamlfmt.enable = true;
           };
+          projectRoot = self;
+          projectRootFile = "flake.nix";
         };
         packages = let
           version = "0.1.0";
