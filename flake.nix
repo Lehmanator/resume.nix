@@ -7,6 +7,9 @@
     devenv.url = "github:cachix/devenv";
     devshell.url = "github:numtide/devshell";
     devshell.inputs.nixpkgs.follows = "nixpkgs";
+    nix2container.url = "github:nlewo/nix2container";
+    nix2container.inputs.nixpkgs.follows = "nixpkgs";
+    mk-shell-bin.url = "github:rrbutani/nix-mk-shell-bin";
     pre-commit-hooks-nix.url = "github:cachix/pre-commit-hooks.nix";
     treefmt-nix.url = "github:numtide/treefmt-nix";
     treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
@@ -53,14 +56,14 @@
       }: {
         devenv.shells.default = {
           name = "resume.nix";
-          certificates = ["resume.samlehman.dev"];
+          #certificates = ["resume.samlehman.dev"];
           #devcontainer = { enable= true; settings= {}; };
           difftastic.enable = true;
           enterShell = ''
             echo "Welcome to resume.nix!"
           '';
           env = {};
-          hosts = {"resume.samlehman.dev" = "127.0.0.1";};
+          #hosts = {"resume.samlehman.dev" = "127.0.0.1";};
           languages = {
             javascript.enable = true;
             nix.enable = true;
