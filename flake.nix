@@ -77,6 +77,8 @@
             jsonresume-theme-kendall
             jsonresume-theme-macchiato
             jsonresume-theme-stackoverflow
+            config.treefmt.build.wrapper
+            config.treefmt.build.programs
           ];
           #pre-commit = {}; #https://github.com/cachix/pre-commit-hooks.nix
           #process = {
