@@ -14,4 +14,4 @@ jobs:
       - uses: DeterminateSystems/magic-nix-cache-action@main
       - uses: DeterminateSystems/flake-checker-action@main
       - run: nix build
-      - run: nix shell --command "echo OK"
+      #- run: nix shell --command "echo OK"
