@@ -1,6 +1,8 @@
 # Ignore build symlinks
 result*
 .tmp
+.direnv/
+.devenv/
 
 # Ignore temporary files for when doing manual tests with themes
 node_modules/
