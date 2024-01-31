@@ -119,8 +119,11 @@
             }
           ];
         };
-        hercules-ci.github-pages.settings.contents =
-          config.packages.jsonresume-html;
+        hercules-ci.github-pages.settings = {
+          contents = config.packages.jsonresume-html;
+          git.update.branch = "doc";
+          message = "Update GitHub Pages";
+        };
         #_modules.args.pkgs =
         overlayAttrs = {inherit (config.packages) resume-json;};
         treefmt = {
