@@ -16,6 +16,7 @@ jobs:
       - uses: DeterminateSystems/magic-nix-cache-action@main
         with:
           diagnostic-endpoint: "" # Disable telemetry
+          upstream-cache: https://lehmanator.cachix.org # Use my binary cache (which uses cache.nixos.org upstream)
       - uses: DeterminateSystems/flake-checker-action@main
         with:
           send-statistics: false # Disable telemetry
