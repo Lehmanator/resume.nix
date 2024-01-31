@@ -38,13 +38,21 @@
       ];
       debug = true;
       hercules-ci = {
+        flake-update = {
+          autoMergeMethod = "merge";
+          flakes."." = {commitSummary = "flake.lock: update";};
+        };
         github-pages = {
           branch = "main";
           check.enable = true;
           pushJob = "default";
+          settings = {
+            contents = self.packages.x86_64-linux.jsonresume-html;
+            message = "Update GitHub Pages";
+          };
         };
         github-releases.files = {
-          label = "resume";
+          label = "resume.pdf";
           path = self.packages.default + "/resume.json";
         };
       };
@@ -110,9 +118,6 @@
               command = "nix build .#jsonresume-pdf";
             }
           ];
-        };
-        hercules-ci.github-pages = {
-          settings = {contents = config.packages.default;};
         };
         #_modules.args.pkgs =
         overlayAttrs = {inherit (config.packages) resume-json;};
