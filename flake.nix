@@ -53,7 +53,7 @@
         };
         github-releases.files = {
           label = "resume.pdf";
-          path = self.packages.default + "/resume.json";
+          path = self.packages.x86_64-linux.jsonresume-pdf + "/resume.pdf";
         };
       };
       perSystem = {
@@ -119,6 +119,8 @@
             }
           ];
         };
+        hercules-ci.github-pages.settings.contents =
+          config.packages.jsonresume-html;
         #_modules.args.pkgs =
         overlayAttrs = {inherit (config.packages) resume-json;};
         treefmt = {
