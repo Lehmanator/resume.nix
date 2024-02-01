@@ -7,9 +7,9 @@
     #label = "Programmer"; #"Software Engineer";
     label = "Software Developer";
     image = "photo.png";
-    email = "https://dev@samlehman.dev"; # "sam@${domain}";
+    email = "dev@samlehman.dev"; # "sam@${domain}";
     url = "https://samlehman.dev"; # "https://${domain}";
-    summary = "he worked for FakeCompany as a part time software developer. While his work focuses on applied information theory, mostly optimizing lossless compression schema of both the length-limited and adaptive variants, his non-work interests range widely, everything from quantum computing to chaos theory. He could tell you about it, but THAT would NOT be a “length-limited” conversation! This info hasn't been changed from the template.";
+    summary = "Sam is a full-stack software developer that creates web applications, backend services, and the infrastructure used to run them. Sam has both a depth and breadth of experience using programming languages, frameworks, and development utilities to build everything necessary to build software and deploy it to end users.";
     #"Sam hails from ${basics.location.city}, ${basics.location.region}. He has studied at ${education.institution}. Before starting FakeCompany,
     location = {
       city = "Erie";
@@ -28,9 +28,14 @@
         url = "https://twitter.com/publicSam";
       }
       {
-        network = "SoundCloud";
-        username = "dandymusicnl";
-        url = "https://soundcloud.example.com/dandymusicnl";
+        network = "Matrix";
+        username = "@lehmanator:tchncs.de";
+        url = "https://tchncs.de/lehmanator";
+      }
+      {
+        network = "GitHub";
+        username = "Lehmanator";
+        url = "https://github.com/Lehmanator";
       }
     ];
   };
@@ -44,11 +49,27 @@
       url = "https://piwine.com";
       startDate = "2021-08-01";
       endDate = "2023-11-01";
-      summary = "Pied Piper is a multi-platform technology based on a proprietary universal compression algorithm that has consistently fielded high Weisman Scores™ that are not merely competitive, but approach the theoretical limit of lossless compression.";
+      summary = "Responsible for administration of servers and all user workstations for the entire company.";
       highlights = [
-        "Build an algorithm for artist to detect if their music was violating copy right infringement laws"
-        "Successfully won Techcrunch Disrupt"
-        "Optimized an algorithm that holds the current world record for Weisman Scores"
+        "Migrated local domain controller to Azure cloud."
+        "Migrated local servers to container-based infrastructure."
+        "Managed virtual machines running company infrastructure."
+        "Enhanced mail server security by configuring DMARC, DKIM, & SPF DNS records."
+        "Optimized DNS server"
+      ];
+    }
+    {
+      name = "Brazen";
+      location = "Arlington, VA";
+      position = "Software Engineering Intern";
+      description = "Brazen is a company developing software for hosting video conferencing.";
+      url = "https://brazenconnect.com";
+      startDate = "2020-02-01";
+      endDate = "2020-05-01";
+      summary = "Developed features for video conferencing platform & chatbots for automated candidate onboarding.";
+      highlights = [
+        "Wrote Java code with Tensorflow API to integrate chatbot NLP agents with custom business logic."
+        "Wrote Java code for video conferencing platform."
       ];
     }
     {
@@ -59,10 +80,11 @@
       url = "https://ge.com";
       startDate = "2018-06-01";
       endDate = "2018-09-01";
-      summary = "INSERT SUMMARY HERE";
+      summary = "GE Transportation (now Wabtec) is a global leader in locomotive manufacturing.";
       highlights = [
-        "Successfully won Techcrunch Disrupt"
-        "Optimized an algorithm that holds the current world record for Weisman Scores"
+        "Wrote C program to validate configurations to control locomotive hardware."
+        "Wrote Python program to analyze locomotive schematics for possible points of failure."
+        "Wrote Visual Basic for Applications (VBA) code to integrate Python & C programs with Excel spreadsheets used by engineers."
       ];
     }
   ];
@@ -74,37 +96,50 @@
       url = "https://think.thon.org";
       startDate = "2018-09-01";
       endDate = "2019-04-01";
-      summary = "Global movement of free coding clubs for young people.";
-      highlights = ["Awarded 'Teacher of the Month'"];
+      summary = "THON is a student-run non-profit organization raising money for pediatric cancer research and the children affected by it. The THON Technology committee develops software to facilitate volunteer work and manage the annual dance marathon event.";
+      highlights = [
+        "Containerized developer environment to speed up onboarding new volunteer developers."
+        "Containerized production webserver to make production environment reproducible."
+        "Used Python & Django to create informational webpages to update volunteers on latest events & news."
+        "Used Python & Django to create forms to collect and process information from volunteers."
+      ];
     }
   ];
+
   education = [
     {
       institution = "Penn State University";
       url = "https://psu.edu";
       area = "Computer Science";
       studyType = "Bachelor";
-      startDate = "2011-06-01";
-      endDate = "2014-01-01";
+      startDate = "2014-08-20";
+      endDate = "2019-05-31";
       score = "3.2";
-      courses = ["DB1101 - Basic SQL" "CS2011 - Java Introduction"];
+      courses = [
+        "CMPSC121 - "
+        "CMPSC122 - "
+        "CMPSC221 - "
+        "CMPSC360 - Discrete Mathematics"
+        "CMPSC461 - "
+        "CMPSC465 - Algorithms & Data Scriptures"
+      ];
     }
   ];
-  awards = [
-    {
-      title = "Digital Compression Pioneer Award";
-      date = "2014-11-01";
-      awarder = "Techcrunch";
-      summary = "There is no spoon.";
-    }
-  ];
+  #awards = [
+  #  {
+  #    title = "Digital Compression Pioneer Award";
+  #    date = "2014-11-01";
+  #    awarder = "Techcrunch";
+  #    summary = "There is no spoon.";
+  #  }
+  #];
   publications = [
     {
-      name = "Video compression for 3d media";
-      publisher = "Hooli";
-      releaseDate = "2014-10-01";
-      url = "http://en.wikipedia.org/wiki/Silicon_Valley_(TV_series)";
-      summary = "Innovative middle-out compression algorithm that changes the way we store data.";
+      name = "Hello World - Blog";
+      publisher = "Sam Lehman - Blog";
+      releaseDate = "2024-02-10";
+      url = "https://blog.samlehman.dev/posts/hello_world.html";
+      summary = "First post to my self-hosted blog!";
     }
   ];
 
@@ -121,17 +156,38 @@
         "React.js"
         "Webpack.js"
         "Babel.js"
+        "Django"
+        "Python"
       ];
     }
     {
       name = "Nix";
       level = "Master";
-      keywords = ["Nix" "NixOS" "reproducible" "builds" "DevOps" "functional"];
+      keywords = [
+        "Nix"
+        "NixOS"
+        "reproducible"
+        "builds"
+        "DevOps"
+        "functional programming"
+      ];
     }
     {
       name = "Kubernetes";
       level = "Beginner";
-      keywords = ["containers" "infrastructure" "orchestration"];
+      keywords = ["containers" "infrastructure" "orchestration" "DevOps"];
+    }
+    {
+      name = "Containers";
+      level = "Master";
+      keywords = [
+        "containers"
+        "docker"
+        "podman"
+        "infrastructure"
+        "orchestration"
+        "DevOps"
+      ];
     }
     {
       name = "Rust";
@@ -139,9 +195,19 @@
       keywords = ["Rust" "memory-safe" "systems"];
     }
     {
+      name = "Python";
+      level = "Intermediate";
+      keywords = ["Python" "Django" "data science"];
+    }
+    {
+      name = "Terraform";
+      level = "Beginner";
+      keywords = ["Terraform" "infrastructure" "infrastructure-as-code" "DevOps"];
+    }
+    {
       name = "Microsoft Azure";
       level = "Intermediate";
-      keywords = ["Cloud"];
+      keywords = ["Cloud" "OAuth2" "Directory Server" "DevOps"];
     }
   ];
 
@@ -154,18 +220,38 @@
       language = "Spanish";
       fluency = "Basic";
     }
+    {
+      language = "Mandarin";
+      fluency = "Basic";
+    }
   ];
 
   interests = [
     {
-      name = "Wildlife";
-      keywords = ["Ferrets" "Unicorns"];
+      name = "Home Automation";
+      keywords = [
+        "Home Assistant"
+        "ESPHome"
+        "Self-Hosting"
+        "Raspberry Pi"
+        "ESP32"
+        "Microcontrollers"
+        "Circuitry"
+      ];
+    }
+    {
+      name = "Wrestling";
+      keywords = ["Sports" "Martial Arts" "Fitness" "Athletics" "Competition"];
+    }
+    {
+      name = "Weight Lifting";
+      keywords = ["Fitness" "Athletics" "Health"];
     }
   ];
 
   references = [
     {
-      name = "Erlich Bachman";
+      name = "Lauri Lewis";
       reference = "It is my pleasure to recommend Richard, his performance working as a consultant for Main St. Company proved that he will be a valuable addition to any company.";
     }
   ];
@@ -188,27 +274,37 @@
       ];
     }
     {
-      name = "Miss Direction";
-      description = "A mapping engine that misguides you";
+      name = "resume.nix";
+      description = "Nix flake project to build & deploy my personal resume using jsonresume.";
       highlights = [
-        "Won award at AIHacks 2016"
-        "Built by all women team of newbie programmers"
-        "Using modern technologies such as GoogleMaps, Chrome Extension and Javascript"
+        "Reproducible environment that pulls all dependencies to build a static webpage for my resume."
+        "Automatic deployment using GitHub Actions and GitHub Pages."
+        "Development shell with automatic installations of dependencies needed to hack on, build, and deploy my resume."
       ];
-      keywords = ["GoogleMaps" "Chrome Extension" "Javascript"];
-      startDate = "2016-08-24";
-      endDate = "2016-08-24";
-      url = "missdirection.example.com";
+      keywords = [
+        "Nix"
+        "GitHub"
+        "GitHub Pages"
+        "GitHub Actions"
+        "node.js"
+        "Static site"
+        "reproducible"
+        "declarative"
+        "CI/CD"
+        "DevOps"
+      ];
+      startDate = "2024-01-24";
+      url = "resume.samlehman.me";
       roles = ["Team lead" "Designer"];
-      entity = "Smoogle";
+      entity = "Sam Lehman";
       type = "application";
     }
   ];
 
   meta = {
     canonical = "https://raw.githubusercontent.com/jsonresume/resume-schema/master/schema.json";
-    version = "v1.0.0";
-    lastModified = "2024-01-30T15:53:00";
+    version = "v1.0.1";
+    lastModified = "2024-02-01T15:53:00";
 
     # Set default theme when fetching through
     # https://registry.jsonresume.org/<github-user-name>, see themes
