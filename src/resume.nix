@@ -53,9 +53,11 @@
       highlights = [
         "Migrated local domain controller to Azure cloud."
         "Migrated local servers to container-based infrastructure."
+        "Migrated local databases to cloud-based PostgreSQL instance."
         "Managed virtual machines running company infrastructure."
+        "Managed DNS server & configured records to improve security, routing behavior, and standards compliance"
+        "Deployed internal company mesh VPN to secure company infrastructure in remote & hybrid work environments."
         "Enhanced mail server security by configuring DMARC, DKIM, & SPF DNS records."
-        "Optimized DNS server"
       ];
     }
     {
@@ -69,17 +71,32 @@
       summary = "Developed features for video conferencing platform & chatbots for automated candidate onboarding.";
       highlights = [
         "Wrote Java code with Tensorflow API to integrate chatbot NLP agents with custom business logic."
-        "Wrote Java code for video conferencing platform."
+        "Wrote frontend & backend code in Java for video conferencing web platform."
       ];
     }
     {
       name = "General Electric: Transportation";
       location = "Lawrence Park, PA";
       description = "Locomotive manufacturer";
-      position = "Software Engineering Intern";
+      position = "Electrical Integration - Software Engineering Intern";
       url = "https://ge.com";
       startDate = "2018-06-01";
       endDate = "2018-09-01";
+      summary = "GE Transportation (now Wabtec) is a global leader in locomotive manufacturing.";
+      highlights = [
+        "Wrote C program to validate configurations to control locomotive hardware."
+        "Wrote Python program to analyze locomotive schematics for possible points of failure."
+        "Wrote Visual Basic for Applications (VBA) code to integrate Python & C programs with Excel spreadsheets used by engineers."
+      ];
+    }
+    {
+      name = "General Electric: Transportation";
+      location = "Lawrence Park, PA";
+      description = "Locomotive manufacturer";
+      position = "Electrical Integration - Software Engineering Intern";
+      url = "https://ge.com";
+      startDate = "2017-06-01";
+      endDate = "2017-09-01";
       summary = "GE Transportation (now Wabtec) is a global leader in locomotive manufacturing.";
       highlights = [
         "Wrote C program to validate configurations to control locomotive hardware."
@@ -166,27 +183,27 @@
       keywords = [
         "Nix"
         "NixOS"
-        "reproducible"
-        "builds"
         "DevOps"
+        "reproducible builds"
         "functional programming"
       ];
     }
     {
       name = "Kubernetes";
       level = "Beginner";
-      keywords = ["containers" "infrastructure" "orchestration" "DevOps"];
+      keywords = ["DevOps" "containers" "infrastructure" "orchestration"];
     }
     {
       name = "Containers";
       level = "Master";
       keywords = [
+        "DevOps"
+        "Docker"
+        "Podman"
         "containers"
-        "docker"
-        "podman"
         "infrastructure"
         "orchestration"
-        "DevOps"
+        "deployment"
       ];
     }
     {
@@ -202,12 +219,12 @@
     {
       name = "Terraform";
       level = "Beginner";
-      keywords = ["Terraform" "infrastructure" "infrastructure-as-code" "DevOps"];
+      keywords = ["Terraform" "DevOps" "infrastructure" "infrastructure-as-code"];
     }
     {
       name = "Microsoft Azure";
       level = "Intermediate";
-      keywords = ["Cloud" "OAuth2" "Directory Server" "DevOps"];
+      keywords = ["DevOps" "cloud computing" "OAuth2" "directory server"];
     }
   ];
 
@@ -260,16 +277,21 @@
     {
       name = "Meehive";
       description = "Personal Nix configurations for personal computing devices & cluster infrastructure.";
-      highlights = ["Running many self-hosted server applications in Kubernetes"];
+      highlights = [
+        "Declarative configurations representing both personal workstations and server infrastructure."
+        "Encrypted secret management with sops."
+        "Deployment of configurations via SSH."
+        "Running many self-hosted server applications in Kubernetes"
+      ];
+      url = "https://github.com/Lehmanator/meehive";
       keywords = [
         "Kubernetes"
         "Helm"
         "Nix"
         "NixOS"
-        "Deployment"
         "DevOps"
-        "CI"
-        "CD"
+        "CI / CD"
+        "deployment"
         "infrastructure-as-code"
       ];
     }
@@ -286,12 +308,12 @@
         "GitHub"
         "GitHub Pages"
         "GitHub Actions"
-        "node.js"
-        "Static site"
-        "reproducible"
-        "declarative"
-        "CI/CD"
         "DevOps"
+        "Node.js"
+        "static site"
+        "reproducible builds"
+        "declarative"
+        "CI / CD"
       ];
       startDate = "2024-01-24";
       url = "resume.samlehman.me";
