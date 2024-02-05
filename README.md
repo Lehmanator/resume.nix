@@ -47,7 +47,7 @@ Check NPM for other themes. Most should be fairly trivial to include,
 and can mostly be copy-and-pasted from other theme package files in
 `packages/jsonresume-themes/THEMENAME`
 
-<https://www.npmjs.com/search?q=jsonresume-theme>
+[Search NPM packages for jsonresume themes](https://www.npmjs.com/search?q=jsonresume-theme)
 
 ## To-Do
 
@@ -60,6 +60,8 @@ Plz help me. Contributions welcome!
 - [ ] QR code links to your HTML deployments or PDF release artifacts.
 - [ ] Co-existing theme deployments.
 - [ ] Markdown conversion
+- [ ] `.vcard` conversion
+- [ ] 'Download as...' button
 - [ ] LaTeX support
 - [ ] flake checks
 - [ ] PDF signing
@@ -79,11 +81,13 @@ Plz help me. Contributions welcome!
 
 ### Links for later
 
-- <https://github.com/jsonresume/jsonresume-gpt3>
-- <https://github.com/jsonresume/jsonresume.org>
-- <https://github.com/DrakeAxelrod/json-resume-service>
-- <https://github.com/marketplace/actions/jsonresume-export>
-- <https://github.com/jsonresume/resume-cli>
+- [maartenpaauw/json-resume-to-vcard](https://github.com/maartenpaauw/json-resume-to-vcard) - Convert jsonresumme to `.vcard` (Contact file)
+- [GitHub Action: jsonresume-export](https://github.com/marketplace/actions/jsonresume-export) -
+- [jsonresume/resume-cli](https://github.com/jsonresume/resume-cli) - **Unmaintained**
+- [Fluentdesk/FluentCV](https://github.com/fluentdesk/FluentCV) - Convert jsonresume to `.html`, `.pdf`, `.md`, & more. **Unmaintained**
+- [jsonresume/jsonresume-gpt3](https://github.com/jsonresume/jsonresume-gpt3) -
+- [jsonresume/jsonresume.org](https://github.com/jsonresume/jsonresume.org) -
+- [DrakeAxelrod/jsonresume-service](https://github.com/DrakeAxelrod/json-resume-service) -
 
 ## Thanks
 

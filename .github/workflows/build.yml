@@ -1,0 +1,44 @@
+name: Build & Deploy Nix Artifacts
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+        with:
+          diagnostic-endpoint: "" # Disable telemetry
+          nix_path: nixpkgs=channel:nixos-unstable
+
+      - name: Use binary cache
+        uses: DeterminateSystems/magic-nix-cache-action@main
+        with:
+          diagnostic-endpoint: "" # Disable telemetry
+          upstream-cache: https://lehmanator.cachix.org # Use my binary cache (which uses cache.nixos.org upstream)
+
+      - name: Check flake outputs
+        uses: DeterminateSystems/flake-checker-action@main
+        with:
+          send-statistics: false # Disable telemetry
+
+      - name: Build flake outputs
+        run: nix build
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifacts
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "./result"
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
