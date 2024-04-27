@@ -39,7 +39,7 @@ jobs:
       - name: Upload resume HTML artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "./result/resume.html"
+          path: "./result/index.html"
       - name: Upload resume assets artifacts
         uses: actions/upload-pages-artifact@v3
         with:
