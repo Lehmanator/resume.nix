@@ -62,47 +62,6 @@
         pkgs,
         ...
       }: {
-        #devenv.shells.default = {
-        #  name = "resume.nix";
-        #  #certificates = ["resume.samlehman.dev"];
-        #  #devcontainer = { enable= true; settings= {}; };
-        #  difftastic.enable = true;
-        #  enterShell = ''
-        #    echo "Welcome to resume.nix!"
-        #  '';
-        #  env = {};
-        #  #hosts = {"resume.samlehman.dev" = "127.0.0.1";};
-        #  languages = {
-        #    javascript.enable = true;
-        #    nix.enable = true;
-        #    #texlive = {enable=true; packages=["collection-basic"]; base=pkgs.texlive;};
-        #  };
-        #  packages = with config.packages; [
-        #    pkgs.nix-direnv
-        #    pkgs.resumed
-        #    pkgs.puppeteer-cli
-        #    default
-        #    jsonresume-theme-elegant
-        #    jsonresume-theme-full
-        #    jsonresume-theme-fullmoon
-        #    jsonresume-theme-kendall
-        #    jsonresume-theme-macchiato
-        #    jsonresume-theme-stackoverflow
-        #    #config.treefmt.build.wrapper
-        #    #config.treefmt.build.programs
-        #  ];
-        #  #pre-commit = {}; #https://github.com/cachix/pre-commit-hooks.nix
-        #  #process = {
-        #  #  after = "";
-        #  #  before = "";
-        #  #  implementation = "honcho"; # honcho|overmind|process-compose|hivemind
-        #  #  process-compose = {port=9999; tui=true; version="0.5"; };
-        #  #};
-        #  starship = {
-        #    enable = true;
-        #    #config = {enable = true; path = "${config.env.DEVENV_ROOT}/starship.toml";};
-        #  };
-        #};
         devshells.default = {
           commands = [
             {
@@ -117,6 +76,29 @@
               name = "build-pdf";
               command = "nix build .#jsonresume-pdf";
             }
+            {
+              name = "validate";
+              command = "${lib.getExe pkgs.resume-cli} validate";
+            }
+            {
+              name = "export-pdf";
+              command = "${lib.getExe pkgs.resume-cli} export --format pdf";
+            }
+            {
+              name = "export-html";
+              command = "${lib.getExe pkgs.resume-cli} export --format html";
+            }
+            {
+              name = "server";
+              command = "${lib.getExe pkgs.resume-cli} serve";
+            }
+          ];
+          packages = [
+            pkgs.resumed
+            pkgs.resume-cli
+            pkgs.puppeteer-cli
+            pkgs.python311Packages.weasyprint
+            pkgs.nodePackages_latest.pnpm
           ];
         };
         hercules-ci.github-pages.settings = {
