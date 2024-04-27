@@ -3,7 +3,6 @@ on:
   workflow_dispatch:
   push:
     branches: ["main"]
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -28,23 +27,27 @@ jobs:
           #listen: "127.0.0.1:37515"
           use-flakehub: false
           use-gha-cache: true
-          
       - name: Check Nix flake inputs
         uses: DeterminateSystems/flake-checker-action@main
         with:
           # Disable telemetry
-          send-statistics: false 
-          
+          send-statistics: false
       - name: Build flake outputs
         run: nix build
       - name: Setup Pages
         uses: actions/configure-pages@v4
-
-      - name: Upload artifacts
+      - name: Upload resume HTML artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "./result"
-
+          path: "./result/resume.html"
+      - name: Upload resume assets artifacts
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "./result/photo.png"
+      - name: Upload resume PDF artifacts
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "./result/resume.pdf"
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
