@@ -1,6 +1,7 @@
 {
   #rec {
-  "$schema" = "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json";
+  "$schema" =
+    "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json";
   basics = {
     #let domain = "samlehman.dev"; in
     name = "Sam Lehman";
@@ -9,7 +10,8 @@
     image = "photo.png";
     email = "dev@samlehman.dev"; # "sam@${domain}";
     url = "https://samlehman.dev"; # "https://${domain}";
-    summary = "Sam is a full-stack software developer that creates web applications, backend services, and the infrastructure used to run them. Sam has both a depth and breadth of experience using programming languages, frameworks, and development utilities to build everything necessary to build software and deploy it to end users.";
+    summary =
+      "Sam is a full-stack software developer that creates web applications, backend services, and the infrastructure used to run them. Sam has both a depth and breadth of experience using programming languages, frameworks, and development utilities to build everything necessary to build software and deploy it to end users.";
     #"Sam hails from ${basics.location.city}, ${basics.location.region}. He has studied at ${education.institution}. Before starting FakeCompany,
     location = {
       city = "Erie";
@@ -19,8 +21,10 @@
     profiles = [
       {
         network = "Mastodon";
-        username = "@sam@samlehman.dev"; # "@sam@${domain}";
-        url = "https://social.samlehman.dev/sam"; # "https://${domain}/sam";
+        #username = "@sam@samlehman.dev"; # "@sam@${domain}";
+        #url = "https://social.samlehman.dev/sam"; # "https://${domain}/sam";
+        username = "@Lehmanator@fosstodon.org"; # "@sam@${domain}";
+        url = "https://fosstodon.org/@Lehmanator";
       }
       {
         network = "Twitter";
@@ -30,7 +34,7 @@
       {
         network = "Matrix";
         username = "@lehmanator:tchncs.de";
-        url = "https://tchncs.de/lehmanator";
+        url = "https://matrix.tchncs.de/lehmanator";
       }
       {
         network = "GitHub";
@@ -49,7 +53,8 @@
       url = "https://piwine.com";
       startDate = "2021-08-01";
       endDate = "2023-11-01";
-      summary = "Responsible for administration of servers and all user workstations for the entire company.";
+      summary =
+        "Responsible for administration of servers and all user workstations for the entire company.";
       highlights = [
         "Migrated local domain controller to Azure cloud."
         "Migrated local servers to container-based infrastructure."
@@ -64,11 +69,13 @@
       name = "Brazen";
       location = "Arlington, VA";
       position = "Software Engineering Intern";
-      description = "Brazen is a company developing software for hosting video conferencing.";
+      description =
+        "Brazen is a company developing software for hosting video conferencing.";
       url = "https://brazenconnect.com";
       startDate = "2020-02-01";
       endDate = "2020-05-01";
-      summary = "Developed features for video conferencing platform & chatbots for automated candidate onboarding.";
+      summary =
+        "Developed features for video conferencing platform & chatbots for automated candidate onboarding.";
       highlights = [
         "Wrote Java code with Tensorflow API to integrate chatbot NLP agents with custom business logic."
         "Wrote frontend & backend code in Java for video conferencing web platform."
@@ -82,7 +89,8 @@
       url = "https://ge.com";
       startDate = "2018-06-01";
       endDate = "2018-09-01";
-      summary = "GE Transportation (now Wabtec) is a global leader in locomotive manufacturing.";
+      summary =
+        "GE Transportation (now Wabtec) is a global leader in locomotive manufacturing.";
       highlights = [
         "Wrote C program to validate configurations to control locomotive hardware."
         "Wrote Python program to analyze locomotive schematics for possible points of failure."
@@ -97,7 +105,8 @@
       url = "https://ge.com";
       startDate = "2017-06-01";
       endDate = "2017-09-01";
-      summary = "GE Transportation (now Wabtec) is a global leader in locomotive manufacturing.";
+      summary =
+        "GE Transportation (now Wabtec) is a global leader in locomotive manufacturing.";
       highlights = [
         "Wrote C program to validate configurations to control locomotive hardware."
         "Wrote Python program to analyze locomotive schematics for possible points of failure."
@@ -106,42 +115,39 @@
     }
   ];
 
-  volunteer = [
-    {
-      organization = "THON Technology";
-      position = "Captain";
-      url = "https://think.thon.org";
-      startDate = "2018-09-01";
-      endDate = "2019-04-01";
-      summary = "THON is a student-run non-profit organization raising money for pediatric cancer research and the children affected by it. The THON Technology committee develops software to facilitate volunteer work and manage the annual dance marathon event.";
-      highlights = [
-        "Containerized developer environment to speed up onboarding new volunteer developers."
-        "Containerized production webserver to make production environment reproducible."
-        "Used Python & Django to create informational webpages to update volunteers on latest events & news."
-        "Used Python & Django to create forms to collect and process information from volunteers."
-      ];
-    }
-  ];
+  volunteer = [{
+    organization = "THON Technology";
+    position = "Captain";
+    url = "https://think.thon.org";
+    startDate = "2018-09-01";
+    endDate = "2019-04-01";
+    summary =
+      "THON is a student-run non-profit organization raising money for pediatric cancer research and the children affected by it. The THON Technology committee develops software to facilitate volunteer work and manage the annual dance marathon event.";
+    highlights = [
+      "Containerized developer environment to speed up onboarding new volunteer developers."
+      "Containerized production webserver to make production environment reproducible."
+      "Used Python & Django to create informational webpages to update volunteers on latest events & news."
+      "Used Python & Django to create forms to collect and process information from volunteers."
+    ];
+  }];
 
-  education = [
-    {
-      institution = "Penn State University";
-      url = "https://psu.edu";
-      area = "Computer Science";
-      studyType = "Bachelor";
-      startDate = "2014-08-20";
-      endDate = "2019-05-31";
-      score = "3.2";
-      courses = [
-        "CMPSC121 - "
-        "CMPSC122 - "
-        "CMPSC221 - "
-        "CMPSC360 - Discrete Mathematics"
-        "CMPSC461 - "
-        "CMPSC465 - Algorithms & Data Scriptures"
-      ];
-    }
-  ];
+  education = [{
+    institution = "Penn State University";
+    url = "https://psu.edu";
+    area = "Computer Science";
+    #studyType = "Bachelor";
+    startDate = "2014-08-20";
+    endDate = "2019-05-31";
+    #score = "3.2";
+    courses = [
+      "CMPSC121 - "
+      "CMPSC122 - "
+      "CMPSC221 - "
+      "CMPSC360 - Discrete Mathematics"
+      "CMPSC461 - "
+      "CMPSC465 - Algorithms & Data Scriptures"
+    ];
+  }];
   #awards = [
   #  {
   #    title = "Digital Compression Pioneer Award";
@@ -150,15 +156,13 @@
   #    summary = "There is no spoon.";
   #  }
   #];
-  publications = [
-    {
-      name = "Hello World - Blog";
-      publisher = "Sam Lehman - Blog";
-      releaseDate = "2024-02-10";
-      url = "https://blog.samlehman.dev/posts/hello_world.html";
-      summary = "First post to my self-hosted blog!";
-    }
-  ];
+  publications = [{
+    name = "Hello World - Blog";
+    publisher = "Sam Lehman - Blog";
+    releaseDate = "2024-02-10";
+    url = "https://blog.samlehman.dev/posts/hello_world.html";
+    summary = "First post to my self-hosted blog!";
+  }];
 
   skills = [
     {
@@ -191,7 +195,7 @@
     {
       name = "Kubernetes";
       level = "Beginner";
-      keywords = ["DevOps" "containers" "infrastructure" "orchestration"];
+      keywords = [ "DevOps" "containers" "infrastructure" "orchestration" ];
     }
     {
       name = "Containers";
@@ -209,22 +213,23 @@
     {
       name = "Rust";
       level = "Beginner";
-      keywords = ["Rust" "memory-safe" "systems"];
+      keywords = [ "Rust" "memory-safe" "systems" ];
     }
     {
       name = "Python";
       level = "Intermediate";
-      keywords = ["Python" "Django" "data science"];
+      keywords = [ "Python" "Django" "data science" ];
     }
     {
       name = "Terraform";
       level = "Beginner";
-      keywords = ["Terraform" "DevOps" "infrastructure" "infrastructure-as-code"];
+      keywords =
+        [ "Terraform" "DevOps" "infrastructure" "infrastructure-as-code" ];
     }
     {
       name = "Microsoft Azure";
       level = "Intermediate";
-      keywords = ["DevOps" "cloud computing" "OAuth2" "directory server"];
+      keywords = [ "DevOps" "cloud computing" "OAuth2" "directory server" ];
     }
   ];
 
@@ -258,25 +263,26 @@
     }
     {
       name = "Wrestling";
-      keywords = ["Sports" "Martial Arts" "Fitness" "Athletics" "Competition"];
+      keywords =
+        [ "Sports" "Martial Arts" "Fitness" "Athletics" "Competition" ];
     }
     {
       name = "Weight Lifting";
-      keywords = ["Fitness" "Athletics" "Health"];
+      keywords = [ "Fitness" "Athletics" "Health" ];
     }
   ];
 
-  references = [
-    {
-      name = "Lauri Lewis";
-      reference = "It is my pleasure to recommend Richard, his performance working as a consultant for Main St. Company proved that he will be a valuable addition to any company.";
-    }
-  ];
+  references = [{
+    name = "Lauri Lewis";
+    reference =
+      "It's my pleasure to recommend Sam. He single-handedly moved our business IT into the 21st century. Any company would be lucky to have him.";
+  }];
 
   projects = [
     {
       name = "Meehive";
-      description = "Personal Nix configurations for personal computing devices & cluster infrastructure.";
+      description =
+        "Personal Nix configurations for personal computing devices & cluster infrastructure.";
       highlights = [
         "Declarative configurations representing both personal workstations and server infrastructure."
         "Encrypted secret management with sops."
@@ -297,7 +303,8 @@
     }
     {
       name = "resume.nix";
-      description = "Nix flake project to build & deploy my personal resume using jsonresume.";
+      description =
+        "Nix flake project to build & deploy my personal resume using jsonresume.";
       highlights = [
         "Reproducible environment that pulls all dependencies to build a static webpage for my resume."
         "Automatic deployment using GitHub Actions and GitHub Pages."
@@ -316,15 +323,28 @@
         "CI / CD"
       ];
       startDate = "2024-01-24";
-      url = "resume.samlehman.me";
-      roles = ["Team lead" "Designer"];
+      url = "resume.samlehman.dev";
+      roles = [ "Team lead" "Designer" ];
       entity = "Sam Lehman";
       type = "application";
+    }
+    {
+      name = "HeyImHungry";
+      description =
+        "Service to connect those with excess or soon-to-expire food with those in need.";
+      highlights = [
+        "React & React Native frontend."
+        "Google Assistant interface to query and add listings."
+      ];
+      url = "https://github.com/Lehmanator/HeyImHungry";
+      keywords =
+        [ "React" "Javascript" "Google Assistant" "Google Cloud" "Firebase" ];
     }
   ];
 
   meta = {
-    canonical = "https://raw.githubusercontent.com/jsonresume/resume-schema/master/schema.json";
+    canonical =
+      "https://raw.githubusercontent.com/jsonresume/resume-schema/master/schema.json";
     version = "v1.0.1";
     lastModified = "2024-02-01T15:53:00";
 
