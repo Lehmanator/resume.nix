@@ -323,7 +323,7 @@
         "CI / CD"
       ];
       startDate = "2024-01-24";
-      url = "resume.samlehman.dev";
+      url = "https://resume.samlehman.dev";
       roles = [ "Team lead" "Designer" ];
       entity = "Sam Lehman";
       type = "application";
