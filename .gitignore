@@ -1,21 +1,30 @@
 # Ignore build symlinks
-result*
-.tmp
-.direnv/
-.devenv/
+**result*
+**.tmp
+**.direnv/
+**.devenv/
 
 # Ignore temporary files for when doing manual tests with themes
-node_modules/
-package-lock.json
-package.json
-resume.html
-resume.json
+**node_modules/
+**package-lock.json
+**package.json
+
+# Resume formats
+**resume.html
+**resume.json
+**resume.ya?ml
+**((render-)?cv|resume)*.(json|html|pdf|to?ml|ya?ml)
+
 
 # Private data
-src/private.json
-src/private.nix
+**src/private.json
+**src/private.nix
+**src/private.*
 
 # Disable
-.disable/
-.old/
-.hide/
+**.disable
+**.disable/
+**.old
+**.old/
+**.hide
+**.hide/
