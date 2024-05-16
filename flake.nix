@@ -4,20 +4,35 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
     hercules-ci-effects.url = "github:hercules-ci/hercules-ci-effects";
-    devenv.url = "github:cachix/devenv";
-    devshell.url = "github:numtide/devshell";
-    devshell.inputs.nixpkgs.follows = "nixpkgs";
-    nix2container.url = "github:nlewo/nix2container";
-    nix2container.inputs.nixpkgs.follows = "nixpkgs";
     mk-shell-bin.url = "github:rrbutani/nix-mk-shell-bin";
     pre-commit-hooks-nix.url = "github:cachix/pre-commit-hooks.nix";
-    treefmt-nix.url = "github:numtide/treefmt-nix";
-    treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
+    haumea.url = "github:nix-community/haumea";
+    incl.url = "github:divnix/incl";
+    devshell = {
+      url = "github:numtide/devshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix2container = {
+      url = "github:nlewo/nix2container";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    pyproject-nix = {
+      url = "github:nix-community/pyproject.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    rendercv = {
+      #url = "github:sinaatalay/rendercv";
+      url = "github:Lehmanator/rendercv";
+      flake = false;
+    };
   };
   outputs = { self, nixpkgs, flake-parts, ... }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
-        #inputs.devenv.flakeModule
         inputs.devshell.flakeModule
         inputs.flake-parts.flakeModules.easyOverlay
         inputs.hercules-ci-effects.flakeModule
@@ -52,51 +67,53 @@
         };
       };
       perSystem = { config, lib, pkgs, ... }: {
-        devshells.default = {
-          commands = [
-            {
-              name = "build-default";
-              command = "nix build";
-            }
-            {
-              name = "build-html";
-              command = "nix build .#jsonresume-html";
-            }
-            {
-              name = "build-pdf";
-              command = "nix build .#jsonresume-pdf";
-            }
-            {
-              name = "validate";
-              command = "${lib.getExe pkgs.resume-cli} validate";
-            }
-            {
-              name = "export-pdf";
-              command = "${lib.getExe pkgs.resume-cli} export --format pdf";
-            }
-            {
-              name = "export-html";
-              command = "${lib.getExe pkgs.resume-cli} export --format html";
-            }
-            {
-              name = "server";
-              command = "${lib.getExe pkgs.resume-cli} serve";
-            }
-          ];
-          packages = [
-            pkgs.resumed
-            #pkgs.resume-cli
-            pkgs.puppeteer-cli
-            pkgs.python311Packages.weasyprint
-            pkgs.nodePackages_latest.pnpm
-          ];
+        devshells = {
+          rendercv = { };
+          default = {
+            commands = [
+              {
+                name = "build-default";
+                command = "nix build";
+              }
+              {
+                name = "build-html";
+                command = "nix build .#jsonresume-html";
+              }
+              {
+                name = "build-pdf";
+                command = "nix build .#jsonresume-pdf";
+              }
+              {
+                name = "validate";
+                command = "${lib.getExe pkgs.resume-cli} validate";
+              }
+              {
+                name = "export-pdf";
+                command = "${lib.getExe pkgs.resume-cli} export --format pdf";
+              }
+              {
+                name = "export-html";
+                command = "${lib.getExe pkgs.resume-cli} export --format html";
+              }
+              {
+                name = "server";
+                command = "${lib.getExe pkgs.resume-cli} serve";
+              }
+            ];
+            packages = [
+              pkgs.resumed
+              #pkgs.resume-cli
+              pkgs.puppeteer-cli
+              pkgs.python311Packages.weasyprint
+              pkgs.nodePackages_latest.pnpm
+            ];
+          };
         };
         hercules-ci.github-pages.settings = {
           contents = config.packages.jsonresume-html;
           git.update.branch = "doc";
           message = "Update GitHub Pages";
         };
-        #_modules.args.pkgs =
         overlayAttrs = { inherit (config.packages) resume-json; };
         treefmt = {
           flakeCheck = true;
@@ -187,7 +204,40 @@
                 cp resume.json $out
               '';
             };
-
+            rendercv =
+              let
+                version = "unstable-2024-05-14";
+                src-cfg = inputs.rendercv.outPath + "/pyproject.toml";
+                cfg-orig = lib.importTOML src-cfg;
+                cfg-over = { build-system.requires = [ "hatchling>=1.21.1" ]; };
+                cfg = lib.recursiveUpdate cfg-orig cfg-over;
+                #src = lib.fileset.toSource (lib.fileset.difference inputs.rendercv.outPath src-cfg);
+                project = inputs.pyproject-nix.lib.project.loadPyproject {
+                  pyproject = cfg;
+                  projectRoot = inputs.rendercv.outPath;
+                };
+                drvAttrs = (project.renderers.buildPythonPackage {
+                  python = pkgs.python3.override {
+                    packageOverrides = self: super: {
+                      hatchling = super.hatchling.overridePythonAttrs (old: rec {
+                        version = "1.21.1";
+                        src = pkgs.fetchPypi {
+                          inherit (old) pname;
+                          inherit version;
+                          hash =
+                            "sha256-u6RARToiTn1EeEV/oujYw2M3Zbr6Apdaa1O5v5F5gLw=";
+                        };
+                      });
+                    };
+                  };
+                }) // {
+                  inherit version;
+                  src = inputs.rendercv.outPath;
+                  pythonRelaxDeps = true;
+                };
+              in
+              pkgs.python3.pkgs.buildPythonApplication
+                (drvAttrs // { inherit (pkgs) ruff; });
             # TODO: Genericize
             jsonresume-html = config.packages."jsonresume-html-${defaultTheme}";
             jsonresume-html-full = (builder "full").html;
@@ -220,7 +270,6 @@
             jsonresume-theme-stackoverflow =
               pkgs.callPackage ./packages/jsonresume-themes/stackoverflow { };
 
-            # TODO: Scoped packages: `jsonresume-themes.<themeName>`
             #jsonresume-themes = lib.makeScope pkgs.newScope (selfScope: with selfScope; {
             #  elegant = pkgs.callPackage ./packages/jsonresume-themes/elegant {};
             #  full = pkgs.callPackage ./packages/jsonresume-themes/full {};
@@ -285,6 +334,7 @@
         #};
       };
       flake = {
+        inherit inputs;
         #  # Flake outputs
         #  templates.default = {
         #    path = ./template;
