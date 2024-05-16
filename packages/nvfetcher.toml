@@ -1,0 +1,16 @@
+[rendercv]
+src.pypi = "rendercv"
+fetch.pypi = "rendercv"
+
+[mkdocs-macros-plugin]
+src.pypi = "mkdocs-macros-plugin"
+fetch.pypi = "mkdocs-macros-plugin"
+
+#[mkdocs-material]
+#src.pypi = "mkdocs-material"
+#fetch.pypi = "mkdocs-material"
+#
+#[pdfCropMargins]
+#src.pypi = "pdfCropMargins"
+#fetch.pypi = "pdfCropMargins"
+#

@@ -1,0 +1,32 @@
+{
+    "mkdocs-macros-plugin": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "mkdocs-macros-plugin",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "name": null,
+            "sha256": "sha256-/jSNdfAckR82K22ZjFez2FtQWHbd5p25JPLFEsOVwyg=",
+            "type": "url",
+            "url": "https://pypi.org/packages/source/m/mkdocs-macros-plugin/mkdocs-macros-plugin-1.0.5.tar.gz"
+        },
+        "version": "1.0.5"
+    },
+    "rendercv": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "rendercv",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "name": null,
+            "sha256": "sha256-IIwxS3KvqJjHBqDoTk1En7gHq8a9KXMYQX+3qZJAi38=",
+            "type": "url",
+            "url": "https://pypi.org/packages/source/r/rendercv/rendercv-1.8.tar.gz"
+        },
+        "version": "1.8"
+    }
+}
