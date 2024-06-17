@@ -1,3 +1,4 @@
+---
 name: Check flake outputs
 on:
   pull_request:
@@ -7,30 +8,26 @@ jobs:
   checks:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      #- name: Install Nix
-      #  uses: cachix/install-nix-action@v22
-      #  with:
-      #    nix_path: nixpkgs=channel:nixos-unstable
-      - name: Install Nix
-        uses: DeterminateSystems/nix-installer-action@main
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@main
         with:
-          # Disable telemetry
           diagnostic-endpoint: ""
-      - name: Use binary cache
-        uses: DeterminateSystems/magic-nix-cache-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
         with:
-          # Disable telemetry
           diagnostic-endpoint: ""
-          # Use my binary cache (uses cache.nixos.org upstream)
           upstream-cache: https://lehmanator.cachix.org
           use-flakehub: false
           use-gha-cache: true
-      - name: Check flake inputs
-        uses: DeterminateSystems/flake-checker-action@main
+      - uses: DeterminateSystems/flake-checker-action@main
         with:
-          # Disable telemetry
           send-statistics: false
-    #- name: Check flake
-    #  run: nix flake check
+
+      # Check formatting
+      - name: Check nix file formatting
+        run: 'nix fmt . -- --check'
+      - name: Check yaml file formatting
+        run: 'nix run nixpkgs#yamllint -- --strict --format github .github/'
+      - name: Check deadnix file formatting
+        run: 'nix run nixpkgs#deadnix -- --fail .'
+      - name: Check flake
+        run: nix flake check

@@ -24,8 +24,19 @@ jobs:
     needs: checks
     runs-on: ubuntu-latest
     steps:
-      - name: Build flake outputs
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@main
+        with:
+          diagnostic-endpoint: ""
+      - uses: DeterminateSystems/magix-nix-cache-action
+        diagnostic-endpoint: ""
+        upstream-cache: https://lehmanator.cachix.org
+        use-flakehub: false
+        use-gha-cache: true
+      - name: Build flake packages.default
         run: nix build
+      - name: Build PDF
+        run: 'nix run .#pdf -- resume.pdf'
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -35,10 +46,14 @@ jobs:
     steps:
       - name: Setup Pages
         uses: actions/configure-pages@v4
-      - name: Upload resume artifacts
+      - name: Upload resume HTML artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: "./result"
+      - name: Upload resume PDF artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "./resume.pdf"
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
