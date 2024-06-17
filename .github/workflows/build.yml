@@ -38,7 +38,7 @@ jobs:
       - id: build-html
         name: Build flake packages.default
         run: nix build
-      - run: 'mkdir -p ./out && cp ./result/index.html ./out'
+      - run: 'mkdir -p ./out && cp ./result/*.html ./out'
       - id: build-pdf
         name: Build PDF
         run: 'nix run .#pdf -- ./out/resume.pdf'
