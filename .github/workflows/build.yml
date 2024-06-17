@@ -1,3 +1,4 @@
+---
 name: Build & Deploy Nix Artifacts
 on:
   workflow_dispatch:
