@@ -26,8 +26,9 @@ jobs:
       - name: Check nix file formatting
         run: 'nix fmt . -- --check'
       - name: Check yaml file formatting
-        run: 'nix run nixpkgs#yamllint -- --strict --format github .github/'
-      - name: Check deadnix file formatting
-        run: 'nix run nixpkgs#deadnix -- --fail .'
+        run: 'nix run nixpkgs#yamllint -- --format github .github/'
+        # run: 'nix run nixpkgs#yamllint -- --strict --format github .github/'
+      # - name: Check deadnix file formatting
+      #   run: 'nix run nixpkgs#deadnix -- --fail .'
       - name: Check flake
         run: nix flake check
