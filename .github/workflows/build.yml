@@ -29,10 +29,11 @@ jobs:
         with:
           diagnostic-endpoint: ""
       - uses: DeterminateSystems/magix-nix-cache-action@main
-        diagnostic-endpoint: ""
-        upstream-cache: https://lehmanator.cachix.org
-        use-flakehub: false
-        use-gha-cache: true
+        with:
+          diagnostic-endpoint: ""
+          upstream-cache: https://lehmanator.cachix.org
+          use-flakehub: false
+          use-gha-cache: true
       - name: Build flake packages.default
         run: nix build
       - name: Build PDF
