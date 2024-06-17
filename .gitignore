@@ -14,6 +14,8 @@
 **resume.json
 **resume.ya?ml
 **((render-)?cv|resume)*.(json|html|pdf|to?ml|ya?ml)
+**.pdf
+**.png
 
 
 # Private data
