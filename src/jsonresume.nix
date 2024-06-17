@@ -221,11 +221,11 @@
     }
     {
       language = "Spanish";
-      fluency = "Basic";
+      fluency = "Intermediate";
     }
     {
       language = "Mandarin";
-      fluency = "Basic";
+      fluency = "Beginner";
     }
   ];
 
@@ -336,6 +336,7 @@
     # Set default theme when fetching through
     # https://registry.jsonresume.org/<github-user-name>, see themes
     # here: https://jsonresume.org/themes/
-    theme = "fullmoon"; # "papirus";
+    # theme = "stackoverflow"; # "papirus";
+    theme = "minyma";
   };
 }
