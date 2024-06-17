@@ -38,10 +38,10 @@ jobs:
       - id: build-html
         name: Build flake packages.default
         run: nix build
-      - run: 'mkdir -p ./out && cp ./result/index.html ./out && cp ./resume.pdf ./out'
+      - run: 'mkdir -p ./out && cp ./result/index.html ./out'
       - id: build-pdf
         name: Build PDF
-        run: 'nix run .#pdf -- resume.pdf'
+        run: 'nix run .#pdf -- ./out/resume.pdf'
       - uses: actions/upload-pages-artifact@v3
         with:
           path: './out'
