@@ -163,7 +163,6 @@
   skills = [
     {
       name = "Web Development";
-      level = "Master";
       keywords = [
         "HTML"
         "CSS"
@@ -175,42 +174,44 @@
         "Babel.js"
         "Django"
         "Python"
+        "NGINX"
       ];
+      # level = "Master";
     }
     {
       name = "Nix";
-      level = "Master";
-      keywords = ["Nix" "NixOS" "DevOps" "reproducible builds" "functional programming"];
+      keywords = ["Nix" "NixOS" "DevOps" "reproducible builds" "functional programming" "immutability"];
+      # level = "Master";
     }
     {
       name = "Kubernetes";
-      level = "Beginner";
-      keywords = ["DevOps" "containers" "infrastructure" "orchestration"];
+      keywords = ["DevOps" "containers" "infrastructure" "orchestration" "clusters" "high-availability computing"];
+      # level = "Beginner";
     }
     {
       name = "Containers";
-      level = "Master";
       keywords = ["DevOps" "Docker" "Podman" "containers" "infrastructure" "orchestration" "deployment"];
+      # level = "Master";
     }
     {
       name = "Rust";
-      level = "Beginner";
-      keywords = ["Rust" "memory-safe" "systems"];
+      keywords = ["Rust" "serde" "memory-safe" "systems"];
+      # level = "Beginner";
     }
     {
       name = "Python";
-      level = "Intermediate";
-      keywords = ["Python" "Django" "data science"];
+      keywords = ["Python" "Django" "Flask" "data science"];
+      # level = "Intermediate";
     }
     {
       name = "Terraform";
-      level = "Beginner";
       keywords = ["Terraform" "DevOps" "infrastructure" "infrastructure-as-code"];
+      # level = "Beginner";
     }
     {
       name = "Microsoft Azure";
-      level = "Intermediate";
       keywords = ["DevOps" "cloud computing" "OAuth2" "directory server"];
+      # level = "Intermediate";
     }
   ];
 
