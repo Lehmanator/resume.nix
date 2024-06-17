@@ -261,7 +261,7 @@
 
   projects = [
     {
-      name = "Meehive";
+      name = "nix-configs";
       description = "Personal Nix configurations for personal computing devices & cluster infrastructure.";
       highlights = [
         "Declarative configurations representing both personal workstations and server infrastructure."
@@ -269,7 +269,7 @@
         "Deployment of configurations via SSH."
         "Running many self-hosted server applications in Kubernetes"
       ];
-      url = "https://github.com/Lehmanator/meehive";
+      url = "https://github.com/Lehmanator/nix-configs";
       keywords = [
         "Kubernetes"
         "Helm"
@@ -285,8 +285,9 @@
       name = "resume.nix";
       description = "Nix flake project to build & deploy my personal resume using jsonresume.";
       highlights = [
-        "Reproducible environment that pulls all dependencies to build a static webpage for my resume."
-        "Automatic deployment using GitHub Actions and GitHub Pages."
+        "Reproducible environment that pulls locked dependencies to build artifacts for my resume."
+        "Builds an static webpage and PDF of my resume."
+        "Automatically deploys successfully built artifacts to GitHub Pages using GitHub Actions."
         "Development shell with automatic installations of dependencies needed to hack on, build, and deploy my resume."
       ];
       keywords = [
