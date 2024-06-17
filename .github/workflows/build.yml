@@ -2,8 +2,7 @@
 name: Build & Deploy Nix Artifacts
 on:
   workflow_dispatch:
-  push:
-    branches: ["main"]
+  page_build:
 jobs:
   checks:
     runs-on: ubuntu-latest
