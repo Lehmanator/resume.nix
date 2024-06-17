@@ -1,8 +1,8 @@
 { inputs, ... }: {
   imports = [
-    inputs.devshell.flakeModule
     inputs.flake-parts.flakeModules.easyOverlay
     #inputs.pre-commit-hooks-nix.flakeModule
+    ../shell
   ];
   systems = [
     "x86_64-linux"
