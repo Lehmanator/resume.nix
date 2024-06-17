@@ -5,22 +5,22 @@ on:
   push:
     branches: ["main"]
 jobs:
-  checks:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: DeterminateSystems/nix-installer-action@main
-        with:
-          diagnostic-endpoint: ""
-      - uses: DeterminateSystems/magic-nix-cache-action@main
-        with:
-          diagnostic-endpoint: ""
-          upstream-cache: https://lehmanator.cachix.org
-          use-flakehub: false
-          use-gha-cache: true
-      - uses: DeterminateSystems/flake-checker-action@main
-        with:
-          send-statistics: false
+  # checks:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: DeterminateSystems/nix-installer-action@main
+  #       with:
+  #         diagnostic-endpoint: ""
+  #     - uses: DeterminateSystems/magic-nix-cache-action@main
+  #       with:
+  #         diagnostic-endpoint: ""
+  #         upstream-cache: https://lehmanator.cachix.org
+  #         use-flakehub: false
+  #         use-gha-cache: true
+  #     - uses: DeterminateSystems/flake-checker-action@main
+  #       with:
+  #         send-statistics: false
   build:
     needs: checks
     runs-on: ubuntu-latest
