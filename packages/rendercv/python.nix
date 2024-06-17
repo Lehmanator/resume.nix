@@ -1,4 +1,7 @@
-{ python3, fetchPypi, }:
+{
+  python3,
+  fetchPypi,
+}:
 python3.override {
   packageOverrides = self: super: {
     hatchling = super.hatchling.overridePythonAttrs (old: rec {
@@ -24,3 +27,4 @@ python3.override {
 #    });
 #  };
 #};
+

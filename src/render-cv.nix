@@ -24,24 +24,28 @@
       }
     ];
     sections = {
-      summary = [ "Hi, I'm Sam!" ];
-      education = [{
-        institution = "Pennsylvania State University";
-        location = "University Park, Pennsylvania";
-        area = "Computer Science";
-        degree = "in-progress";
-        start_date = "2014-08";
-        end_date = "2019-05";
-        highlights = [ "Made friends" ];
-      }];
-      experience = [{
-        company = "Presque Isle Wine Cellars";
-        location = "North East, Pennsylvania";
-        position = "System Administrator";
-        start_date = "2019-08";
-        end_date = "2024-12";
-        highlights = [ "Test" ];
-      }];
+      summary = ["Hi, I'm Sam!"];
+      education = [
+        {
+          institution = "Pennsylvania State University";
+          location = "University Park, Pennsylvania";
+          area = "Computer Science";
+          degree = "in-progress";
+          start_date = "2014-08";
+          end_date = "2019-05";
+          highlights = ["Made friends"];
+        }
+      ];
+      experience = [
+        {
+          company = "Presque Isle Wine Cellars";
+          location = "North East, Pennsylvania";
+          position = "System Administrator";
+          start_date = "2019-08";
+          end_date = "2024-12";
+          highlights = ["Test"];
+        }
+      ];
       projects = [
         # Normal Entry
         {
@@ -49,30 +53,32 @@
           location = "Remote";
           date = "2024-05";
           #start_date = "2020"; end_date = "2024";
-          highlights = [ "Test" ];
+          highlights = ["Test"];
         }
       ];
       publications = [
         # Publication Entry
         {
           title = "Test Publication";
-          authors = [ "Sam Lehman" ];
+          authors = ["Sam Lehman"];
           date = "2024-05";
           journal = "Test Journal";
           doi = "10.1001/FAKE.2024.1337124";
         }
       ];
-      additional_experience_and_awards = [{
-        label = "Test label";
-        details = "Test details";
-      }];
+      additional_experience_and_awards = [
+        {
+          label = "Test label";
+          details = "Test details";
+        }
+      ];
       technologies = [
         # One Line Entry
         {
           label = "DevOps";
-          details = [ "Git" "Terraform" "Kubernetes" "Docker" "Nix" ];
+          details = ["Git" "Terraform" "Kubernetes" "Docker" "Nix"];
         }
-        { bullet = "Test bullet"; }
+        {bullet = "Test bullet";}
       ];
     };
   };
@@ -96,7 +102,7 @@
     date_width = "3.8 cm";
     disable_external_link_icons = false;
 
-    show_timespan_in = [ "Experience" ];
+    show_timespan_in = ["Experience"];
     show_only_years = false;
 
     #margins = {

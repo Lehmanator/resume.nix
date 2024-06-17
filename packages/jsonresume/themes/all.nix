@@ -1,8 +1,11 @@
-{ self, super, root
-, symlinkJoin
-, ...
+{
+  self,
+  super,
+  root,
+  symlinkJoin,
+  ...
 }:
 symlinkJoin {
   name = "jsonresume-themes-all";
-  paths = builtins.attrValues (builtins.removeAttrs super ["all" "default"]); 
+  paths = builtins.attrValues (builtins.removeAttrs super ["all" "default"]);
 }

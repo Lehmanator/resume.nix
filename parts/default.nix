@@ -1,4 +1,4 @@
-{ inputs, ... }: {
+{inputs, ...}: {
   imports = [
     inputs.flake-parts.flakeModules.easyOverlay
     #inputs.pre-commit-hooks-nix.flakeModule

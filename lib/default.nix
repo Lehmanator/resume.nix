@@ -1,19 +1,24 @@
-{ self, super, root
-, lib
-# , pkgs
-, ...
-}: 
-let
-  l = lib // builtins;
-in
 {
-  getFileExtension = file:      lib.last (lib.splitString "." (builtins.baseNameOf file));
-  getFileBasename  = file: builtins.head (lib.splitString "." (builtins.baseNameOf file));
-  importData = src: 
-    if   ( (lib.hasSuffix ".yaml" src) || (lib.hasSuffix ".yml" src)) then lib.importJSON src
-    else if lib.hasSuffix ".json" src then lib.importJSON src
-    else if lib.hasSuffix ".toml" src then lib.importTOML src
-    else if lib.hasSuffix ".nix"  src then import src
+  self,
+  super,
+  root,
+  lib,
+  # , pkgs
+  ...
+}: let
+  l = lib // builtins;
+in {
+  getFileExtension = file: lib.last (lib.splitString "." (builtins.baseNameOf file));
+  getFileBasename = file: builtins.head (lib.splitString "." (builtins.baseNameOf file));
+  importData = src:
+    if ((lib.hasSuffix ".yaml" src) || (lib.hasSuffix ".yml" src))
+    then lib.importJSON src
+    else if lib.hasSuffix ".json" src
+    then lib.importJSON src
+    else if lib.hasSuffix ".toml" src
+    then lib.importTOML src
+    else if lib.hasSuffix ".nix" src
+    then import src
     else import src;
 
   # --- Data Manipulation ----------------------------------
@@ -23,18 +28,19 @@ in
   # - Auto add project link to jsonresume data?
 
   # Replaces the theme in a resume.
-  replaceTheme = src: theme:  (self.importData src) // (lib.setAttrByPath ["meta" "theme"] theme);
+  replaceTheme = src: theme: (self.importData src) // (lib.setAttrByPath ["meta" "theme"] theme);
   version = {
     get = data: lib.removePrefix "v" data.meta.version;
     increment = data: let
       old = self.version.get data;
-    in lib.attrsets.recursiveUpdate { 
-      meta = {
-        #lastModified = "";
-        #canonical = "https://raw.githubusercontent.com/${u}/${r}/${b}/${p}";
-        version = "${lib.versions.majorMinor old}.${(lib.versions.patch old)+1}";
+    in
+      lib.attrsets.recursiveUpdate {
+        meta = {
+          #lastModified = "";
+          #canonical = "https://raw.githubusercontent.com/${u}/${r}/${b}/${p}";
+          version = "${lib.versions.majorMinor old}.${(lib.versions.patch old) + 1}";
+        };
       };
-    };
   };
 
   # --- Conversion Process ---------------------------------
@@ -44,23 +50,26 @@ in
 
   # TODO: Insert wrappers here to pretty-print
   convertFile = src: dst: self.writeFile dst (self.importData src);
-    
+
   # --- Mappers -------------------------------------------
   # TODO: Make similar for pretty-print wrapper
   # Map file extensions to associated generator
-  mapToGenerator = ext: ({
-    # lib.generators
-    nix = lib.generators.toPretty;       # Pretty-printed Nix
-    lua = lib.generators.toLua;          # Pretty-printed Lua
-    dhall = lib.generators.toDhall;      # Not pretty-printed
-    dconf = lib.generators.toDconfINI;   # Broken, unknown reason, probably same as INI
-    plist = lib.generators.toPlist;      # Pretty-printed
-    ini = lib.generators.toINI;          # Broken, attrsets not supported
-    gitconfig = lib.generators.toGitINI; # Broken, attrsets not supported
-    json = lib.generators.toJSON;        # Not pretty-printed, wrap with jq to format
-    kv = lib.generators.toKeyValue;      # Broken, attrsets not supported
-    yaml = lib.generators.toYAML;        # Same as JSON, wrapper with json2yaml needed
-  }).${ext} or lib.generators.toJSON;
+  mapToGenerator = ext:
+    {
+      # lib.generators
+      nix = lib.generators.toPretty; # Pretty-printed Nix
+      lua = lib.generators.toLua; # Pretty-printed Lua
+      dhall = lib.generators.toDhall; # Not pretty-printed
+      dconf = lib.generators.toDconfINI; # Broken, unknown reason, probably same as INI
+      plist = lib.generators.toPlist; # Pretty-printed
+      ini = lib.generators.toINI; # Broken, attrsets not supported
+      gitconfig = lib.generators.toGitINI; # Broken, attrsets not supported
+      json = lib.generators.toJSON; # Not pretty-printed, wrap with jq to format
+      kv = lib.generators.toKeyValue; # Broken, attrsets not supported
+      yaml = lib.generators.toYAML; # Same as JSON, wrapper with json2yaml needed
+    }
+    .${ext}
+    or lib.generators.toJSON;
 
   # mapToFormat = ext: (({
   #   # pkgs.formats

@@ -12,20 +12,24 @@
       region = "Pennsylvania";
     };
     profiles = [
-      { network = "Mastodon";
+      {
+        network = "Mastodon";
         username = "@Lehmanator@fosstodon.org";
         url = "https://fosstodon.org/@Lehmanator";
       }
-      { network = "Twitter";
+      {
+        network = "Twitter";
         username = "publicSam";
         url = "https://twitter.com/publicSam";
       }
       # TODO: matrix:// or https:// to matrix.to profile link
-      { network = "Matrix";
+      {
+        network = "Matrix";
         username = "@lehmanator:tchncs.de";
         url = "https://matrix.to/#/@Lehmanator:tchncs.de";
       }
-      { network = "GitHub";
+      {
+        network = "GitHub";
         username = "Lehmanator";
         url = "https://github.com/Lehmanator";
       }
@@ -41,12 +45,12 @@
       #   username = "sam";
       #   url = "https://github.com/Lehmanator";
       # }
-
     ];
   };
 
   work = [
-    { name = "Presque Isle Wine Cellars";
+    {
+      name = "Presque Isle Wine Cellars";
       location = "North East, PA";
       description = "Winery & Wine Supplies Sales";
       position = "Systems Administrator";
@@ -64,7 +68,8 @@
         "Enhanced mail server security by configuring DMARC, DKIM, & SPF DNS records."
       ];
     }
-    { name = "Brazen";
+    {
+      name = "Brazen";
       location = "Arlington, VA";
       position = "Software Engineering Intern";
       description = "Brazen is a company developing software for hosting video conferencing.";
@@ -77,7 +82,8 @@
         "Wrote frontend & backend code in Java for video conferencing web platform."
       ];
     }
-    { name = "General Electric: Transportation";
+    {
+      name = "General Electric: Transportation";
       location = "Lawrence Park, PA";
       description = "Locomotive manufacturer";
       position = "Electrical Integration - Software Engineering Intern";
@@ -91,7 +97,8 @@
         "Wrote Visual Basic for Applications (VBA) code to integrate Python & C programs with Excel spreadsheets used by engineers."
       ];
     }
-    { name = "General Electric: Transportation";
+    {
+      name = "General Electric: Transportation";
       location = "Lawrence Park, PA";
       description = "Locomotive manufacturer";
       position = "Electrical Integration - Software Engineering Intern";
@@ -107,48 +114,55 @@
     }
   ];
 
-  volunteer = [{
-    organization = "THON Technology";
-    position = "Captain";
-    url = "https://think.thon.org";
-    startDate = "2018-09-01";
-    endDate = "2019-04-01";
-    summary = "THON is a student-run non-profit organization raising money for pediatric cancer research and the children affected by it. The THON Technology committee develops software to facilitate volunteer work and manage the annual dance marathon event.";
-    highlights = [
-      "Containerized developer environment to speed up onboarding new volunteer developers."
-      "Containerized production webserver to make production environment reproducible."
-      "Used Python & Django to create informational webpages to update volunteers on latest events & news."
-      "Used Python & Django to create forms to collect and process information from volunteers."
-    ];
-  }];
+  volunteer = [
+    {
+      organization = "THON Technology";
+      position = "Captain";
+      url = "https://think.thon.org";
+      startDate = "2018-09-01";
+      endDate = "2019-04-01";
+      summary = "THON is a student-run non-profit organization raising money for pediatric cancer research and the children affected by it. The THON Technology committee develops software to facilitate volunteer work and manage the annual dance marathon event.";
+      highlights = [
+        "Containerized developer environment to speed up onboarding new volunteer developers."
+        "Containerized production webserver to make production environment reproducible."
+        "Used Python & Django to create informational webpages to update volunteers on latest events & news."
+        "Used Python & Django to create forms to collect and process information from volunteers."
+      ];
+    }
+  ];
 
-  education = [{
-    institution = "Penn State University";
-    url = "https://psu.edu";
-    area = "Computer Science";
-    startDate = "2014-08-20";
-    endDate = "2019-05-31";
-    # studyType = "Bachelor";
-    # score = "3.2";
-    # courses = [
-    #   "CMPSC121 - "
-    #   "CMPSC122 - "
-    #   "CMPSC221 - "
-    #   "CMPSC360 - Discrete Mathematics"
-    #   "CMPSC461 - "
-    #   "CMPSC465 - Algorithms & Data Scriptures"
-    # ];
-  }];
-  publications = [{
-    name = "Hello World - Blog";
-    publisher = "Sam Lehman - Blog";
-    releaseDate = "2024-02-10";
-    url = "https://blog.samlehman.dev/posts/hello_world.html";
-    summary = "First post to my self-hosted blog!";
-  }];
+  education = [
+    {
+      institution = "Penn State University";
+      url = "https://psu.edu";
+      area = "Computer Science";
+      startDate = "2014-08-20";
+      endDate = "2019-05-31";
+      # studyType = "Bachelor";
+      # score = "3.2";
+      # courses = [
+      #   "CMPSC121 - "
+      #   "CMPSC122 - "
+      #   "CMPSC221 - "
+      #   "CMPSC360 - Discrete Mathematics"
+      #   "CMPSC461 - "
+      #   "CMPSC465 - Algorithms & Data Scriptures"
+      # ];
+    }
+  ];
+  publications = [
+    {
+      name = "Hello World - Blog";
+      publisher = "Sam Lehman - Blog";
+      releaseDate = "2024-02-10";
+      url = "https://blog.samlehman.dev/posts/hello_world.html";
+      summary = "First post to my self-hosted blog!";
+    }
+  ];
 
   skills = [
-    { name = "Web Development";
+    {
+      name = "Web Development";
       level = "Master";
       keywords = [
         "HTML"
@@ -163,45 +177,61 @@
         "Python"
       ];
     }
-    { name = "Nix";
+    {
+      name = "Nix";
       level = "Master";
-      keywords = [ "Nix" "NixOS" "DevOps" "reproducible builds" "functional programming" ];
+      keywords = ["Nix" "NixOS" "DevOps" "reproducible builds" "functional programming"];
     }
-    { name = "Kubernetes";
+    {
+      name = "Kubernetes";
       level = "Beginner";
-      keywords = [ "DevOps" "containers" "infrastructure" "orchestration" ];
+      keywords = ["DevOps" "containers" "infrastructure" "orchestration"];
     }
-    { name = "Containers";
+    {
+      name = "Containers";
       level = "Master";
-      keywords = [ "DevOps" "Docker" "Podman" "containers" "infrastructure" "orchestration" "deployment" ];
+      keywords = ["DevOps" "Docker" "Podman" "containers" "infrastructure" "orchestration" "deployment"];
     }
-    { name = "Rust";
+    {
+      name = "Rust";
       level = "Beginner";
-      keywords = [ "Rust" "memory-safe" "systems" ];
+      keywords = ["Rust" "memory-safe" "systems"];
     }
-    { name = "Python";
+    {
+      name = "Python";
       level = "Intermediate";
-      keywords = [ "Python" "Django" "data science" ];
+      keywords = ["Python" "Django" "data science"];
     }
-    { name = "Terraform";
+    {
+      name = "Terraform";
       level = "Beginner";
-      keywords =
-        [ "Terraform" "DevOps" "infrastructure" "infrastructure-as-code" ];
+      keywords = ["Terraform" "DevOps" "infrastructure" "infrastructure-as-code"];
     }
-    { name = "Microsoft Azure";
+    {
+      name = "Microsoft Azure";
       level = "Intermediate";
-      keywords = [ "DevOps" "cloud computing" "OAuth2" "directory server" ];
+      keywords = ["DevOps" "cloud computing" "OAuth2" "directory server"];
     }
   ];
 
   languages = [
-    { language = "English";  fluency = "Native speaker"; }
-    { language = "Spanish";  fluency = "Basic";          }
-    { language = "Mandarin"; fluency = "Basic";          }
+    {
+      language = "English";
+      fluency = "Native speaker";
+    }
+    {
+      language = "Spanish";
+      fluency = "Basic";
+    }
+    {
+      language = "Mandarin";
+      fluency = "Basic";
+    }
   ];
 
   interests = [
-    { name = "Home Automation";
+    {
+      name = "Home Automation";
       keywords = [
         "Home Assistant"
         "ESPHome"
@@ -212,21 +242,26 @@
         "Circuitry"
       ];
     }
-    { name = "Wrestling";
-      keywords = [ "Sports" "Martial Arts" "Fitness" "Athletics" "Competition" ];
+    {
+      name = "Wrestling";
+      keywords = ["Sports" "Martial Arts" "Fitness" "Athletics" "Competition"];
     }
-    { name = "Weight Lifting";
-      keywords = [ "Fitness" "Athletics" "Health" ];
+    {
+      name = "Weight Lifting";
+      keywords = ["Fitness" "Athletics" "Health"];
     }
   ];
 
-  references = [{
-    name = "Lauri Lewis";
-    reference = "It's my pleasure to recommend Sam. He single-handedly moved our business IT into the 21st century. Any company would be lucky to have him.";
-  }];
+  references = [
+    {
+      name = "Lauri Lewis";
+      reference = "It's my pleasure to recommend Sam. He single-handedly moved our business IT into the 21st century. Any company would be lucky to have him.";
+    }
+  ];
 
   projects = [
-    { name = "Meehive";
+    {
+      name = "Meehive";
       description = "Personal Nix configurations for personal computing devices & cluster infrastructure.";
       highlights = [
         "Declarative configurations representing both personal workstations and server infrastructure."
@@ -246,7 +281,8 @@
         "infrastructure-as-code"
       ];
     }
-    { name = "resume.nix";
+    {
+      name = "resume.nix";
       description = "Nix flake project to build & deploy my personal resume using jsonresume.";
       highlights = [
         "Reproducible environment that pulls all dependencies to build a static webpage for my resume."
@@ -267,14 +303,15 @@
       ];
       startDate = "2024-01-24";
       url = "https://resume.samlehman.dev";
-      roles = [ "Team lead" "Designer" ];
+      roles = ["Team lead" "Designer"];
       entity = "Sam Lehman";
       type = "application";
     }
-    { name = "HeyImHungry";
+    {
+      name = "HeyImHungry";
       description = "Service to connect those with excess or soon-to-expire food with those in need.";
       url = "https://github.com/Lehmanator/HeyImHungry";
-      keywords = [ "React" "Javascript" "Google Assistant" "Google Cloud" "Firebase" ];
+      keywords = ["React" "Javascript" "Google Assistant" "Google Cloud" "Firebase"];
       highlights = [
         "React & React Native frontend."
         "Google Assistant interface to query and add listings."

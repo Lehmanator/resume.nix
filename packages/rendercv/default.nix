@@ -1,29 +1,31 @@
-{ buildPythonPackage
-, python3
-, ruff
-, rendercv
-, #, loadPyproject
+{
+  buildPythonPackage,
+  python3,
+  ruff,
+  rendercv,
+  #, loadPyproject
   #, fetchPypi
-  lib
-,
-}:
-let
-  drvAttrs = (buildPythonPackage { python = python3; }) // {
-    version = "unstable-2024-05-16";
-    src = rendercv.outPath;
-    pythonRelaxDeps = true;
-  };
+  lib,
+}: let
+  drvAttrs =
+    (buildPythonPackage {python = python3;})
+    // {
+      version = "unstable-2024-05-16";
+      src = rendercv.outPath;
+      pythonRelaxDeps = true;
+    };
 in
-python3.pkgs.buildPythonApplication (drvAttrs // {
-  inherit ruff;
-  meta = {
-    description = "LaTeX CV generator from a YAML/JSON input file";
-    homepage = "https://github.com/sinaatalay/rendercv";
-    license = lib.licenses.mit;
-    #maintainers = [lib.maintainers.Lehmanator];
-    mainProgram = "rendercv";
-  };
-})
+  python3.pkgs.buildPythonApplication (drvAttrs
+    // {
+      inherit ruff;
+      meta = {
+        description = "LaTeX CV generator from a YAML/JSON input file";
+        homepage = "https://github.com/sinaatalay/rendercv";
+        license = lib.licenses.mit;
+        #maintainers = [lib.maintainers.Lehmanator];
+        mainProgram = "rendercv";
+      };
+    })
 #  let
 #    src-cfg = inputs.rendercv.outPath + "/pyproject.toml";
 #    cfg-orig = lib.importTOML src-cfg;
@@ -54,3 +56,4 @@ python3.pkgs.buildPythonApplication (drvAttrs // {
 #  in
 #  pkgs.python3.pkgs.buildPythonApplication
 #    (drvAttrs // { inherit (pkgs) ruff; });
+

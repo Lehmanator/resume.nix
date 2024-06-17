@@ -1,6 +1,11 @@
-{ inputs, ... }: {
-  imports = [ inputs.treefmt-nix.flakeModule ];
-  perSystem = { config, lib, pkgs, ... }: {
+{inputs, ...}: {
+  imports = [inputs.treefmt-nix.flakeModule];
+  perSystem = {
+    config,
+    lib,
+    pkgs,
+    ...
+  }: {
     treefmt = {
       flakeCheck = true;
       flakeFormatter = true;

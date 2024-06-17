@@ -1,4 +1,4 @@
-{ writeTextFile }:
+{writeTextFile}:
 # TODO: Handle validation against schema
 writeTextFile {
   name = "resume.json";

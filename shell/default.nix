@@ -1,8 +1,10 @@
-{ inputs, config, ... }:
-let
-  flakeConfig = config;
-in
 {
+  inputs,
+  config,
+  ...
+}: let
+  flakeConfig = config;
+in {
   imports = [
     # TODO: Move to ./parts/devshell.nix?
     inputs.devshell.flakeModule
