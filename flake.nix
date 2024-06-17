@@ -55,7 +55,6 @@
           };
           pdf = {
             type = "app";
-            # program = lib.getExe config.packages.jsonresume-builder-pdf;
             program = pkgs.writeShellScriptBin "resume-render-pdf" ''
               if [[ $# -gt 0 ]]; then
                 outfile=$1
@@ -127,6 +126,7 @@
             jsonresume-builder-pdf = pkgs.writeShellScript "resumed-render-pdf" ''
               ${lib.getExe pkgs.puppeteer-cli} print ${config.packages.jsonresume-format-html}/index.html ./jsonresume.pdf
             '';
+            default = config.packages.jsonresume-format-html;
 
             rendercv = let
               src-cfg = inputs.rendercv.outPath + "/pyproject.toml";
