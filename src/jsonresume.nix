@@ -185,7 +185,7 @@
     }
     {
       name = "Kubernetes";
-      keywords = ["DevOps" "containers" "infrastructure" "orchestration" "clusters" "high-availability computing"];
+      keywords = ["Ceph" "Flannel" "DevOps" "containers" "infrastructure" "orchestration" "clusters" "high-availability computing"];
       # level = "Beginner";
     }
     {

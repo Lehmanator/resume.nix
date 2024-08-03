@@ -1,8 +1,8 @@
-{ lib
-, fetchFromGitHub
-, buildNpmPackage
+{
+  lib,
+  fetchFromGitHub,
+  buildNpmPackage,
 }:
-
 buildNpmPackage rec {
   pname = "jsonresume-theme-minyma";
   version = "unstable-2024-03-27";
@@ -20,7 +20,7 @@ buildNpmPackage rec {
     description = "A minymalistic theme for json-resume";
     homepage = "https://github.com/godraadam/jsonresume-theme-minyma";
     # license = licenses.unfree; # FIXME: nix-init did not found a license
-    maintainers = with maintainers; [ ];
+    maintainers = with maintainers; [];
     mainProgram = "jsonresume-theme-minyma";
     platforms = platforms.all;
   };

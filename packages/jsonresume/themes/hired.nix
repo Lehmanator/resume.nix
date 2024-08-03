@@ -1,8 +1,8 @@
-{ lib
-, buildNpmPackage
-, fetchFromGitHub
+{
+  lib,
+  buildNpmPackage,
+  fetchFromGitHub,
 }:
-
 buildNpmPackage rec {
   pname = "jsonresume-theme-hired";
   version = "unstable-2024-03-29";
@@ -20,7 +20,7 @@ buildNpmPackage rec {
     description = "";
     homepage = "https://github.com/aplocher/jsonresume-theme-hired";
     license = licenses.mit; # FIXME: nix-init did not found a license
-    maintainers = with maintainers; [ ];
+    maintainers = with maintainers; [];
     mainProgram = "jsonresume-theme-hired";
     platforms = platforms.all;
   };
