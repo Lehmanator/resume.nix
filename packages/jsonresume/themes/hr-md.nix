@@ -1,8 +1,8 @@
-{ lib
-, buildNpmPackage
-, fetchFromGitHub
+{
+  lib,
+  buildNpmPackage,
+  fetchFromGitHub,
 }:
-
 buildNpmPackage rec {
   pname = "jsonresume-theme-hr-md";
   version = "unstable-2024-02-26";
@@ -20,7 +20,7 @@ buildNpmPackage rec {
     description = "JSON Resume Markdown Theme Repository";
     homepage = "https://github.com/Greg-Bush/jsonresume-theme-hr-md";
     license = licenses.mit;
-    maintainers = with maintainers; [ ];
+    maintainers = with maintainers; [];
     mainProgram = "jsonresume-theme-hr-md";
     platforms = platforms.all;
   };
