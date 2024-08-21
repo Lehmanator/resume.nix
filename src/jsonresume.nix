@@ -137,7 +137,7 @@
       url = "https://psu.edu";
       area = "Computer Science";
       startDate = "2014-08-20";
-      endDate = "2019-05-31";
+      # endDate = "2019-05-31";
       # studyType = "Bachelor";
       # score = "3.2";
       # courses = [
@@ -150,15 +150,16 @@
       # ];
     }
   ];
-  publications = [
-    {
-      name = "Hello World - Blog";
-      publisher = "Sam Lehman - Blog";
-      releaseDate = "2024-02-10";
-      url = "https://blog.samlehman.dev/posts/hello_world.html";
-      summary = "First post to my self-hosted blog!";
-    }
-  ];
+
+  # publications = [
+  #   {
+  #     name = "Hello World - Blog";
+  #     publisher = "Sam Lehman - Blog";
+  #     releaseDate = "2024-02-10";
+  #     url = "https://blog.samlehman.dev/posts/hello_world.html";
+  #     summary = "First post to my self-hosted blog!";
+  #   }
+  # ];
 
   skills = [
     {
@@ -331,8 +332,8 @@
 
   meta = {
     canonical = "https://raw.githubusercontent.com/Lehmanator/resume-nix/main/src/jsonresume.nix";
-    version = "v1.0.1";
-    lastModified = "2024-06-11T15:53:00";
+    version = "v1.0.2";
+    lastModified = "2024-08-21T15:53:00";
 
     # Set default theme when fetching through
     # https://registry.jsonresume.org/<github-user-name>, see themes
