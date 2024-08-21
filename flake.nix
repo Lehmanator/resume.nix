@@ -154,9 +154,6 @@
           // jsonresume-formats
           // {
             inherit (pkgs) resumed puppeteer-cli;
-            #wkhtmltopdf pnmp-lock-export corepack_latest;
-            inherit (pkgs.python3Packages) weasyprint;
-            inherit (pkgs.nodePackages_latest) pnpm;
             # default = config.packages.resume;
             jsonresume-builder-pdf = pkgs.writeShellScript "resumed-render-pdf" ''
               ${lib.getExe pkgs.puppeteer-cli} print ${config.packages.jsonresume-format-html}/index.html ./jsonresume.pdf
