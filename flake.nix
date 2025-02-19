@@ -8,7 +8,6 @@
     pre-commit-hooks-nix.url = "github:cachix/pre-commit-hooks.nix";
     haumea.url = "github:nix-community/haumea";
     incl.url = "github:divnix/incl";
-    #std.url = "github:divnix/std";
     devshell = {
       url = "github:numtide/devshell";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -26,10 +25,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     rendercv = {
+      # url = "github:sinaatalay/rendercv";
       url = "github:Lehmanator/rendercv";
       flake = false;
     };
-    #"github:sinaatalay/rendercv";
   };
   outputs = {
     self,
@@ -48,7 +47,7 @@
         ...
       }: {
         formatter = pkgs.alejandra;
-        #overlayAttrs = { inherit (packages) jsonresume-data; };
+        # overlayAttrs = { inherit (packages) jsonresume-data; };
         apps = rec {
           # TODO: Live server
           # serve = { type = "app"; program = ""; };
@@ -76,7 +75,7 @@
               ${lib.getExe pkgs.puppeteer-cli} screenshot \
                 ${config.packages.jsonresume-format-html}/index.html \
                 $outfile
-                #--viewport 1920x1080 \
+                # --viewport 1920x1080 \
             '';
           };
           pdf = {
@@ -174,28 +173,28 @@
                 inherit (project.renderers) buildPythonPackage;
                 python3 = pkgs.callPackage ./packages/rendercv/python.nix {};
               };
-            #resume-cli = pkgs.callPackage ./packages/resume-cli {};
+            # resume-cli = pkgs.callPackage ./packages/resume-cli {};
 
             # TODO: Wrap with webserver?
 
-            #themes-checks = let
-            #  builderAttrs = l.filterAttrs (n: _: l.hasPrefix "resume-" n) packages.${pkgs.system};
-            #in pkgs.stdenv.mkDerivation {
-            #  name = "themes-checks";
-            #  src = ./template;
-            #  buildPhase = ''
-            #    cp resume.sample.json resume.json
-            #  '' + (l.concatStringsSep "\n\n" (l.attrValues (l.mapAttrs (n: v: ''
-            #    # Build using builder ${n}
-            #    ${v}
-            #    mv resume.html ${n}.html
-            #  '') builderAttrs)));
-            #  installPhase = ''
-            #    mkdir $out
-            #  '' + (l.concatStringsSep "\n\n" (l.attrValues
-            #    (l.mapAttrs (n: _: "mv ${n}.html $out") builderAttrs)
-            #  ));
-            #};
+            # themes-checks = let
+            #   builderAttrs = l.filterAttrs (n: _: l.hasPrefix "resume-" n) packages.${pkgs.system};
+            # in pkgs.stdenv.mkDerivation {
+            #   name = "themes-checks";
+            #   src = ./template;
+            #   buildPhase = ''
+            #     cp resume.sample.json resume.json
+            #   '' + (l.concatStringsSep "\n\n" (l.attrValues (l.mapAttrs (n: v: ''
+            #     # Build using builder ${n}
+            #     ${v}
+            #     mv resume.html ${n}.html
+            #   '') builderAttrs)));
+            #   installPhase = ''
+            #     mkdir $out
+            #   '' + (l.concatStringsSep "\n\n" (l.attrValues
+            #     (l.mapAttrs (n: _: "mv ${n}.html $out") builderAttrs)
+            #   ));
+            # };
           };
       };
       flake = {
