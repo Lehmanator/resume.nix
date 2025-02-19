@@ -12,6 +12,14 @@
       url = "github:numtide/devshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    github-actions = {
+      url = "github:nix-community/nix-github-actions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-pandoc = {
+      url = "github:serokell/nix-pandoc";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix2container = {
       url = "github:nlewo/nix2container";
       inputs.nixpkgs.follows = "nixpkgs";
