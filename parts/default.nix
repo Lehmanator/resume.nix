@@ -3,6 +3,7 @@
     flake-parts.flakeModules.easyOverlay
     # pre-commit-hooks-nix.flakeModule
 
+    ./data.nix
     ./packages.nix
     ./treefmt.nix
 
@@ -26,6 +27,5 @@
       };
     };
     # checks.themes = self.packages.themes-checks; #  # Check output to run checks for all themes
-    # templates.default = { path = ./template; description = "Template to build jsonresume with nix"; };
   };
 }
