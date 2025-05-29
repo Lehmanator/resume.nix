@@ -2,7 +2,7 @@
   cv = {
     name = "Sam Lehman";
     location = "Reading, Pennsylvania";
-    email = "sam@samlehman.dev";
+    email = "dev@samlehman.dev";
     phone = "tel:+1-814-528-3891";
     website = "https://samlehman.dev";
     social_networks = [
