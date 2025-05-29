@@ -208,6 +208,11 @@ New Features:
 }
 ```
 
+### Libs
+
+- `lib.toJSONResume` - Convert data from render-cv to JSON-Resume format
+- `lib.toRenderCV` - Convert data from JSON-Resume to render-cv format
+
 ## Package Additional Software
 
 - [ ] [jsonresume/resume-cli](https://github.com/jsonresume/resume-cli) - **Unmaintained**
