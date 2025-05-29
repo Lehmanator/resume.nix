@@ -7,7 +7,7 @@
     url = "https://samlehman.dev";
     summary = "Sam is a full-stack software developer that creates web applications, backend services, and the infrastructure used to run them. Sam has both a depth and breadth of experience using programming languages, frameworks, and development utilities to build everything necessary to build software and deploy it to end users.";
     location = {
-      city = "Erie";
+      city = "Reading";
       countryCode = "US";
       region = "Pennsylvania";
     };

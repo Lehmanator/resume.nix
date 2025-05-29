@@ -1,7 +1,7 @@
 {
   cv = {
     name = "Sam Lehman";
-    location = "Erie, Pennsylvania";
+    location = "Reading, Pennsylvania";
     email = "sam@samlehman.dev";
     phone = "tel:+1-814-528-3891";
     website = "https://samlehman.dev";
