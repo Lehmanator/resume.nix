@@ -1,9 +1,37 @@
-{
+{lib, ...} @ args: {
+  meta = {
+    canonical = "https://raw.githubusercontent.com/Lehmanator/resume.nix/main/src/developer.nix";
+    version = "v1.0.3";
+    lastModified = "2025-06-09T10:53:00";
+
+    # Set default theme when fetching through
+    # https://registry.jsonresume.org/<github-user-name>, see themes here: https://jsonresume.org/themes/
+    # Themes:
+    # - full: pdf2,
+    # - fullmoon: pdf, pdf2,
+    # - elegant:
+    # - hired: pdf2 (overflow issue)
+    # - hr-md:
+    # - kendall: pdf2 > pdf1 >
+    # - macchiato:
+    # - minyma:
+    # - stackoverflow:
+    # - stackunderflow:
+    # - Working (pdf1): fullmoon,
+    # - Working (pdf2): full,
+    # - Broken  (pdf1): full, elegant, hired, hr-md,
+    # - Broken  (pdf2): hr-md, elegant*,
+    # theme = "papirus";
+    # Broken Themes (pdf1): full, elegant, hired
+    # Working Themes: fullmoon
+    theme = args.theme or "hired";
+  };
+
   basics = {
     name = "Sam Lehman";
     label = "Software Developer";
     image = "https://raw.githubusercontent.com/Lehmanator/Lehmanator/main/assets/images/profile.png";
-    email = "dev@samlehman.dev";
+    email = "hire@samlehman.dev";
     url = "https://samlehman.dev";
     summary = "Sam is a full-stack software developer that creates web applications, backend services, and the infrastructure used to run them. Sam has both a depth and breadth of experience using programming languages, frameworks, and development utilities to build everything necessary to build software and deploy it to end users.";
     location = {
@@ -17,12 +45,7 @@
         username = "@Lehmanator@fosstodon.org";
         url = "https://fosstodon.org/@Lehmanator";
       }
-      {
-        network = "Twitter";
-        username = "publicSam";
-        url = "https://twitter.com/publicSam";
-      }
-      # TODO: matrix:// or https:// to matrix.to profile link
+      # TODO: matrix:// or https:// to matrix.to profile link?
       {
         network = "Matrix";
         username = "@lehmanator:tchncs.de";
@@ -43,7 +66,7 @@
       # }
       # { network = "Forgejo";
       #   username = "sam";
-      #   url = "https://github.com/Lehmanator";
+      #   url = "https://codeberg.org/Lehmanator";
       # }
     ];
   };
@@ -150,16 +173,6 @@
       # ];
     }
   ];
-
-  # publications = [
-  #   {
-  #     name = "Hello World - Blog";
-  #     publisher = "Sam Lehman - Blog";
-  #     releaseDate = "2024-02-10";
-  #     url = "https://blog.samlehman.dev/posts/hello_world.html";
-  #     summary = "First post to my self-hosted blog!";
-  #   }
-  # ];
 
   skills = [
     {
@@ -322,23 +335,18 @@
     }
   ];
 
-  #awards = [
-  #  { title = "Digital Compression Pioneer Award";
-  #    date = "2014-11-01";
-  #    awarder = "Techcrunch";
-  #    summary = "There is no spoon.";
-  #  }
-  #];
-
-  meta = {
-    canonical = "https://raw.githubusercontent.com/Lehmanator/resume-nix/main/src/jsonresume.nix";
-    version = "v1.0.2";
-    lastModified = "2024-08-21T15:53:00";
-
-    # Set default theme when fetching through
-    # https://registry.jsonresume.org/<github-user-name>, see themes
-    # here: https://jsonresume.org/themes/
-    # theme = "stackoverflow"; # "papirus";
-    theme = "minyma";
-  };
+  # awards = [
+  #   { title = "Digital Compression Pioneer Award";
+  #     date = "2014-11-01";
+  #     awarder = "Techcrunch";
+  #     summary = "There is no spoon.";
+  #   }
+  # ];
+  # publications = [{
+  #   name = "Hello World - Blog";
+  #   publisher = "Sam Lehman - Blog";
+  #   releaseDate = "2024-02-10";
+  #   url = "https://blog.samlehman.dev/posts/hello_world.html";
+  #   summary = "First post to my self-hosted blog!";
+  # }];
 }

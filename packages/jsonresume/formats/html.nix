@@ -2,27 +2,38 @@
   lib,
   stdenv,
   resumed,
-  self,
   super,
   root,
-  src,
+  src ? ../../../src,
   ...
-}: let
-  jsonresume-theme-all = root.themes.all;
-  data = import src;
-  inherit (data.meta) theme version;
+} @ args: let
+  basename = builtins.head (lib.splitString "." (builtins.baseNameOf src));
+  data = import src {
+    inherit lib;
+  };
+  theme = args.theme or data.meta.theme or "stackoverflow";
+  version = args.version or data.meta.version or "v0.0.1";
 in
   stdenv.mkDerivation {
-    inherit (data.meta) version;
-    pname = "jsonresume-html";
+    inherit version;
+    pname = "jsonresume-${theme}-${basename}.html";
     src = ../../../src;
 
-    # propagatedBuildInputs = [super.json];
-    buildInputs = [jsonresume-theme-all resumed];
+    buildInputs = [
+      root.themes.${theme}
+      resumed
+    ];
+
     buildPhase = ''
       mkdir -p $out
-      ${lib.getExe resumed} render ${super.json} \
-        --theme ${jsonresume-theme-all}/lib/node_modules/jsonresume-theme-${theme}/index.js \
+      resumed render ${super.json} \
+        --theme ${root.themes.${theme}}/lib/node_modules/jsonresume-theme-${theme}/index.js \
         --output $out/index.html
     '';
+
+    meta = {
+      homepage = "https://codeberg.org/Lehmanator/resume.nix";
+      description = "JSONResume HTML output using theme: ${theme}";
+      license = lib.licenses.agpl3Plus;
+    };
   }
