@@ -11,11 +11,17 @@
   data = import src {
     inherit lib;
   };
-  version = args.version or data.meta.version or "v0.0.1";
 in
   stdenv.mkDerivation {
-    inherit version;
     pname = "jsonresume-format-markdown-${basename}.md";
+    version = args.version or data.meta.version or "v0.0.1";
+
+    meta = {
+      homepage = "https://codeberg.org/Lehmanator/resume.nix";
+      description = "JSONResume Markdown output";
+      license = lib.licenses.agpl3Plus;
+    };
+
     src = ../../../src;
 
     buildInputs = [
@@ -29,10 +35,4 @@ in
         --theme ${root.themes.hr-md}/lib/node_modules/jsonresume-theme-hr-md/index.js \
         --output $out/index.md
     '';
-
-    meta = {
-      homepage = "https://codeberg.org/Lehmanator/resume.nix";
-      description = "JSONResume Markdown output";
-      license = lib.licenses.agpl3Plus;
-    };
   }
