@@ -1,7 +1,6 @@
 {
   lib,
   stdenv,
-  nodePackages,
   puppeteer-cli,
   super,
   root,
@@ -24,7 +23,6 @@ in
     };
 
     nativeBuildInputs = [
-      nodePackages.live-server
       puppeteer-cli
       root.themes.${theme}
       super.html
