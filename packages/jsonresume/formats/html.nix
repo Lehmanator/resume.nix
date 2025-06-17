@@ -27,11 +27,19 @@ in
 
     buildPhase = ''
       mkdir -p $out
+
+      # Used by most themes
       entry="${root.themes.${theme}}/lib/node_modules/jsonresume-theme-${theme}/index.js"
+
+      # Used by theme: crewshin
       if [[ ! -f "$entry" ]]; then
         entry="${root.themes.${theme}}/lib/node_modules/jsonresume-theme-${theme}/dist/index.js"
-
       fi
+      # Used by theme: eloquent
+      if [[ ! -f "$entry" ]]; then
+        entry="${root.themes.${theme}}/lib/node_modules/jsonresume-theme-${theme}/lib/resume.js"
+      fi
+
       resumed render ${super.json} \
         --theme $entry \
         --output $out/index.html
