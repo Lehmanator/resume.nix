@@ -1,29 +1,32 @@
 {
+  lib,
   buildNpmPackage,
   fetchFromGitHub,
-  python3,
-}: let
+}:
+buildNpmPackage rec {
   pname = "jsonresume-theme-macchiato";
-  version = "2021-02-20";
-in
-  buildNpmPackage {
-    inherit pname version;
+  version = "unstable-20250428";
 
-    src = fetchFromGitHub {
-      owner = "biosan";
-      repo = pname;
-      rev = "c783186d31c88924b7808bf65a892cef233099c4";
-      hash = "sha256-ssqZBlVnEtOSldDrEAPsmTxAdGozeABdt98xSXv0Fe0=";
-    };
+  src = fetchFromGitHub {
+    owner = "jhcotton";
+    rev = "2106f1754bad17f566669be056b72d3e7f86bb4f";
+    hash = "sha256-FZjTn0o1cYxg0LoxJMHmaVJTdSIvylT8lgc6B/4jdFQ=";
+    repo = pname;
+  };
 
-    npmDepsHash = "sha256-yK7Yp2580XiGv1nHmyBnnF7dLlADOP8NWLvuzAMclOo=";
+  npmDepsHash = "sha256-bA9O+4sfrhQmLnBhnXKwK/TGwJbv2Z6ndK2nFwvmv+A=";
 
-    nativeBuildInputs = [python3];
-    dontNpmBuild = true;
-    PUPPETEER_SKIP_CHROMIUM_DOWNLOAD = 1;
+  dontNpmBuild = true;
+  PUPPETEER_SKIP_CHROMIUM_DOWNLOAD = 1;
 
-    meta = {
-      description = "Simple JSONResume theme (based on Caffeine theme) ☕️+🥛";
-      homepage = "https://github.com/biosan/jsonresume-theme-macchiato";
-    };
-  }
+  fixupPhase = ''
+    find . -xtype l -delete || true
+  '';
+
+  meta = {
+    description = "Simple JSONResume theme (based on Caffeine theme) ☕️+🥛";
+    homepage = "https://github.com/jhcotton/jsonresume-theme-macchiato";
+    demo = "https://biosan.github.io/jsonresume-theme-macchiato";
+    license = lib.licenses.mit;
+  };
+}
