@@ -1,48 +1,34 @@
 {
+  lib,
   buildNpmPackage,
   fetchFromGitHub,
-}: let
+}:
+buildNpmPackage rec {
   pname = "jsonresume-theme-elegant";
-  version = "1.16.1";
-  #
-  # https://nixos.org/manual/nixpkgs/unstable/#language-javascript
-  #
-  # Builders:
-  # - buildNpmPackage
-  # - node2nix
-  # - yarn2nix
-  # - mkYarnPackage
-  # - mkYarnModules
-  # - npmlock2nix (https://github.com/nix-community/npmlock2nix)
-  # - nix-npm-buildpackage (https://github.com/serokell/nix-npm-buildpackage)
-  # - fetchNpmDeps
-  # - prefetch-npm-deps
-  #
-  # TODO: Possible to limit files in output?
-  #  Currently passing $out/lib/node_modules/jsonresume-theme-${theme-name}/index.js
-in
-  buildNpmPackage {
-    inherit pname version;
+  version = "1.16.2";
 
-    src = fetchFromGitHub {
-      owner = "mudassir0909";
-      repo = pname;
-      rev = "1b38dae2f9fcdf0e4a5d03d2a737b88303ff6305";
-      hash = "sha256-AhWWBA5D1LgBQtIjPQMZICngBpbGmBGRpv/7SHsSfXc=";
-    };
+  src = fetchFromGitHub {
+    repo = "jsonresume-theme-elegant";
+    owner = "Lehmanator";
+    rev = "v${version}";
+    hash = "sha256-4/zd4sK2bsKKLbq/9C8RSY5ZMQaxfjWN4FblnZRLNsE=";
+  };
 
-    npmDepsHash = "sha256-3GrHcwfu0rIPQ6e6SFa8Ve3VqL/KcEBRru9oAPAVGmo=";
-    dontNpmBuild = true;
-    dontStrip = false;
+  npmDepsHash = "sha256-SJXXbPgFh5G7WaPCW/5sr0pJMh15+5Bkl5p03ERTkQ0=";
+  dontNpmBuild = true;
 
-    meta = {
-      description = "Elegant theme for jsonresume";
-      homepage = "https://github.com/mudassir0909/jsonresume-theme-elegant";
-    };
-    #buildPhase = ''
-    #  echo "Building ${pname} ..."
-    #'';
-    #installPhase = ''
-    #  echo "Installing ${pname} ..."
-    #'';
-  }
+  # Delete broken symlinks
+  fixupPhase = ''
+    find . -xtype l -delete || true
+  '';
+
+  meta = {
+    description = "Elegant theme for jsonresume";
+    repo = "https://github.com/Lehmanator/jsonresume-theme-elegant";
+    repo-parent = "https://github.com/jenshenneberg/jsonresume-theme-elegant-jkh";
+    repo-original = "https://github.com/mudassir0909/jsonresume-theme-elegant";
+    demo = "https://themes.jsonresume.org/theme/elegant";
+    homepage = meta.repo;
+    license = lib.licenses.mit;
+  };
+}
