@@ -6,8 +6,8 @@
 
 # Ignore temporary files for when doing manual tests with themes
 **node_modules/
-**package-lock.json
-**package.json
+# **package-lock.json
+# **package.json
 
 # Resume formats
 **resume.html

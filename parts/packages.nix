@@ -12,16 +12,26 @@
     allPackages = inputs.haumea.lib.load {
       src = ../packages/jsonresume;
       loader = inputs.haumea.lib.loaders.callPackage;
+      transformer = inputs.haumea.lib.transformers.liftDefault;
       inputs = {
         lib = pkgs.lib // top.config.flake.lib;
         src = ../src/jsonresume/default.nix;
         inherit
           (pkgs)
+          corepack
+          coreutils
           buildNpmPackage
           chawan
+          fetchFromGitea
           fetchFromGitHub
+          fetchNpmDeps
           formats
           jq
+          linkFarm
+          nix-update-script
+          nodejs
+          npm-lockfile-fix
+          pnpm_9
           python3
           python3Packages
           resumed
