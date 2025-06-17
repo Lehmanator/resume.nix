@@ -19,15 +19,21 @@ in
     pname = "jsonresume-${theme}-${basename}.html";
     src = ../../../src;
 
-    buildInputs = [
-      root.themes.${theme}
+    # Inputs needed by the builder
+    nativeBuildInputs = [
       resumed
+      root.themes.${theme}
     ];
 
     buildPhase = ''
       mkdir -p $out
+      entry="${root.themes.${theme}}/lib/node_modules/jsonresume-theme-${theme}/index.js"
+      if [[ ! -f "$entry" ]]; then
+        entry="${root.themes.${theme}}/lib/node_modules/jsonresume-theme-${theme}/dist/index.js"
+
+      fi
       resumed render ${super.json} \
-        --theme ${root.themes.${theme}}/lib/node_modules/jsonresume-theme-${theme}/index.js \
+        --theme $entry \
         --output $out/index.html
     '';
 
