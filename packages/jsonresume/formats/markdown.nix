@@ -24,7 +24,7 @@ in
 
     src = ../../../src;
 
-    buildInputs = [
+    nativeBuildInputs = [
       root.themes.hr-md
       resumed
     ];
