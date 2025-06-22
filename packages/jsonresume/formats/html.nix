@@ -13,6 +13,7 @@
   };
   theme = args.theme or data.meta.theme or "stackoverflow";
   version = args.version or data.meta.version or "v0.0.1";
+  basedir = "${root.themes.${theme}}/lib/node_modules/jsonresume-theme-${theme}";
 in
   stdenv.mkDerivation {
     inherit version;
@@ -29,15 +30,16 @@ in
       mkdir -p $out
 
       # Used by most themes
-      entry="${root.themes.${theme}}/lib/node_modules/jsonresume-theme-${theme}/index.js"
+      entry="${basedir}/index.js"
 
       # Used by theme: crewshin
       if [[ ! -f "$entry" ]]; then
-        entry="${root.themes.${theme}}/lib/node_modules/jsonresume-theme-${theme}/dist/index.js"
+        entry="${basedir}/dist/index.js"
       fi
+
       # Used by theme: eloquent
       if [[ ! -f "$entry" ]]; then
-        entry="${root.themes.${theme}}/lib/node_modules/jsonresume-theme-${theme}/lib/resume.js"
+        entry="${basedir}/lib/resume.js"
       fi
 
       resumed render ${super.json} \
