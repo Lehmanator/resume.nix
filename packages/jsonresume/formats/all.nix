@@ -1,5 +1,6 @@
 {
   lib,
+  linkFarm,
   stdenv,
   self,
   super,
@@ -12,28 +13,37 @@
     inherit lib;
   };
 in
-  stdenv.mkDerivation {
-    pname = "jsonresume-all-${basename}";
+  (linkFarm "jsonresume-all-${basename}" [
+    {
+      name = "${basename}.nix";
+      path = super.nix;
+    }
+    {
+      name = "${basename}.json";
+      path = super.json;
+    }
+    {
+      name = "${basename}.toml";
+      path = super.toml;
+    }
+    {
+      name = "${basename}.yaml";
+      path = super.yaml;
+    }
+
+    {
+      name = "${basename}.html";
+      path = "${super.html.outPath}/index.html";
+    }
+    {
+      name = "${basename}.pdf";
+      path = super.pdf;
+    }
+  ])
+  // {
     version = args.version or data.meta.version or "v0.0.1";
-    src = super.html;
-
-    buildPhase = ''
-      mkdir $out
-      echo 'Writing data files...'
-      ln -s ${super.json} $out/${basename}.json
-      ln -s ${super.nix}  $out/${basename}.nix
-      ln -s ${super.toml} $out/${basename}.toml
-      ln -s ${super.yaml} $out/${basename}.yaml
-
-      echo 'Writing document files...'
-      ln -s ${super.html}/index.html   $out/${basename}.html
-      ln -s ${super.markdown}/index.md $out/${basename}.md
-      ln -s ${super.pdf}               $out/${basename}.pdf
-      echo 'Done.'
-    '';
-
     meta = {
-      description = "All JSONResume output formats in one directory.";
+      description = "JSONResume outputs: All formats for variant: ${basename}.";
       homepage = "https://codeberg.org/Lehmanator/resume.nix";
       license = lib.licenses.agpl3Plus;
     };
