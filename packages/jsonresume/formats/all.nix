@@ -34,6 +34,10 @@ in
 
     # Output formats
     {
+      name = "${basename}.md";
+      path = super.markdown;
+    }
+    {
       name = "${basename}.html";
       path = "${super.html.outPath}/index.html";
     }
