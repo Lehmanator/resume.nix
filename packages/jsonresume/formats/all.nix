@@ -14,6 +14,7 @@
   };
 in
   (linkFarm "jsonresume-all-${basename}" [
+    # Input formats
     {
       name = "${basename}.nix";
       path = super.nix;
@@ -31,6 +32,7 @@ in
       path = super.yaml;
     }
 
+    # Output formats
     {
       name = "${basename}.html";
       path = "${super.html.outPath}/index.html";
