@@ -10,5 +10,5 @@ in
   merge
   {
     name = "Operating Systems";
-    keywords = ["Windows" "MacOS" "Linux" "NixOS" "Arch Linux" "Debian"];
+    keywords = ["Windows" "MacOS" "Linux" "Android" "iOS" "NixOS" "Arch Linux" "Debian"];
   }
