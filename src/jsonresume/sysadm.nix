@@ -2,8 +2,9 @@
   meta = {
     canonical = "https://raw.githubusercontent.com/Lehmanator/resume.nix/main/src/sysadm.nix";
     version = "v1.0.3";
-    lastModified = "2025-06-10T10:53:00";
-    theme = args.theme or "stackoverflow";
+    lastModified = "2025-06-20T10:53:00";
+    theme = args.theme or "slickoverflow";
+    language = "en";
   };
 
   basics = rec {
