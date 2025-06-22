@@ -30,9 +30,8 @@ in
     ];
 
     buildPhase = ''
-      mkdir -p $out
       resumed render ${super.json} \
         --theme ${root.themes.hr-md}/lib/node_modules/jsonresume-theme-hr-md/index.js \
-        --output $out/index.md
+        --output $out
     '';
   }
