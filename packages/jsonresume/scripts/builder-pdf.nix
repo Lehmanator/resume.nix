@@ -2,18 +2,25 @@
   lib,
   puppeteer-cli,
   writeShellApplication,
-  self,
-  super,
   root,
   ...
 }:
 # TODO: Add assets
 writeShellApplication {
   name = "jsonresume-builder-pdf-puppeteer";
-  meta.description = "JSONResume script: Render PDF with Puppeteer";
   runtimeInputs = [puppeteer-cli];
   text = ''
     [[ $# -gt 0 ]] && outfile="$1" || outfile='./jsonresume.pdf'
-    puppeteer print ${root.formats.html}/index.html "$outfile"
+    if [[ -d "${root.formats.html.outPath}" ]]; then
+      puppeteer print ${root.formats.html}/index.html "$outfile"
+    else
+      puppeteer print "${root.formats.html.outPath}" "$outfile"
+    fi
   '';
+
+  meta = {
+    description = "JSONResume script: Render PDF with Puppeteer";
+    homepage = "https://codeberg.org/Lehmanator/resume.nix";
+    license = lib.licenses.agpl3Plus;
+  };
 }
