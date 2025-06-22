@@ -1,5 +1,4 @@
 # Ignore build symlinks
-**result*
 **.tmp
 **.direnv/
 **.devenv/
@@ -17,7 +16,6 @@
 **.pdf
 **.png
 
-
 # Private data
 **src/private.json
 **src/private.nix
@@ -30,3 +28,9 @@
 **.old/
 **.hide
 **.hide/
+
+# Debugging
+out/
+
+# Nix formats
+**result*
