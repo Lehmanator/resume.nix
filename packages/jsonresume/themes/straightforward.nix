@@ -7,12 +7,6 @@ buildNpmPackage rec {
   pname = "jsonresume-theme-straightforward";
   version = "0.2.1";
 
-  meta = {
-    description = "a straightforward jsonresume theme.";
-    homepage = "https://github.com/slugstack/jsonresume-theme-straightforward";
-    license = lib.licenses.mit;
-  };
-
   src = fetchFromGitHub {
     owner = "slugstack";
     repo = pname;
@@ -23,4 +17,15 @@ buildNpmPackage rec {
   dontNpmBuild = true;
   npmDepsHash = "sha256-vA5kjdTwzNkTn9LcFvQG+xlZuIPh7aYCv7naoMdnjhg=";
   env.PUPPETEER_SKIP_DOWNLOAD = true;
+
+  # Delete broken symlinks
+  fixupPhase = ''
+    find . -xtype l -delete || true
+  '';
+
+  meta = {
+    description = "a straightforward jsonresume theme.";
+    homepage = "https://github.com/slugstack/jsonresume-theme-straightforward";
+    license = lib.licenses.mit;
+  };
 }
