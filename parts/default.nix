@@ -1,13 +1,12 @@
 {
   inputs,
-  self,
-  config,
   lib,
   ...
 } @ top: {
   imports = [
     inputs.flake-parts.flakeModules.easyOverlay
-    # inputs.pre-commit-hooks-nix.flakeModule
+
+    # TODO: Move to ./devshells.nix
     ../shell
     ./apps.nix
     ./lib.nix
