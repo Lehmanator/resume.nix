@@ -57,6 +57,7 @@
     (import ./skills/terraform.nix {hide = ["level"];})
     (import ./skills/microsoft-azure.nix {hide = ["level"];})
     (import ./skills/cicd.nix {hide = ["level"];})
+    (import ./skills/webdev.nix {hide = ["level"];})
   ];
 
   languages = [
