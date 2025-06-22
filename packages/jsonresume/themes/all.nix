@@ -1,11 +1,11 @@
 {
   lib,
-  self,
-  super,
-  root,
   symlinkJoin,
+  super,
   ...
 }:
+# TODO: Use linkFarm
+# linkFarm "jsonresume-themes-all" ((builtins.attrValues builtins.removeAttrs super ["all" "default" ]))
 symlinkJoin {
   name = "jsonresume-themes-all";
   paths = builtins.attrValues (builtins.removeAttrs super ["all" "default"]);
