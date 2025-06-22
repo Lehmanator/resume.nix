@@ -3,11 +3,6 @@
   buildNpmPackage,
   fetchFromGitHub,
   fetchNpmDeps,
-  npm-lockfile-fix,
-  self,
-  super,
-  root,
-  ...
 }:
 buildNpmPackage rec {
   pname = "jsonresume-theme-vitae";
@@ -19,13 +14,7 @@ buildNpmPackage rec {
     repo = pname;
     rev = "9f7020f9402868dc6316ed7feed4203c05108fa2";
     hash = "sha256-7N0949/S2WLC324RZzTbgnDWnYWTbpLfWllUjzpcULE=";
-    # postFetch = ''
-    #   ${lib.getExe npm-lockfile-fix} $out/package-lock.json
-    # '';
   };
-
-  # packageLock = builtins.fromJSON (builtins.readFile ./package-lock.json);
-  # packageLock = lib.importJSON ./package-lock.json;
 
   dontNpmBuild = true;
   npmDepsHash = "sha256-66ZFEwzSa7ZU4+vxdsrtotqB+As4Fzj6x4Pctj4rx24=";
@@ -37,6 +26,7 @@ buildNpmPackage rec {
       fileset = lib.fileset.unions [./package-lock.json ./package.json];
     };
   };
+
   postPatch = ''
     mkdir -p node_modules
     cp ${./package-lock.json} package-lock.json
