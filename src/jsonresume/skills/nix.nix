@@ -10,5 +10,11 @@ in
   merge
   {
     name = "Nix";
-    keywords = ["Nix" "NixOS" "reproducible builds" "functional programming" "DevOps" "immutability"];
+    keywords = [
+      "Nix"
+      "NixOS"
+      "reproducible builds"
+      "functional programming"
+      "immutability"
+    ];
   }

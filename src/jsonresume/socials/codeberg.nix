@@ -1,7 +1,7 @@
 {...} @ args:
 rec
 {
-  network = "Forgejo";
+  network = "Git";
   username = "Lehmanator";
   url = "https://codeberg.org/${username}";
 }

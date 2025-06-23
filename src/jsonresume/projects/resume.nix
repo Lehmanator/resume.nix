@@ -3,8 +3,8 @@
   name = "resume.nix";
   description = "Nix flake project to build & deploy my personal resume using jsonresume.";
   type = "application";
-  entity = "Sam Lehman";
-  roles = ["Creator"];
+  entity = "self";
+  roles = ["developer"];
   startDate = "2024-01-24";
   url = "https://resume.samlehman.dev";
   # url = "https://codeberg.org/Lehmanator/resume.nix";

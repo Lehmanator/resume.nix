@@ -3,6 +3,8 @@
   name = "nix-configs";
   description = "Personal Nix configurations for personal computing devices & cluster infrastructure.";
   url = "https://codeberg.org/Lehmanator/nix-configs";
+  entity = "self";
+  roles = ["developer"];
   startDate = "2023-03-31";
   highlights = [
     "Declarative configurations representing both personal workstations and server infrastructure."

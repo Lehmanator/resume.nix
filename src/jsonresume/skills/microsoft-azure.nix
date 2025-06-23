@@ -10,6 +10,13 @@ in
   merge
   {
     name = "Microsoft Azure";
-    keywords = ["DevOps" "cloud computing" "OAuth2" "directory server" "Virtual Machines"];
-    level = "Intermediate";
+    level = "Master";
+    keywords = [
+      "Directory servers"
+      "Domain controllers"
+      "Cloud computing"
+      "Cloud VMs"
+      "Office 365"
+      "OAuth2"
+    ];
   }

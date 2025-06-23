@@ -10,5 +10,5 @@ in
   merge
   {
     name = "Deployment";
-    keywords = ["Ansible" "Virtual Machines" "Containers" "Docker Registry" "Docker Compose" "Kubernetes" "Terraform" "GitHub Actions" "GitHub Pages" "Forgejo Actions"];
+    keywords = ["Ansible" "Virtual Machines" "Terraform" "GitHub Actions" "GitHub Pages" "Forgejo Actions"];
   }

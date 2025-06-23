@@ -3,7 +3,7 @@
     canonical = "https://raw.githubusercontent.com/Lehmanator/resume.nix/main/src/sysadm.nix";
     version = "v1.0.3";
     lastModified = "2025-06-20T10:53:00";
-    theme = args.theme or "slickoverflow";
+    theme = args.theme or "stackoverflow";
     language = "en";
   };
 
@@ -11,7 +11,6 @@
     name = "Sam Lehman";
     label = "System Administrator";
     image = "https://raw.githubusercontent.com/Lehmanator/Lehmanator/main/assets/images/profile.png";
-    email = "hire@samlehman.dev";
     url = "https://samlehman.dev";
     summary = "Sam is a ${lib.toLower label} that deploys & manages workstations & infrastructure running a wide array of operating systems and software services. Sam has a depth & breadth of experience using programming languages, shell scripting, & declarative code for managing, running, and deploying servers & workstations.";
     location = {
@@ -20,10 +19,10 @@
       region = "Pennsylvania";
     };
     profiles = [
+      (import ./socials/codeberg.nix {})
       (import ./socials/github.nix {})
       (import ./socials/mastodon.nix {})
       # (import ./socials/matrix.nix {})
-      # (import ./socials/codeberg.nix {})
       # (import ./socials/forgejo-clan.nix {})
       # (import ./socials/forgejo-lix.nix {})
       # (import ./socials/gitlab.nix {})
@@ -54,10 +53,11 @@
     (import ./skills/nix.nix {hide = ["level"];})
     (import ./skills/kubernetes.nix {hide = ["level"];})
     (import ./skills/containers.nix {hide = ["level"];})
-    (import ./skills/terraform.nix {hide = ["level"];})
+    # (import ./skills/terraform.nix {hide = ["level"];})
     (import ./skills/microsoft-azure.nix {hide = ["level"];})
-    (import ./skills/cicd.nix {hide = ["level"];})
+    # (import ./skills/cicd.nix {hide = ["level"];})
     (import ./skills/webdev.nix {hide = ["level"];})
+    (import ./skills/remote-management.nix {hide = ["level"];})
   ];
 
   languages = [
@@ -67,8 +67,10 @@
 
   interests = [
     (import ./interests/home-automation.nix {})
-    (import ./interests/wrestling.nix {})
-    (import ./interests/lifting.nix {})
+    (import ./interests/self-hosting.nix {})
+    (import ./interests/fitness.nix {})
+    # (import ./interests/wrestling.nix {})
+    # (import ./interests/lifting.nix {})
   ];
 
   references = [

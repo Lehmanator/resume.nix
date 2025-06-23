@@ -1,7 +1,7 @@
 {...} @ args:
 {
   network = "Mastodon";
-  username = "@Lehmanator";
+  username = "Lehmanator";
   url = "https://fosstodon.org/@Lehmanator";
 }
 // args

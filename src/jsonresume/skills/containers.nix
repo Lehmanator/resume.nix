@@ -10,6 +10,12 @@ in
   merge
   {
     name = "Containers";
-    keywords = ["DevOps" "Podman" "Docker" "Docker Compose" "OCI" "infrastructure" "orchestration" "deployment"];
     level = "Master";
+    keywords = [
+      "Podman"
+      "Docker"
+      "Docker Compose"
+      "OCI"
+      "Container registries"
+    ];
   }

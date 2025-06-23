@@ -12,7 +12,7 @@ in
     name = "Presque Isle Wine Cellars";
     location = "North East, PA";
     description = "Winery & Wine Supplies Sales";
-    position = "Systems Administrator";
+    position = "System Administrator";
     url = "https://piwine.com";
     startDate = "2021-08-01";
     endDate = "2023-11-01";

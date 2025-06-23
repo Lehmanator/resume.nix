@@ -9,13 +9,15 @@
 in
   merge
   {
-    name = "Kubernetes";
+    name = "Remote Management";
+    level = "Master";
     keywords = [
-      "Helm"
-      "Ceph"
-      "Flannel"
-      "NGINX-Ingress"
-      "Cert-Manager"
-      "Prometheus"
+      "SSH"
+      "RDP"
+      "VNC"
+      "journald"
+      "Group Policy Objects"
+      "Wireguard tunnels"
+      "Tailscale"
     ];
   }
