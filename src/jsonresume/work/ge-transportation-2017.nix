@@ -18,8 +18,8 @@ in
     endDate = "2017-09-01";
     summary = "GE Transportation (now Wabtec) is a global leader in locomotive manufacturing.";
     highlights = [
-      "Wrote C program to validate configurations to control locomotive hardware."
-      "Wrote Python program to analyze locomotive schematics for possible points of failure."
-      "Wrote Visual Basic for Applications (VBA) code to integrate Python & C programs with Excel spreadsheets used by engineers."
+      "Wrote C program to parse failure logs to identify causes of locomotive failure."
+      "Wrote DXL script to push batches of locomotive configuration updates and pull diagnostic data."
+      "Added OAuth2 authentication to numerous internal tools to use company-wide single-sign-on (SSO) to prevent unauthorized access to sensitive data."
     ];
   }
