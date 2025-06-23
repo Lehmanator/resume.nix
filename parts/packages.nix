@@ -14,10 +14,13 @@
       loader = inputs.haumea.lib.loaders.callPackage;
       transformer = inputs.haumea.lib.transformers.liftDefault;
       inputs = {
+        variant = "sysadm";
         lib = pkgs.lib // top.config.flake.lib;
         src = ../src/jsonresume/default.nix;
         inherit
           (pkgs)
+          callPackage
+          chromium
           corepack
           coreutils
           buildNpmPackage
@@ -40,6 +43,7 @@
           stdenv
           runCommand
           runCommandLocal
+          writers
           writeText
           writeTextFile
           writeShellApplication
