@@ -30,6 +30,6 @@ in
 
     buildPhase = ''
       XDG_CONFIG_HOME="$(mktemp -d)" \
-      puppeteer print "${super.html}/index.html" $out
+      puppeteer print --sandbox false "${super.html}/index.html" $out
     '';
   }
