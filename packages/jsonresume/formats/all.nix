@@ -2,10 +2,12 @@
   lib,
   linkFarm,
   stdenv,
+  writers,
   self,
   super,
   root,
   src ? ../../../src/jsonresume/default.nix,
+  domains ? ["resume.samlehman.me"],
   ...
 } @ args: let
   basename = builtins.head (lib.splitString "." (builtins.baseNameOf src));
@@ -13,6 +15,7 @@
     inherit lib;
   };
 in
+  # TODO: Automatically pickup format names.
   (linkFarm "jsonresume-all-${basename}" [
     # Input formats
     {
@@ -44,6 +47,20 @@ in
     {
       name = "${basename}.pdf";
       path = super.pdf;
+    }
+    {
+      name = "${basename}.png";
+      path = "${super.image.outPath}/resume.png";
+    }
+
+    # GitHub / Codeberg Pages outputs
+    {
+      name = "CNAME";
+      path = writers.writeText "CNAME" (builtins.head domains);
+    }
+    {
+      name = ".domains";
+      path = writers.writeText ".domains" (lib.strings.concatLines domains);
     }
   ])
   // {

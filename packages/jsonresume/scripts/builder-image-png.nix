@@ -2,21 +2,25 @@
   lib,
   puppeteer-cli,
   writeShellApplication,
-  self,
-  super,
   root,
   ...
 }:
 writeShellApplication {
   name = "builder-image-png";
-  meta.description = "Script to create a PNG screenshot of your HTML";
   runtimeInputs = [puppeteer-cli];
+
   text = ''
-    [[ $# -gt 0 ]] && outfile="$1" || outfile='./jsonresume.png'
+    [[ $# -gt 0 ]] && outfile="$1" || outfile='./resume.png'
 
     puppeteer screenshot \
+      --sandbox false    \
       ${root.formats.html}/index.html \
       "$outfile"
-      # --viewport 1920x1080 \
   '';
+
+  meta = {
+    description = "Script to create a PNG screenshot of your HTML";
+    homepage = "https://codeberg.org/Lehmanator/resume.nix";
+    license = lib.licenses.agpl3Plus;
+  };
 }
