@@ -12,4 +12,5 @@ in
     url = "https://psu.edu";
     area = "Computer Science";
     startDate = "2014-08-20";
+    # studyType = "BSc";
   }
