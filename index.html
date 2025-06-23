@@ -1,14 +1,12 @@
 <!doctype html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
-	<title>Sam Lehman</title>
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css"
-				integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
-
-	<style>
-		/********************************************
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>Sam Lehman</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+  <style>
+  /********************************************
 * 	reset from
 * 	http://meyerweb.com/eric/tools/css/reset/
 *******************************************/
@@ -90,7 +88,6 @@ output,
 ruby,
 section,
 summary,
-description,
 time,
 mark,
 audio,
@@ -155,7 +152,6 @@ html {
   letter-spacing: 0;
   line-height: 1.46153846;
   text-align: left;
-  -webkit-text-size-adjust: 100%;
 }
 
 p {
@@ -180,18 +176,6 @@ li {
 
 h1 {
   font-size: 2rem;
-}
-
-h1 a {
-  display: inline;
-  margin-left: 10px;
-  font-size: 14px;
-  font-family: "freight-sans-pro", lato, sans-serif;
-  vertical-align: middle;
-}
-
-h1 a:hover {
-  cursor: pointer;
 }
 
 h2 {
@@ -240,8 +224,8 @@ section .location {
   padding: 0;
 }
 
-#header>#profiles,
-#header>#contact,
+#header > #profiles,
+#header > #contact,
 #skills,
 #languages,
 #interests {
@@ -252,21 +236,21 @@ section .location {
   display: flex;
   -webkit-flex-flow: row wrap;
   flex-flow: row wrap;
-  -webkit-justify-content: center;
-  justify-content: center;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
 }
 
-#header>div {
+#header > div {
   line-height: 1.5;
 }
 
-#header>div>div {
+#header > div > div {
   margin-right: 1.2em;
 }
 
 #header h1.name {
   font-size: 2.8rem;
-  font-weight: 700;
+  font-weight: 100;
   line-height: 100%;
 }
 
@@ -285,7 +269,7 @@ section .location {
 .main-summary {
   background: #f1f8ff;
   padding: 1.2em 1em;
-  /* margin-top: 1rem; */
+  margin-top: 1rem;
 }
 
 .main-summary p {
@@ -303,7 +287,7 @@ section .location {
   font-size: 0.9rem;
 }
 
-.section>header {
+.section > header {
   position: relative;
 }
 
@@ -311,7 +295,7 @@ section .location {
   margin-right: 0.25em;
 }
 
-.section>header::after {
+.section > header::after {
   position: absolute;
   left: 0;
   top: 0.7em;
@@ -323,21 +307,21 @@ section .location {
   display: block;
 }
 
-.section.main-summary>section {
+.section.main-summary > section {
   margin: 0;
 }
 
-.section>section>header {
+.section > section > header {
   font-size: 1.38rem;
   position: relative;
   margin-top: 0.7em;
 }
 
-.section>section>header:first-of-type {
+.section > section > header:first-of-type {
   margin: 0;
 }
 
-.section>section>header .space-left {
+.section > section > header .space-left {
   position: absolute;
   left: -1.56rem;
   top: 5px;
@@ -346,10 +330,8 @@ section .location {
   opacity: 0;
 }
 
-.project,
 .position,
 .company,
-.roles,
 .organization,
 .institution,
 .date,
@@ -360,7 +342,6 @@ section .location {
   display: inline;
 }
 
-.project,
 .position,
 .studyType,
 .area,
@@ -377,16 +358,7 @@ section .location {
   content: "at ";
 }
 
-.roles::before {
-  content: "as "
-}
-
-.area::before {
-  content: "in "
-}
-
 .company,
-.roles,
 .institution,
 .organization,
 .awarder {
@@ -429,7 +401,7 @@ section .location {
   margin: 1em 0 0 0;
 }
 
-.highlights>li>p {
+.highlights > li > p {
   margin-bottom: 0.5em;
 }
 
@@ -437,7 +409,7 @@ section .location {
   overflow: hidden;
 }
 
-.score {
+.gpa {
   clear: both;
   padding-bottom: 0.5em;
 }
@@ -600,12 +572,8 @@ section .location {
   border-left: 5px solid #ff6d1f;
 }
 
-.toggle-item {
-  display: none;
-}
-
-.section>section>section {
-  margin-bottom: 0.5rem;
+.section > section > section {
+  margin-bottom: 1rem;
 }
 
 /******************
@@ -632,7 +600,6 @@ section .location {
     width: 80%;
     margin: 0 auto;
   }
-
   .section header .date {
     float: right;
     font-weight: 600;
@@ -648,88 +615,43 @@ section .location {
   li {
     margin-left: 1.5em;
   }
-
   #resume {
     width: 820px;
     margin: 2rem auto;
   }
-
-  .section>section>header .space-left {
+  .section > section > header .space-left {
     opacity: 1;
     cursor: pointer;
   }
-
-  .section>section:not(.main-summary) {
+  .section > section:not(.main-summary) {
     margin-left: 1.67rem;
   }
-
-  .toggle-item {
-    transform: translate(-9999px);
-  }
-
-  .toggle-item+label {
-    display: block;
-  }
-
-  .toggle-item:checked+label:after {
-    content: "\f0d7";
-  }
-
-  .toggle-item+label:after {
-    float: left;
-    cursor: pointer;
-    margin-left: -20px;
-    color: #aaa;
-    font-size: 16px;
-    font-weight: 900;
-    font-family: "Font Awesome 5 Free";
-    content: "\f0da";
-  }
-
-  .toggle-item~.item {
-    height: 0;
-    opacity: 0;
-  }
-
-  .toggle-item:checked~.item {
-    height: auto;
-    opacity: 1;
-    transition: all 0.5s linear;
-  }
-
   .company::before,
-  .roles::before,
-  .area::before,
   .institution::before,
   .organization::before,
   .awarder::before {
     content: "| ";
   }
-
   .header-left {
     float: left;
     width: 70%;
     word-break: normal;
   }
-
   .section header .date {
     padding: 0.2em;
   }
-
   .display {
     display: none;
   }
-
   .display:not(.none) {
     display: block;
   }
 }
 
 @media print {
-  a:not(.hide-href-print)::after {
+  #profiles a:not(.hide-href-print)::after{
     content: " (" attr(href) ") ";
   }
-
   #resume {
     margin: 0.1em;
     padding: 0.1em;
@@ -737,69 +659,51 @@ section .location {
     word-wrap: break-word;
     line-height: 1.25;
   }
-
   @page {
     margin: 1cm 1.4cm;
   }
-
   .item-count {
     display: none;
   }
-
   .company::before,
   .institution::before,
   .organization::before,
   .awarder::before {
     content: "at ";
   }
-
-  .roles::before {
-    content: "as "
-  }
-
   .main-summary {
     padding: 0;
     background: transparent;
   }
-
   .section {
     margin: 0.8rem 0;
     padding: 0;
   }
-
   .section header {
     padding-bottom: 0.15rem;
   }
-
   .section .location {
     padding-bottom: 0.15rem;
   }
-
-  .section>section>section {
+  .section > section > section {
     margin: 0 0 1em 0;
   }
-
-  .section>section>section:last-of-type {
+  .section > section > section:last-of-type {
     margin: 0;
   }
-
   .stack-overflow::after {
     content: "";
   }
-
   .fa.social {
     color: #828386;
   }
-
   ul {
     margin-top: 0.4em;
   }
-
   ul,
   li {
     padding: 0;
   }
-
   ul.keywords li,
   ul.courses li {
     margin: 0;
@@ -807,822 +711,633 @@ section .location {
     font-size: 0.8rem;
     background: transparent;
   }
-
   ul.keywords li::after,
   ul.courses li::after {
     padding: 0 0 0 0.1rem;
     content: " |";
   }
-
   ul.keywords::before,
   ul.courses::before {
     font-size: 0.8rem;
     font-weight: 600;
   }
-
   #skills .item {
     width: calc(100% / 3);
     padding: 0;
   }
-
   .highlights {
     margin: 0.5em 0 0 0;
   }
-
   ul.keywords::before {
     content: "Skills acquired: ";
   }
-
   #skills .keywords::before {
     content: none;
   }
-
   .section p {
     margin: 0;
     padding: 0;
   }
-
   ul.courses::before {
     content: "Major courses: ";
   }
-
   ul.keywords li:last-of-type::after,
   ul.courses li:last-of-type::after {
     content: "";
   }
-
   .level em {
     font-style: normal;
     padding: 0.1em 0;
   }
-
   .level .bar {
     display: none;
   }
-
   #profiles .item {
     padding: 0;
   }
-
   .item.display {
     display: block;
     opacity: 1 !important;
   }
-
   .fa-map-marker-alt:before {
     padding-left: 0.1em;
   }
 }
-	</style>
 
-</head>
-<body>
+  </style>
+  
+  </head>
+  <body>
+  
+  <div id="resume">
+    	<header id="header" class="clear">
+    		<img class="image" src="https://raw.githubusercontent.com/Lehmanator/Lehmanator/main/assets/images/profile.png" alt="Sam Lehman" />
+    		<div class="middle">
+    			<h1 class="name">Sam Lehman</h1>
+    			<h2 class="label">System Administrator</h2>
+    		</div>
+    
+    		<span class="location">
+    			<span class="city">Reading,</span>
+    			<span class="region">Pennsylvania</span>
+    			<span class="countryCode">US</span>
+    		</span>
+    
+    
+    		<div id="contact">
+    		</div>
+    
+    		<div id="profiles">
+    			<div class="item">
+    				<div class="username">
+    					<span class="fab fa-git git social"></span>
+    					<span class="url">
+    						<a target="_blank" href="https://codeberg.org/Lehmanator">Lehmanator</a>
+    					</span>
+    				</div>
+    			</div>
+    			<div class="item">
+    				<div class="username">
+    					<span class="fab fa-github github social"></span>
+    					<span class="url">
+    						<a target="_blank" href="https://github.com/Lehmanator">Lehmanator</a>
+    					</span>
+    				</div>
+    			</div>
+    			<div class="item">
+    				<div class="username">
+    					<span class="fab fa-mastodon mastodon social"></span>
+    					<span class="url">
+    						<a target="_blank" href="https://fosstodon.org/@Lehmanator">Lehmanator</a>
+    					</span>
+    				</div>
+    			</div>
+    		</div>
+    	</header>
+    
+    	<section class="section">
+    		<section class="main-summary">
+    			<div><p><p>Sam is a system administrator that deploys &amp; manages workstations &amp; infrastructure running a wide array of operating systems and software services. Sam has a depth &amp; breadth of experience using programming languages, shell scripting, &amp; declarative code for managing, running, and deploying servers &amp; workstations.</p></p></div>
+    		</section>
+    	</section>
+    
+    <section class="section">
+    	<header>
+    		<h2 class='section-title'>Skills</h2>
+    	</header>
+    	<section id="skills">
+    		<div class="item">
+    			<h3 class="name">
+    				Operating Systems
+    			</h3>
+    			 			<ul class="keywords">
+    				<li>Windows</li>
+    				<li>MacOS</li>
+    				<li>Linux</li>
+    				<li>Android</li>
+    				<li>iOS</li>
+    				<li>NixOS</li>
+    				<li>Arch Linux</li>
+    				<li>Debian</li>
+    			</ul>
+    		</div>
+    		<div class="item">
+    			<h3 class="name">
+    				Scripting
+    			</h3>
+    			 			<ul class="keywords">
+    				<li>PowerShell</li>
+    				<li>Bash</li>
+    				<li>Zsh</li>
+    				<li>Nushell</li>
+    				<li>Python</li>
+    			</ul>
+    		</div>
+    		<div class="item">
+    			<h3 class="name">
+    				Deployment
+    			</h3>
+    			 			<ul class="keywords">
+    				<li>Ansible</li>
+    				<li>Virtual Machines</li>
+    				<li>Terraform</li>
+    				<li>GitHub Actions</li>
+    				<li>GitHub Pages</li>
+    				<li>Forgejo Actions</li>
+    			</ul>
+    		</div>
+    		<div class="item">
+    			<h3 class="name">
+    				Nix
+    			</h3>
+    			 			<ul class="keywords">
+    				<li>Nix</li>
+    				<li>NixOS</li>
+    				<li>reproducible builds</li>
+    				<li>functional programming</li>
+    				<li>immutability</li>
+    			</ul>
+    		</div>
+    		<div class="item">
+    			<h3 class="name">
+    				Kubernetes
+    			</h3>
+    			 			<ul class="keywords">
+    				<li>Helm</li>
+    				<li>Ceph</li>
+    				<li>Flannel</li>
+    				<li>NGINX-Ingress</li>
+    				<li>Cert-Manager</li>
+    				<li>Prometheus</li>
+    			</ul>
+    		</div>
+    		<div class="item">
+    			<h3 class="name">
+    				Containers
+    			</h3>
+    			 			<ul class="keywords">
+    				<li>Podman</li>
+    				<li>Docker</li>
+    				<li>Docker Compose</li>
+    				<li>OCI</li>
+    				<li>Container registries</li>
+    			</ul>
+    		</div>
+    		<div class="item">
+    			<h3 class="name">
+    				Microsoft Azure
+    			</h3>
+    			 			<ul class="keywords">
+    				<li>Directory servers</li>
+    				<li>Domain controllers</li>
+    				<li>Cloud computing</li>
+    				<li>Cloud VMs</li>
+    				<li>Office 365</li>
+    				<li>OAuth2</li>
+    			</ul>
+    		</div>
+    		<div class="item">
+    			<h3 class="name">
+    				Web Development
+    			</h3>
+    			 			<ul class="keywords">
+    				<li>HTML</li>
+    				<li>CSS</li>
+    				<li>Javascript</li>
+    				<li>Typescript</li>
+    				<li>Node.js</li>
+    				<li>React.js</li>
+    				<li>Webpack.js</li>
+    				<li>Babel.js</li>
+    				<li>Django</li>
+    				<li>Python</li>
+    				<li>NGINX</li>
+    			</ul>
+    		</div>
+    		<div class="item">
+    			<h3 class="name">
+    				Remote Management
+    			</h3>
+    			 			<ul class="keywords">
+    				<li>SSH</li>
+    				<li>RDP</li>
+    				<li>VNC</li>
+    				<li>journald</li>
+    				<li>Group Policy Objects</li>
+    				<li>Wireguard tunnels</li>
+    				<li>Tailscale</li>
+    			</ul>
+    		</div>
+    	</section>
+    </section>
+    <section class="section">
+      <header>
+        <h2 class='section-title'>Work Experience <span class="item-count">(4)</span></h2>
+      </header>
+    
+      <section id="work">
+        <section class="work-item">
+    
+          <label for="work-item-0"></label>
+    
+          <header class="clear">
+            <div class="date">
+              <span class="startDate">Aug 2021</span>
+              <span class="endDate">- Nov 2023</span>
+            </div>
+            <div class="position">System Administrator</div>
+            <div class="company">Presque Isle Wine Cellars</div>
+          </header>
+    
+          <span class="fas fa-map-marker-alt"></span>
+          <span class="location">North East, PA</span>
+          <span class="url">
+            <span class="fas fa-external-link-alt"></span>
+            <a target="_blank" href="https://piwine.com">https://piwine.com</a>
+          </span>        <div class="item" id="work-item">
+            <div class="summary"><p><p>Responsible for administration of servers and all user workstations for the entire company.</p></p></div>
+            <ul class="highlights">
+              <li><p><p>Migrated local domain controller to Azure cloud.</p></p></li>
+              <li><p><p>Migrated local servers to container-based infrastructure.</p></p></li>
+              <li><p><p>Migrated local databases to cloud-based PostgreSQL instance.</p></p></li>
+              <li><p><p>Managed virtual machines running company infrastructure.</p></p></li>
+              <li><p><p>Managed DNS server &amp; configured records to improve security, routing behavior, and standards compliance</p></p></li>
+              <li><p><p>Deployed internal company mesh VPN to secure company infrastructure in remote &amp; hybrid work environments.</p></p></li>
+              <li><p><p>Enhanced mail server security by configuring DMARC, DKIM, &amp; SPF DNS records.</p></p></li>
+              <li><p><p>Created Group Policy Objects (GPOs) to push configuration updates to remote Windows workstations.</p></p></li>
+            </ul>
+          </div>
+        </section>
+        <section class="work-item">
+    
+          <label for="work-item-1"></label>
+    
+          <header class="clear">
+            <div class="date">
+              <span class="startDate">Feb 2020</span>
+              <span class="endDate">- May 2020</span>
+            </div>
+            <div class="position">Software Engineering Intern</div>
+            <div class="company">Brazen</div>
+          </header>
+    
+          <span class="fas fa-map-marker-alt"></span>
+          <span class="location">Arlington, VA</span>
+          <span class="url">
+            <span class="fas fa-external-link-alt"></span>
+            <a target="_blank" href="https://brazenconnect.com">https://brazenconnect.com</a>
+          </span>        <div class="item" id="work-item">
+            <div class="summary"><p><p>Developed features for video conferencing platform &amp; chatbots for automated candidate onboarding.</p></p></div>
+            <ul class="highlights">
+              <li><p><p>Wrote Java code with Tensorflow API to integrate chatbot NLP agents with custom business logic.</p></p></li>
+              <li><p><p>Wrote frontend &amp; backend code in Java for video conferencing web platform.</p></p></li>
+            </ul>
+          </div>
+        </section>
+        <section class="work-item">
+    
+          <label for="work-item-2"></label>
+    
+          <header class="clear">
+            <div class="date">
+              <span class="startDate">Jun 2018</span>
+              <span class="endDate">- Sep 2018</span>
+            </div>
+            <div class="position">Electrical Integration - Software Engineering Intern</div>
+            <div class="company">General Electric: Transportation</div>
+          </header>
+    
+          <span class="fas fa-map-marker-alt"></span>
+          <span class="location">Lawrence Park, PA</span>
+          <span class="url">
+            <span class="fas fa-external-link-alt"></span>
+            <a target="_blank" href="https://ge.com">https://ge.com</a>
+          </span>        <div class="item" id="work-item">
+            <div class="summary"><p><p>GE Transportation (now Wabtec) is a global leader in locomotive manufacturing.</p></p></div>
+            <ul class="highlights">
+              <li><p><p>Wrote C program to validate configurations to control locomotive hardware.</p></p></li>
+              <li><p><p>Wrote Python program to analyze locomotive schematics for possible points of failure.</p></p></li>
+              <li><p><p>Wrote Visual Basic for Applications (VBA) code to integrate Python &amp; C programs with Excel spreadsheets used by engineers.</p></p></li>
+            </ul>
+          </div>
+        </section>
+        <section class="work-item">
+    
+          <label for="work-item-3"></label>
+    
+          <header class="clear">
+            <div class="date">
+              <span class="startDate">Jun 2017</span>
+              <span class="endDate">- Sep 2017</span>
+            </div>
+            <div class="position">Electrical Integration - Software Engineering Intern</div>
+            <div class="company">General Electric: Transportation</div>
+          </header>
+    
+          <span class="fas fa-map-marker-alt"></span>
+          <span class="location">Lawrence Park, PA</span>
+          <span class="url">
+            <span class="fas fa-external-link-alt"></span>
+            <a target="_blank" href="https://ge.com">https://ge.com</a>
+          </span>        <div class="item" id="work-item">
+            <div class="summary"><p><p>GE Transportation (now Wabtec) is a global leader in locomotive manufacturing.</p></p></div>
+            <ul class="highlights">
+              <li><p><p>Wrote C program to validate configurations to control locomotive hardware.</p></p></li>
+              <li><p><p>Wrote Python program to analyze locomotive schematics for possible points of failure.</p></p></li>
+              <li><p><p>Wrote Visual Basic for Applications (VBA) code to integrate Python &amp; C programs with Excel spreadsheets used by engineers.</p></p></li>
+            </ul>
+          </div>
+        </section>
+      </section>
+    </section>
+    <section class="section">
+      <header>
+        <h2 class='section-title'>Projects <span class="item-count">(3)</span></h2>
+      </header>
+      <section id="projects">
+        <section class="project-item">
+    
+          <header class="clear">
+            <div class="position">nix-configs</div>
+            <div class="date">
+              <span class="startDate">Mar 2023</span>
+              <span class="endDate">- Current</span>
+            </div>
+          </header>
+          <span class="website">
+            <span class="fas fa-external-link-alt"></span>
+            <a target="_blank" href="https://codeberg.org/Lehmanator/nix-configs">https://codeberg.org/Lehmanator/nix-configs</a>
+          </span>
+          <ul class="keywords">
+              <li>Kubernetes</li>
+              <li>Helm</li>
+              <li>Nix</li>
+              <li>NixOS</li>
+              <li>DevOps</li>
+              <li>CI / CD</li>
+              <li>deployment</li>
+              <li>infrastructure-as-code</li>
+          </ul>
+          <div class="item">
+            <ul class="highlights">
+                <li><p><p>Declarative configurations representing both personal workstations and server infrastructure.</p></p></li>
+                <li><p><p>Encrypted secret management with sops.</p></p></li>
+                <li><p><p>Deployment of configurations via SSH.</p></p></li>
+                <li><p><p>Running many self-hosted server applications in Kubernetes</p></p></li>
+            </ul>
+          </div>
+        </section>
+        <section class="project-item">
+    
+          <header class="clear">
+            <div class="position">resume.nix</div>
+            <div class="date">
+              <span class="startDate">Jan 2024</span>
+              <span class="endDate">- Current</span>
+            </div>
+          </header>
+          <span class="website">
+            <span class="fas fa-external-link-alt"></span>
+            <a target="_blank" href="https://resume.samlehman.dev">https://resume.samlehman.dev</a>
+          </span>
+          <ul class="keywords">
+              <li>Nix</li>
+              <li>GitHub</li>
+              <li>GitHub Pages</li>
+              <li>GitHub Actions</li>
+              <li>DevOps</li>
+              <li>Node.js</li>
+              <li>static site</li>
+              <li>reproducible builds</li>
+              <li>declarative</li>
+              <li>CI / CD</li>
+          </ul>
+          <div class="item">
+            <ul class="highlights">
+                <li><p><p>Reproducible environment that pulls locked dependencies to build artifacts for my resume.</p></p></li>
+                <li><p><p>Builds an static webpage and PDF of my resume.</p></p></li>
+                <li><p><p>Automatically deploys successfully built artifacts to GitHub Pages using GitHub Actions.</p></p></li>
+                <li><p><p>Development shell with automatic installations of dependencies needed to hack on, build, and deploy my resume.</p></p></li>
+            </ul>
+          </div>
+        </section>
+        <section class="project-item">
+    
+          <header class="clear">
+            <div class="position">HeyImHungry</div>
+            <div class="date">
+              <span class="startDate">Mar 2019</span>
+              <span class="endDate">- May 2020</span>
+            </div>
+          </header>
+          <span class="website">
+            <span class="fas fa-external-link-alt"></span>
+            <a target="_blank" href="https://github.com/Lehmanator/HeyImHungry">https://github.com/Lehmanator/HeyImHungry</a>
+          </span>
+          <ul class="keywords">
+              <li>Javascript</li>
+              <li>Node.js</li>
+              <li>React.js</li>
+              <li>Google Assistant</li>
+              <li>Google Cloud</li>
+              <li>Firebase</li>
+          </ul>
+          <div class="item">
+            <ul class="highlights">
+                <li><p><p>React &amp; React Native frontend.</p></p></li>
+                <li><p><p>Google Assistant interface to query &amp; add listings.</p></p></li>
+            </ul>
+          </div>
+        </section>
+      </section>
+    </section>
+    <section class="section">
+      <header>
+        <h2 class='section-title'>Volunteer</h2>
+      </header>
+      <section id="volunteer">
+        <section class="volunteer-item">
+    
+          <label for="volunteer-item-0"></label>
+    
+          <header class="clear">
+             <div class="date">
+              <span class="startDate">
+                Sep 2018
+              </span>
+              <span class="endDate">
+                - Apr 2019
+              </span>
+            </div>
+            <div class="header-left">
+              <div class="position">
+                Technology Captain
+              </div>
+              <div class="organization">
+                THON
+              </div>
+            </div>
+           
+          </header>
+          <div class="item">
+            <div class="summary"><p><p>THON is a student-run non-profit organization raising money for pediatric cancer research and the children affected by it. The THON Technology committee develops software to facilitate volunteer work and manage the annual dance marathon event.</p></p></div>
+            <ul class="highlights">
+              <li><p><p>Containerized developer environment to speed up onboarding new volunteer developers.</p></p></li>
+              <li><p><p>Containerized production webserver to make production environment reproducible.</p></p></li>
+              <li><p><p>Used Python &amp; Django to create informational webpages to update volunteers on latest events &amp; news.</p></p></li>
+              <li><p><p>Used Python &amp; Django to create forms to collect and process information from volunteers.</p></p></li>
+            </ul>
+          </div>
+        </section>
+      </section>
+    </section>
+    <section class="section">
+      <header>
+        <h2 class='section-title'>Education <span class="item-count">(1)</span></h2>
+      </header>
+    
+      <section id="education">
+        <section class="education-item">
+          <header class="clear">
+            <div class="date">
+              <span class="startDate">
+              2014
+              </span>
+              <span class="endDate">
+              - Current
+              </span>
+            </div>
+            <div class="header-left">
+              <div class="area">
+                Computer Science
+              </div>
+              <div class="institution">
+                Penn State University
+              </div>
+            </div>
+          </header>
+    
+    
+    
+          <div class="item">
+          </div>
+        </section>
+      </section>
+    </section>
+    <section class="section">
+      <header>
+        <h2 class='section-title'>Languages</h2>
+      </header>
+      <section id="languages">
+        <div class="display">
+          <h3 class="language">
+            English
+          </h3>
+          <div class="item">
+            <div class="level fluency native speaker">
+              <em>Native speaker</em>
+              <div class="bar"></div>
+            </div>
+          </div>
+        </div>
+        <div class="display">
+          <h3 class="language">
+            Spanish
+          </h3>
+          <div class="item">
+            <div class="level fluency intermediate">
+              <em>Intermediate</em>
+              <div class="bar"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+    <section class="section">
+      <header>
+        <h2 class='section-title' class='section-title'>Interests</h2>
+      </header>
+      <section id="interests">
+        <div class="item">
+          <h3 class="name">
+            Home Automation
+          </h3>
+          <ul class="keywords">
+            <li>Home Assistant</li>
+            <li>ESPHome</li>
+            <li>Self-Hosting</li>
+            <li>Raspberry Pi</li>
+            <li>ESP32</li>
+            <li>Microcontrollers</li>
+            <li>Circuitry</li>
+            <li>Automation</li>
+          </ul>
+        </div>
+        <div class="item">
+          <h3 class="name">
+            Self-Hosting
+          </h3>
+          <ul class="keywords">
+            <li>Kubernetes</li>
+            <li>Helm charts</li>
+            <li>Docker</li>
+            <li>PostgreSQL</li>
+            <li>OpenID Connect</li>
+            <li>OAuth</li>
+            <li>Networking</li>
+            <li>DNS</li>
+            <li>IPv4</li>
+            <li>IPv6</li>
+          </ul>
+        </div>
+        <div class="item">
+          <h3 class="name">
+            Fitness &amp; Sports
+          </h3>
+          <ul class="keywords">
+            <li>Weight lifting</li>
+            <li>Wrestling</li>
+            <li>Martial arts</li>
+            <li>Health</li>
+          </ul>
+        </div>
+      </section>
+    </section>
+    <section class="section">
+      <header>
+        <h2 class='section-title'>References</h2>
+      </header>
+      <section id="references">
+        <div class="item">
+          <blockquote class="reference">
+            &#8220;&#32;It&#x27;s my pleasure to recommend Sam. He single-handedly moved our business IT into the 21st century. Any company would be lucky to have him.&#32;&#8221;
+          </blockquote>
+          <div class="name">
+            Lauri Lewis
+          </div>
+        </div>
+      </section>
+    </section>
 
-<div id="resume">
-	  <header id="header" class="clear">
-	
-	      <img class="image" src="photo.png" alt="Sam Lehman" />
-	      <div class="middle">
-	        <h1 class="name">Sam Lehman<a href="https://github.com/IsFilimonov/jsonresume-theme-fullmoon" target="_blank">🌑🌕</a></h1>
-	        <h2 class="label">Software Developer</h2>
-	      </div>
-	
-	      <span class="location fas fa-map-marker-alt">
-	
-	
-	
-	          <span class="city">Erie,</span>
-	
-	          <span class="region">Pennsylvania,</span>
-	
-	          <span class="countryCode">US</span>
-	      </span>
-	
-	
-	    
-	
-	    <div id="contact">
-	        <div class="url">
-	          <span class="fas fa-external-link-alt"></span>
-	          <a
-	            class="hide-href-print"
-	            target="_blank"
-	            href="https://samlehman.dev"
-	          >https://samlehman.dev</a>
-	        </div>
-	        <div class="email">
-	          <span class="far fa-envelope"></span>
-	          <a class="hide-href-print" href="mailto:dev@samlehman.dev">dev@samlehman.dev</a>
-	        </div>
-	    </div>
-	
-	      <div id="profiles">
-	
-	            <div class="item">
-	
-	                <div class="username">
-	                  <span
-	                    class="fab fa-mastodon
-	                      mastodon
-	                      social"
-	                  ></span>
-	                    <span class="url">
-	                      <a target="_blank" href="https://fosstodon.org/@Lehmanator">@Lehmanator@fosstodon.org</a>
-	                    </span>
-	                </div>
-	
-	
-	
-	            </div>
-	            <div class="item">
-	
-	                <div class="username">
-	                  <span
-	                    class="fab fa-twitter
-	                      twitter
-	                      social"
-	                  ></span>
-	                    <span class="url">
-	                      <a target="_blank" href="https://twitter.com/publicSam">publicSam</a>
-	                    </span>
-	                </div>
-	
-	
-	
-	            </div>
-	            <div class="item">
-	
-	                <div class="username">
-	                  <span
-	                    class="fab fa-matrix
-	                      matrix
-	                      social"
-	                  ></span>
-	                    <span class="url">
-	                      <a target="_blank" href="https://matrix.tchncs.de/lehmanator">@lehmanator:tchncs.de</a>
-	                    </span>
-	                </div>
-	
-	
-	
-	            </div>
-	            <div class="item">
-	
-	                <div class="username">
-	                  <span
-	                    class="fab fa-github
-	                      github
-	                      social"
-	                  ></span>
-	                    <span class="url">
-	                      <a target="_blank" href="https://github.com/Lehmanator">Lehmanator</a>
-	                    </span>
-	                </div>
-	
-	
-	
-	            </div>
-	      </div>
-	  </header>
-	
-	    <section class="section">
-	      <section class="main-summary">
-	        <div>
-	          <p>Sam is a full-stack software developer that creates web applications, backend services, and the infrastructure used to run them. Sam has both a depth and breadth of experience using programming languages, frameworks, and development utilities to build everything necessary to build software and deploy it to end users.</p>
-	        </div>
-	      </section>
-	    </section>
-	
-		<section class="section">
-			<header>
-				<h2 class='section-title'>Skills</h2>
-			</header>
-	
-			<section id="skills">
-					<div class="item">
-							<h3 class="name">
-								Web Development
-							</h3>
-	
-							<div class="level master">
-									<em>Master</em>
-								<div class="bar"></div>
-							</div>
-	
-							<ul class="keywords">
-									<li>HTML</li>
-									<li>CSS</li>
-									<li>Javascript</li>
-									<li>Typescript</li>
-									<li>Node.js</li>
-									<li>React.js</li>
-									<li>Webpack.js</li>
-									<li>Babel.js</li>
-									<li>Django</li>
-									<li>Python</li>
-							</ul>
-					</div>
-					<div class="item">
-							<h3 class="name">
-								Nix
-							</h3>
-	
-							<div class="level master">
-									<em>Master</em>
-								<div class="bar"></div>
-							</div>
-	
-							<ul class="keywords">
-									<li>Nix</li>
-									<li>NixOS</li>
-									<li>DevOps</li>
-									<li>reproducible builds</li>
-									<li>functional programming</li>
-							</ul>
-					</div>
-					<div class="item">
-							<h3 class="name">
-								Kubernetes
-							</h3>
-	
-							<div class="level beginner">
-									<em>Beginner</em>
-								<div class="bar"></div>
-							</div>
-	
-							<ul class="keywords">
-									<li>DevOps</li>
-									<li>containers</li>
-									<li>infrastructure</li>
-									<li>orchestration</li>
-							</ul>
-					</div>
-					<div class="item">
-							<h3 class="name">
-								Containers
-							</h3>
-	
-							<div class="level master">
-									<em>Master</em>
-								<div class="bar"></div>
-							</div>
-	
-							<ul class="keywords">
-									<li>DevOps</li>
-									<li>Docker</li>
-									<li>Podman</li>
-									<li>containers</li>
-									<li>infrastructure</li>
-									<li>orchestration</li>
-									<li>deployment</li>
-							</ul>
-					</div>
-					<div class="item">
-							<h3 class="name">
-								Rust
-							</h3>
-	
-							<div class="level beginner">
-									<em>Beginner</em>
-								<div class="bar"></div>
-							</div>
-	
-							<ul class="keywords">
-									<li>Rust</li>
-									<li>memory-safe</li>
-									<li>systems</li>
-							</ul>
-					</div>
-					<div class="item">
-							<h3 class="name">
-								Python
-							</h3>
-	
-							<div class="level intermediate">
-									<em>Intermediate</em>
-								<div class="bar"></div>
-							</div>
-	
-							<ul class="keywords">
-									<li>Python</li>
-									<li>Django</li>
-									<li>data science</li>
-							</ul>
-					</div>
-					<div class="item">
-							<h3 class="name">
-								Terraform
-							</h3>
-	
-							<div class="level beginner">
-									<em>Beginner</em>
-								<div class="bar"></div>
-							</div>
-	
-							<ul class="keywords">
-									<li>Terraform</li>
-									<li>DevOps</li>
-									<li>infrastructure</li>
-									<li>infrastructure-as-code</li>
-							</ul>
-					</div>
-					<div class="item">
-							<h3 class="name">
-								Microsoft Azure
-							</h3>
-	
-							<div class="level intermediate">
-									<em>Intermediate</em>
-								<div class="bar"></div>
-							</div>
-	
-							<ul class="keywords">
-									<li>DevOps</li>
-									<li>cloud computing</li>
-									<li>OAuth2</li>
-									<li>directory server</li>
-							</ul>
-					</div>
-			</section>
-		</section>
-		<section class="section">
-			<header>
-				<h2 class='section-title'>Work Experience <span class="item-count">(4)</span></h2>
-			</header>
-	
-			<section id="work">
-				<section class="work-item">
-	
-								<input id="work-item-0" type="checkbox" class="toggle-item" checked="checked"/>
-							<label for="work-item-0"></label>
-	
-						<header class="clear">
-								<div class="position">Systems Administrator</div>
-	
-							<div class="company">
-									<a target="_blank" href="https://piwine.com">Presque Isle Wine Cellars</a>
-							</div>
-	
-							<div class="date">
-									<span class="startDate">Aug 2021</span>
-									<span class="endDate">- Nov 2023</span>
-							</div>
-						</header>
-	
-							<span class="location">
-								<span class="fas fa-map-marker-alt"></span>
-								<span>North East, PA</span>
-								</span>
-	
-	
-					<div class="item" id="work-item">
-							<div class="summary"><p>Responsible for administration of servers and all user workstations for the entire company.</p></div>
-	
-							<ul class="highlights">
-									<li><p>Migrated local domain controller to Azure cloud.</p></li>
-									<li><p>Migrated local servers to container-based infrastructure.</p></li>
-									<li><p>Migrated local databases to cloud-based PostgreSQL instance.</p></li>
-									<li><p>Managed virtual machines running company infrastructure.</p></li>
-									<li><p>Managed DNS server & configured records to improve security, routing behavior, and standards compliance</p></li>
-									<li><p>Deployed internal company mesh VPN to secure company infrastructure in remote & hybrid work environments.</p></li>
-									<li><p>Enhanced mail server security by configuring DMARC, DKIM, & SPF DNS records.</p></li>
-							</ul>
-					</div>
-				</section>
-				<section class="work-item">
-	
-								<input id="work-item-1" type="checkbox" class="toggle-item"/>
-							<label for="work-item-1"></label>
-	
-						<header class="clear">
-								<div class="position">Software Engineering Intern</div>
-	
-							<div class="company">
-									<a target="_blank" href="https://brazenconnect.com">Brazen</a>
-							</div>
-	
-							<div class="date">
-									<span class="startDate">Feb 2020</span>
-									<span class="endDate">- May 2020</span>
-							</div>
-						</header>
-	
-							<span class="location">
-								<span class="fas fa-map-marker-alt"></span>
-								<span>Arlington, VA</span>
-								</span>
-	
-	
-					<div class="item" id="work-item">
-							<div class="summary"><p>Developed features for video conferencing platform & chatbots for automated candidate onboarding.</p></div>
-	
-							<ul class="highlights">
-									<li><p>Wrote Java code with Tensorflow API to integrate chatbot NLP agents with custom business logic.</p></li>
-									<li><p>Wrote frontend & backend code in Java for video conferencing web platform.</p></li>
-							</ul>
-					</div>
-				</section>
-				<section class="work-item">
-	
-								<input id="work-item-2" type="checkbox" class="toggle-item"/>
-							<label for="work-item-2"></label>
-	
-						<header class="clear">
-								<div class="position">Electrical Integration - Software Engineering Intern</div>
-	
-							<div class="company">
-									<a target="_blank" href="https://ge.com">General Electric: Transportation</a>
-							</div>
-	
-							<div class="date">
-									<span class="startDate">Jun 2018</span>
-									<span class="endDate">- Sep 2018</span>
-							</div>
-						</header>
-	
-							<span class="location">
-								<span class="fas fa-map-marker-alt"></span>
-								<span>Lawrence Park, PA</span>
-								</span>
-	
-	
-					<div class="item" id="work-item">
-							<div class="summary"><p>GE Transportation (now Wabtec) is a global leader in locomotive manufacturing.</p></div>
-	
-							<ul class="highlights">
-									<li><p>Wrote C program to validate configurations to control locomotive hardware.</p></li>
-									<li><p>Wrote Python program to analyze locomotive schematics for possible points of failure.</p></li>
-									<li><p>Wrote Visual Basic for Applications (VBA) code to integrate Python & C programs with Excel spreadsheets used by engineers.</p></li>
-							</ul>
-					</div>
-				</section>
-				<section class="work-item">
-	
-								<input id="work-item-3" type="checkbox" class="toggle-item"/>
-							<label for="work-item-3"></label>
-	
-						<header class="clear">
-								<div class="position">Electrical Integration - Software Engineering Intern</div>
-	
-							<div class="company">
-									<a target="_blank" href="https://ge.com">General Electric: Transportation</a>
-							</div>
-	
-							<div class="date">
-									<span class="startDate">Jun 2017</span>
-									<span class="endDate">- Sep 2017</span>
-							</div>
-						</header>
-	
-							<span class="location">
-								<span class="fas fa-map-marker-alt"></span>
-								<span>Lawrence Park, PA</span>
-								</span>
-	
-	
-					<div class="item" id="work-item">
-							<div class="summary"><p>GE Transportation (now Wabtec) is a global leader in locomotive manufacturing.</p></div>
-	
-							<ul class="highlights">
-									<li><p>Wrote C program to validate configurations to control locomotive hardware.</p></li>
-									<li><p>Wrote Python program to analyze locomotive schematics for possible points of failure.</p></li>
-									<li><p>Wrote Visual Basic for Applications (VBA) code to integrate Python & C programs with Excel spreadsheets used by engineers.</p></li>
-							</ul>
-					</div>
-				</section>
-			</section>
-		</section>
-		<section class="section">
-			<header>
-				<h2 class='section-title'>Projects <span class="item-count">(3)</span></h2>
-			</header>
-	
-			<section id="projects">
-					<section class="project-item">
-								<input id="project-item-0" type="checkbox" class="toggle-item"/>
-							<label for="project-item-0"></label>
-	
-							<header class="clear">
-									<div class="project">
-											<a target="_blank" href="https://github.com/Lehmanator/meehive">Meehive</a>
-									</div>
-	
-								<div class="company"></div>
-	
-							</header>
-	
-	
-							<ul class="keywords">
-									<li>Kubernetes</li>
-									<li>Helm</li>
-									<li>Nix</li>
-									<li>NixOS</li>
-									<li>DevOps</li>
-									<li>CI / CD</li>
-									<li>deployment</li>
-									<li>infrastructure-as-code</li>
-							</ul>
-	
-						<div class="item">
-								<div class="description">Personal Nix configurations for personal computing devices &amp; cluster infrastructure.</div>
-	
-								<ul class="highlights">
-										<li><p>Declarative configurations representing both personal workstations and server infrastructure.</p></li>
-										<li><p>Encrypted secret management with sops.</p></li>
-										<li><p>Deployment of configurations via SSH.</p></li>
-										<li><p>Running many self-hosted server applications in Kubernetes</p></li>
-								</ul>
-						</div>
-					</section>
-					<section class="project-item">
-								<input id="project-item-1" type="checkbox" class="toggle-item"/>
-							<label for="project-item-1"></label>
-	
-							<header class="clear">
-									<div class="project">
-											<a target="_blank" href="https://resume.samlehman.dev">resume.nix</a>
-									</div>
-	
-								<div class="company">Sam Lehman</div>
-									<div class="roles">
-												<span class="role">Team lead, </span>
-												<span class="role">Designer</span>
-									</div>
-	
-									<div class="date">
-										<span class="startDate">Jan 2024</span>
-											<span class="endDate">- Current</span>
-									</div>
-							</header>
-	
-	
-							<ul class="keywords">
-									<li>Nix</li>
-									<li>GitHub</li>
-									<li>GitHub Pages</li>
-									<li>GitHub Actions</li>
-									<li>DevOps</li>
-									<li>Node.js</li>
-									<li>static site</li>
-									<li>reproducible builds</li>
-									<li>declarative</li>
-									<li>CI / CD</li>
-							</ul>
-	
-						<div class="item">
-								<div class="description">Nix flake project to build &amp; deploy my personal resume using jsonresume.</div>
-	
-								<ul class="highlights">
-										<li><p>Reproducible environment that pulls all dependencies to build a static webpage for my resume.</p></li>
-										<li><p>Automatic deployment using GitHub Actions and GitHub Pages.</p></li>
-										<li><p>Development shell with automatic installations of dependencies needed to hack on, build, and deploy my resume.</p></li>
-								</ul>
-						</div>
-					</section>
-					<section class="project-item">
-								<input id="project-item-2" type="checkbox" class="toggle-item"/>
-							<label for="project-item-2"></label>
-	
-							<header class="clear">
-									<div class="project">
-											<a target="_blank" href="https://github.com/Lehmanator/HeyImHungry">HeyImHungry</a>
-									</div>
-	
-								<div class="company"></div>
-	
-							</header>
-	
-	
-							<ul class="keywords">
-									<li>React</li>
-									<li>Javascript</li>
-									<li>Google Assistant</li>
-									<li>Google Cloud</li>
-									<li>Firebase</li>
-							</ul>
-	
-						<div class="item">
-								<div class="description">Service to connect those with excess or soon-to-expire food with those in need.</div>
-	
-								<ul class="highlights">
-										<li><p>React & React Native frontend.</p></li>
-										<li><p>Google Assistant interface to query and add listings.</p></li>
-								</ul>
-						</div>
-					</section>
-			</section>
-		</section>
-		<section class="section">
-			<header>
-				<h2 class='section-title'>Education <span class="item-count">(1)</span></h2>
-			</header>
-	
-			<section id="education">
-					<section class="education-item">
-								<input id="education-item-0" type="checkbox" class="toggle-item"/>
-							<label for="education-item-0"></label>
-	
-							<header class="clear">
-	
-										<div class="area">Computer Science</div>
-										<div class="institution">Penn State University</div>
-	
-	
-									<div class="date">
-										<span class="startDate">Aug 2014</span>
-											<span class="endDate">- May 2019</span>
-									</div>
-							</header>
-	
-						<div class="item">
-								<ul class="courses">
-										<li>CMPSC121 - </li>
-										<li>CMPSC122 - </li>
-										<li>CMPSC221 - </li>
-										<li>CMPSC360 - Discrete Mathematics</li>
-										<li>CMPSC461 - </li>
-										<li>CMPSC465 - Algorithms &amp; Data Scriptures</li>
-								</ul>
-	
-	
-						</div>
-	
-					</section>
-			</section>
-		</section>
-		<section class="section">
-			<header>
-				<h2 class='section-title'>Volunteer</h2>
-			</header>
-			<section id="volunteer">
-					<section class="volunteer-item">
-	
-									<!--checked="checked" turn off-->
-									<input id="volunteer-item-0" type="checkbox" class="toggle-item"/>
-								<label for="volunteer-item-0"></label>
-	
-							<header class="clear">
-	
-										<div class="position">
-											Captain
-										</div>
-									<div class="organization">
-										THON Technology
-									</div>
-	
-								<div class="date">
-										<span class="startDate">
-											Sep 2018
-										</span>
-										<span class="endDate">
-	          - Apr 2019
-	          </span>
-								</div>
-							</header>
-						<div class="item">
-								<div class="summary"><p>THON is a student-run non-profit organization raising money for pediatric cancer research and the children affected by it. The THON Technology committee develops software to facilitate volunteer work and manage the annual dance marathon event.</p></div>
-								<ul class="highlights">
-										<li><p>Containerized developer environment to speed up onboarding new volunteer developers.</p></li>
-										<li><p>Containerized production webserver to make production environment reproducible.</p></li>
-										<li><p>Used Python & Django to create informational webpages to update volunteers on latest events & news.</p></li>
-										<li><p>Used Python & Django to create forms to collect and process information from volunteers.</p></li>
-								</ul>
-						</div>
-					</section>
-			</section>
-		</section>
-		<section class="section">
-			<header>
-				<h2 class='section-title'>Publications</h2>
-			</header>
-			<section id="publications">
-					<section class="publication-item">
-								<!--checked="checked" turn off-->
-								<input id="publication-item-0" type="checkbox" class="toggle-item"/>
-							<label for="publication-item-0"></label>
-	
-						<header class="clear">
-	
-									<span class="name">
-											Hello World - Blog
-									</span>
-									<span class="publisher">
-	          in Sam Lehman - Blog
-	          </span>
-	
-								<span class="date">
-									10 Feb 2024
-								</span>
-						</header>
-	
-						<div class="item">
-								<div class="summary"><p>First post to my self-hosted blog!</p></div>
-						</div>
-					</section>
-			</section>
-		</section>
-		<section class="section">
-			<header>
-				<h2 class='section-title'>Languages</h2>
-			</header>
-	
-			<section id="languages">
-					<div class="display">
-							<h3 class="language">
-								English
-							</h3>
-	
-						<div class="item">
-								<div class="level fluency native speaker">
-										<em>Native speaker</em>
-									<div class="bar"></div>
-								</div>
-						</div>
-					</div>
-					<div class="display">
-							<h3 class="language">
-								Spanish
-							</h3>
-	
-						<div class="item">
-								<div class="level fluency basic">
-										<em>Basic</em>
-									<div class="bar"></div>
-								</div>
-						</div>
-					</div>
-					<div class="display">
-							<h3 class="language">
-								Mandarin
-							</h3>
-	
-						<div class="item">
-								<div class="level fluency basic">
-										<em>Basic</em>
-									<div class="bar"></div>
-								</div>
-						</div>
-					</div>
-			</section>
-		</section>
-		<section class="section">
-			<header>
-				<h2 class='section-title' class='section-title'>Interests</h2>
-			</header>
-			<section id="interests">
-					<div class="item">
-							<h3 class="name">
-								Home Automation
-							</h3>
-							<ul class="keywords">
-									<li>Home Assistant</li>
-									<li>ESPHome</li>
-									<li>Self-Hosting</li>
-									<li>Raspberry Pi</li>
-									<li>ESP32</li>
-									<li>Microcontrollers</li>
-									<li>Circuitry</li>
-							</ul>
-					</div>
-					<div class="item">
-							<h3 class="name">
-								Wrestling
-							</h3>
-							<ul class="keywords">
-									<li>Sports</li>
-									<li>Martial Arts</li>
-									<li>Fitness</li>
-									<li>Athletics</li>
-									<li>Competition</li>
-							</ul>
-					</div>
-					<div class="item">
-							<h3 class="name">
-								Weight Lifting
-							</h3>
-							<ul class="keywords">
-									<li>Fitness</li>
-									<li>Athletics</li>
-									<li>Health</li>
-							</ul>
-					</div>
-			</section>
-		</section>
-		<section class="section">
-			<header>
-				<h2 class='section-title'>References</h2>
-			</header>
-			<section id="references">
-					<div class="item">
-							<blockquote class="reference">
-								&#8220;&#32;It&#x27;s my pleasure to recommend Sam. He single-handedly moved our business IT into the 21st century. Any company would be lucky to have him.&#32;&#8221;
-							</blockquote>
-							<div class="name">
-								Lauri Lewis
-							</div>
-					</div>
-			</section>
-		</section>
-</div>
-</body>
+  </body>
 </html>
