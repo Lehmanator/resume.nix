@@ -1,5 +1,10 @@
-{ inputs, ... }: {
-  perSystem = { config, lib, pkgs, ... }: {
+{inputs, ...}: {
+  perSystem = {
+    config,
+    lib,
+    pkgs,
+    ...
+  }: {
     devshells = rec {
       default = jsonresume;
       jsonresume = {

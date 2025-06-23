@@ -68,7 +68,9 @@ in {
       kv = lib.generators.toKeyValue; # Broken, attrsets not supported
       yaml = lib.generators.toYAML; # Same as JSON, wrapper with json2yaml needed
     }
-    .${ext}
+    .${
+      ext
+    }
     or lib.generators.toJSON;
 
   # mapToFormat = ext: (({
