@@ -1,71 +1,70 @@
 # resume.nix
 
 Reproducible personal résumé built & deployed using [Nix](https://nixos.org/) and
-[jsonresume](https://jsonresume.org/). Supports a broad number of themes.
+[jsonresume](https://jsonresume.org/).
+Supports a broad number of themes.
 
 ## Getting started
 
 - [ ] **TODO: Create template**
 
-Create your own `resume` repository and run
+Create your own `resume` repository and run:
 
-    nix flake init -t github:Lehmanator/resume.nix
+```bash
+    nix flake init -t git+https://codeberg.org/Lehmanator/resume.nix
+```
 
 to clone the template to use this flake.
 
-Template will come with a `builder` package, and a selection of theme packages that are passed to the builder.
-To build your résumé, first edit the data inside `src/resume.nix`, then select one of the packages to build.
+To build your résumé,
 
-Each theme will have one of the following packages:
-
-- Theme Package: `jsonresume-theme-THEMENAME`
-- HTML Builder: `jsonresume-html-THEMENAME`
-- PDF Builder: `jsonresume-pdf-THEMENAME`
+1. Edit the data inside `src/jsonresume/default.nix`
+2. Change the `meta.theme` attribute to select which theme package the document will be built with. The available names should match the names of the files in `packages/jsonresume/themes/`
 
 For example, to build a PDF document of your résumé, run:
 
-    `nix build .#jsonresume-pdf-THEMENAME`
+    `nix run .#pdf`
 
 Or to build the HTML static site, run:
 
-    `nix build .#jsonresume-html-THEMENAME`
+    `nix run .#html`
 
 You will then find either `resume.pdf` or `index.html` inside `./result` directory.
 
-Provided is a default package using a pre-selected theme. This makes building as simple as running: `nix build` with no extra arguments. To change which theme is used, edit the default package in `flake.nix` to point to some other `config.packages.jsonresume-theme-THEMENAME` package.
-
-Included are package definitions for other utils, themes, etc.
-These may not all be complete or functioning for the time-being.
-
-To list all available packages, run:
-
-    nix flake show github:Lehmanator/resume.nix
+Provided is a default package using a pre-selected (`stackoverflow`) theme.
+This makes building as simple as running: `nix run` with no extra arguments.
 
 ## More Themes
 
-Check NPM for other themes. Most should be fairly trivial to include,
-and can mostly be copy-and-pasted from other theme package files in
-`packages/jsonresume-themes/THEMENAME`
+Included are package definitions for other utils, themes, etc.
+To list all available packages, run:
+
+```bash
+    nix flake show git+https://codeberg.org/Lehmanator/resume.nix
+```
 
 [Search NPM packages for jsonresume themes](https://www.npmjs.com/search?q=jsonresume-theme)
 
+Most should be fairly trivial to include,
+and can mostly be copy-and-pasted from other theme package files in
+`packages/jsonresume/themes/`
+
 ## To-Do
 
-List of features I'd like to implement at some point.
-Plz help me. Contributions welcome!
+Features I'd like to implement at some point.
+Contributions welcome!
 
-- [ ] GitHub/GitLab Pages deployment
-- [ ] GitHub/GitLab Releases deployment
-- [ ] Formatters via `treefmt-nix`
-- [ ] QR code links to your HTML deployments or PDF release artifacts.
-- [ ] Co-existing theme deployments.
-- [ ] Markdown conversion
-- [ ] `.vcard` conversion
-- [ ] 'Download as...' button
-- [ ] LaTeX support
-- [ ] flake checks
-- [ ] PDF signing
-- [ ] More themes!
+- [x] Deployment: GitHub Pages / Codeberg Pages
+- [ ] Deployment: GitHub Actions / Forgejo Actions Releases
+- [ ] Format: QR code images linking to your HTML deployment or PDF release artifacts.
+- [ ] Format: Markdown
+- [ ] Format: `.vcard`
+- [ ] Format: LaTeX
+- [ ] HTML: Co-existing theme deployments.
+- [ ] HTML: 'Download as...' button
+- [ ] HTML: More themes!
+- [ ] PDF: Signing documents
+- [ ] Nix: flake checks
 
 ### Nix Environments
 
@@ -74,20 +73,6 @@ Plz help me. Contributions welcome!
 - [ ] `nixosModules.jsonresume` implementing [NixOS](https://github.com/NixOS/nixpkgs) options to allow deploying your static site & hosting your assets on your machine's `networking.domain` via a webserver running as a systemd service by declaring what to deploy in your `nixosConfigurations`.
   - [ ] TLS certificate generation for self-hosting your static site resume.
   - [ ] DNS configuration to point your domain at GitHub Pages.
-
-### Personal Info
-
-- [ ] Actually make the data accurate.
-
-### Links for later
-
-- [maartenpaauw/json-resume-to-vcard](https://github.com/maartenpaauw/json-resume-to-vcard) - Convert jsonresumme to `.vcard` (Contact file)
-- [GitHub Action: jsonresume-export](https://github.com/marketplace/actions/jsonresume-export) -
-- [jsonresume/resume-cli](https://github.com/jsonresume/resume-cli) - **Unmaintained**
-- [Fluentdesk/FluentCV](https://github.com/fluentdesk/FluentCV) - Convert jsonresume to `.html`, `.pdf`, `.md`, & more. **Unmaintained**
-- [jsonresume/jsonresume-gpt3](https://github.com/jsonresume/jsonresume-gpt3) -
-- [jsonresume/jsonresume.org](https://github.com/jsonresume/jsonresume.org) -
-- [DrakeAxelrod/jsonresume-service](https://github.com/DrakeAxelrod/json-resume-service) -
 
 ## Thanks
 
