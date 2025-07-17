@@ -1,0 +1,7 @@
+localFlake: {
+  inputs,
+  lib,
+  config,
+  ...
+}: {
+}

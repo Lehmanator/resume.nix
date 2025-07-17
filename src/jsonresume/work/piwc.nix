@@ -14,7 +14,7 @@ in
     description = "Winery & Wine Supplies Sales";
     position = "System Administrator";
     url = "https://piwine.com";
-    startDate = "2021-08-01";
+    startDate = "2023-02-01";
     endDate = "2023-11-01";
     summary = "Responsible for administration of servers and all user workstations for the entire company.";
     highlights = [
